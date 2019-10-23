@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="test-home">
+  <view class="test-type" wx:for="{{array}}">
+    <view class="one-type-div">
+      <image class="type-image" src="{{item.imgUrl}}" mode="aspectFit"></image>
+      <view class="type-title">{{item.title}}</view>
+      <span class="type-count">共 {{item.testCount}} 题</span>
+      <span class="type-people">{{item.testPeople}} 人已测</span>
+      <button class='type-button-text'
+        disabled="{{disabled}}" bindtap="primary">{{item.buttonText}}</button>
+    </view>
+  </view>
+  
+  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>

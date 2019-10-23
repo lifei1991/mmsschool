@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="test">
+  <view class="test-div">
+    <view class="one-type-div">
+      <view class="title">{{index + 1}}: {{showItem.title}}</view>
+      <button class="select-item {{_num==1?'selected':''}}" data-num="1" bindtap="selectedItem">A {{showItem.selectA}}</button>
+      <button class="select-item {{_num==2?'selected':''}}" data-num="2" bindtap="selectedItem">B {{showItem.selectB}}</button>
+      <button class="select-item {{_num==3?'selected':''}}" data-num="3" bindtap="selectedItem">C {{showItem.selectC}}</button>
+      <button class="select-item {{_num==4?'selected':''}}" data-num="4" bindtap="selectedItem">D {{showItem.selectD}}</button>
+
+      <button wx:if="{{index == array.length - 1}}" class="submit selected" bindtap="submitTest">确认提交</button>
+    </view>
+  </view>
+
+  <!-- 进度条 -->
+  <progress class="my-progress" percent="{{percent}}" stroke-width="6" duration="10" />
+  
+  <!-- 底部导航栏 -->
+  <view class="test-tabbar">
+    <view class="tabbar-item" bindtap="tabChange" data-id="0">
+      <view class="tabbar-icon-div">
+        <image class="tabbar-icon" src="/image/logo.png"></image>
+      </view>
+      <view class="tabbar-label {{_dis==0?'disabled':''}}">上一题</view>
+    </view>
+    <view class="tabbar-item" bindtap="tabChange" data-id="1">
+      <view class="tabbar-icon-div">
+        <image class="tabbar-icon" src="/image/logo.png"></image>
+      </view>
+      <view class="tabbar-label {{_dis==1?'disabled':''}}">下一题</view>
+    </view>
+  </view>
+</view>

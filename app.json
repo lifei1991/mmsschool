@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/info/info",
+    "pages/class/class",
+    "pages/testHome/testHome",
+    "pages/test/test",
+    "pages/personalInfo/personalInfo",
+    "pages/bindphone/bindphone",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/programs/programs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "棕榈选校助手",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

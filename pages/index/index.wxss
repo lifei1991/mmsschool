@@ -1,0 +1,45 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 200rpx;
+  height: 400rpx;
+  background-size: contain;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  /* margin-top: 520rpx; */
+  line-height: 84rpx;
+  position: absolute;
+  bottom: 318rpx;
+}
+
+.tempButton {
+  width: 654rpx;
+  height: 84rpx;
+  background:rgba(40,167,169,1);
+  border-radius:6px;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  font-size: 32rpx;
+}
+
+.tempPDButton {
+  width: 654rpx;
+  height: 84rpx;
+  border-radius:6px;
+  font-weight:500;
+  color:rgba(40,167,169,1);
+  font-size: 32rpx;
+  border:1px solid rgba(40,167,169,1);
+  background-color: transparent;
+  margin-top: 48rpx;
+}

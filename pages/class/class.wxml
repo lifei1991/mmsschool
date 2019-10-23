@@ -1,0 +1,55 @@
+<!--pages/class/class.wxml-->
+<view class="class-home">
+  <!-- tab切换 -->
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">
+      <view class="swiper-tab-item {{currentTab==0?'active under-border':''}}" data-current="0" bindtap="clickTab">最新课堂</view>
+    </view>
+
+    
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">
+    <view class="swiper-tab-item {{currentTab==1?'active under-border':''}}" data-current="1" bindtap="clickTab">干货资料</view>
+    
+    </view>
+  </view>
+
+  <!-- 最新课堂 -->
+  <view class = "{{currentTab == 0 ? 'show':'hidden'}}" >
+    <view>
+      <view class="class-type" wx:for="{{array}}">
+        <view class="one-type-div">
+          <view class="type-title">{{item.title}}</view>
+          <image class="type-image" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+          
+          <view class="right-div">
+            <view class="type-count">{{item.time}} 开课</view>
+            <view class="type-people">{{item.testPeople}}人已报名</view>
+            <button class='type-button-text'
+              disabled="{{disabled}}" bindtap="primary">立即报名</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 干货资料 -->
+  <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
+    <view>
+      <view class="class-type" wx:for="{{arrayZL}}">
+        <view class="one-type-div">
+          <view class="type-title">{{item.title}}</view>
+          <image class="type-image" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+          
+          <view class="right-div">
+            <view class="type-count">关键词 【{{item.word}}】</view>
+            <view class="type-people">{{item.testPeople}}人已报名</view>
+            <button class='type-button-text'
+              disabled="{{disabled}}" bindtap="primary">获取资料</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <mp-tabbar current="2" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>

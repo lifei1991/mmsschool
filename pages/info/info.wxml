@@ -1,0 +1,33 @@
+<!--pages/info/info.wxml-->
+<view class="info">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
+    <view class="userinfo-name">棕小榈</view>
+  </view>
+  
+  <view class="space weui-cells__title"></view>
+  <view class="cells weui-cells weui-cells_after-title">
+    <navigator url="/pages/bindphone/bindphone" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">修改密码</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+  <view class="space weui-cells__title"></view>
+  <view class="cells weui-cells weui-cells_after-title">
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">关于我们</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">对棕榈小助手反馈</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+  <button class="exit" bindtap="bindWeChat"> 退出登录 </button>
+
+  <mp-tabbar current="3" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>
+
