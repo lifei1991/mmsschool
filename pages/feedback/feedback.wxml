@@ -1,0 +1,15 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="feedback">
+  <view class="tip-div">
+    <text class="tip">Hello，有什么想和棕榈小助手反馈吗？在下方输入你想说的话，点击提交。</text>
+  </view>
+
+  <view class="content-div">
+    <textarea class="content" placeholder="请输入反馈内容" auto-focus />
+  </view>
+
+  <view class="button-div tip-div">
+    <button class='tempButton' bindtap="submitFeedback"> 提交反馈 </button>
+  </view>
+  
+</view>

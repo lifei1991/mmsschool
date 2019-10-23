@@ -34,23 +34,23 @@ Page({
     list: [
       {
         text: "留学测评",
-        iconPath: "/image/logo.png",
-        selectedIconPath: "/image/logo.png",
+        iconPath: "/image/菜单/留学测评-未选中@2x.png",
+        selectedIconPath: "/image/菜单/留学测评-选中@2x.png",
       },
       {
         text: "项目列表",
-        iconPath: "",
-        selectedIconPath: "",
+        iconPath: "/image/菜单/项目列表-未选中@2x.png",
+        selectedIconPath: "/image/菜单/项目列表-选中@2x.png",
       },
       {
         text: "申请课堂",
-        iconPath: "",
-        selectedIconPath: "",
+        iconPath: "/image/菜单/申请课堂-未选中@2x.png",
+        selectedIconPath: "/image/菜单/申请课堂-选中@2x.png",
       },
       {
         text: "个人中心",
-        iconPath: "",
-        selectedIconPath: "",
+        iconPath: "/image/菜单/个人中心-未选中@2x.png",
+        selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
       }
     ]
   },
@@ -127,6 +127,15 @@ Page({
 
     wx.redirectTo({
       url: tempUrl,
+    })
+  },
+
+  //请求测试
+  getTest() {
+    //判断是否进行测试
+    //todo
+    wx.navigateTo({
+      url: "../../pages/test/test",
     })
   }
 })

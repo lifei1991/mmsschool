@@ -11,3 +11,22 @@
   box-sizing: border-box;
   font-family:PingFang-SC-Medium,PingFang-SC;
 } 
+
+.weui-tabbar__icon {
+  width: 36rpx !important;
+  height: 36rpx !important;
+  margin-top: 6rpx !important;
+  margin-bottom: 6rpx !important;
+}
+
+.weui-tabbar__label {
+  font-size:18rpx !important;
+  font-family:PingFangSC-Regular,PingFang SC !important;
+  font-weight:400 !important;
+  color:rgba(153,153,153,1) !important;
+  line-height:26rpx !important;
+}
+
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon>i,.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+  color:#28A7A9 !important;
+}

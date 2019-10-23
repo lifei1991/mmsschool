@@ -1,14 +1,17 @@
 {
   "pages": [
-    "pages/info/info",
-    "pages/class/class",
+    "pages/programs/programs",
     "pages/testHome/testHome",
+    "pages/info/info",
+    "pages/feedback/feedback",
+    "pages/newPassword/newPassword",
+    "pages/getBackPassword/getBackPassword",
+    "pages/class/class",
     "pages/test/test",
     "pages/personalInfo/personalInfo",
     "pages/bindphone/bindphone",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/programs/programs"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

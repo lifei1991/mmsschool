@@ -7,7 +7,7 @@
       <span class="type-count">共 {{item.testCount}} 题</span>
       <span class="type-people">{{item.testPeople}} 人已测</span>
       <button class='type-button-text'
-        disabled="{{disabled}}" bindtap="primary">{{item.buttonText}}</button>
+        disabled="{{disabled}}" bindtap="getTest">{{item.buttonText}}</button>
     </view>
   </view>
   

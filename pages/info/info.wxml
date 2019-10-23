@@ -7,7 +7,7 @@
   
   <view class="space weui-cells__title"></view>
   <view class="cells weui-cells weui-cells_after-title">
-    <navigator url="/pages/bindphone/bindphone" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="/pages/getBackPassword/getBackPassword" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">修改密码</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
@@ -20,7 +20,7 @@
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
 
-    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="/pages/feedback/feedback" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">对棕榈小助手反馈</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>

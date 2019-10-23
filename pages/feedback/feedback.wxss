@@ -1,0 +1,56 @@
+/* pages/feedback/feedback.wxss */
+.feedback {
+  background-color: #FAFAFA;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.tip-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tip {
+  width: 670rpx;
+  font-size:28rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(35,31,35,.5);
+  line-height:40rpx;
+  margin: 16rpx 0 20rpx;
+}
+
+.content-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+
+.content {
+  width:670rpx;
+  font-size:32rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(35,31,35,1);
+  line-height:44rpx;
+  margin: 40rpx 0 44rpx;
+}
+
+.tempButton {
+  width: 654rpx;
+  height: 84rpx;
+  background:rgba(40,167,169,1);
+  border-radius:6px;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  font-size: 32rpx;
+
+  position: absolute;
+  bottom: 20%;
+}
