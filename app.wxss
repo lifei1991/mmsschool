@@ -19,12 +19,17 @@
   margin-bottom: 6rpx !important;
 }
 
+.weui-tabbar__item {
+  /* padding: 16rpx 0 30rpx !important; */
+}
+
 .weui-tabbar__label {
   font-size:18rpx !important;
   font-family:PingFangSC-Regular,PingFang SC !important;
   font-weight:400 !important;
   color:rgba(153,153,153,1) !important;
   line-height:26rpx !important;
+  margin-bottom: 14rpx !important;
 }
 
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon>i,.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {

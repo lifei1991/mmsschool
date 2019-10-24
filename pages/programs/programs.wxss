@@ -1,18 +1,25 @@
 /* pages/programs/programs.wxss */
+.programs {
+  background-color: #F5F5F5;
+  /* padding-bottom: 180rpx; */
+}
 
 .tab-h {
-  height: 80rpx;
+  height: 82rpx;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  line-height: 80rpx;
-  background: #f7f7f7;
-  font-size: 16px;
+  line-height: 82rpx;
+  background: #FFFFFF;
   white-space: nowrap;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 99;
+  font-size:24rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  margin-top: 2rpx;
 }
 
 .tab-item {
@@ -21,11 +28,11 @@
 }
 
 .tab-item.active {
-  color: #4675f9;
+  color: #28A7A9;
   position: relative;
 }
 
-.tab-item.active:after {
+/* .tab-item.active:after {
   content: "";
   display: block;
   height: 8rpx;
@@ -35,25 +42,35 @@
   bottom: 0;
   left: 5rpx;
   border-radius: 16rpx;
-}
+} */
 
 .item-ans {
   width: 100%;
   display: flex;
   flex-grow: row no-wrap;
   justify-content: space-between;
-  padding: 30rpx;
+  padding: 24rpx 40rpx 24rpx 0;
   box-sizing: border-box;
-  height: 180rpx;
+  height: 192rpx;
   align-items: center;
-  border-bottom: 1px solid #f2f2f2;
+  /* border-bottom: 1px solid #f2f2f2; */
+
+  background-color: #FFFFFF;
+  margin-bottom: 8rpx;
 }
 
 .avatar {
   width: 100rpx;
   height: 100rpx;
   position: relative;
-  padding-right: 30rpx;
+  padding-right: 16rpx;
+
+  font-size:60rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(40,167,169,1);
+  line-height:100rpx;
+  text-align: center;
 }
 
 .avatar .img {
@@ -77,9 +94,32 @@
 }
 
 .expertInfo .name {
-  font-size: 16px;
-  color: #000;
-  margin-bottom: 6px;
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:44rpx;
+  margin-bottom: 8rpx;
+}
+
+.expertInfo .tag {
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  line-height:34rpx;
+  margin-bottom: 24rpx;
+}
+
+.expertInfo .place {
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  line-height:34rpx;
 }
 
 .askBtn {
@@ -89,14 +129,39 @@
   text-align: center;
   font-size: 14px;
   border-radius: 60rpx;
-  border: 1px solid #4675f9;
-  color: #4675f9;
+  border: 1px solid #28A7A9;
+  color: #28A7A9;
 }
 
 .tab-content {
-  margin-top: 80rpx;
+  padding-top: 98rpx;
 }
 
 .scoll-h {
   height: 100%;
+}
+
+.placeImg {
+  width: 24rpx;
+  height: 34rpx;
+  margin-right: 8rpx;
+  vertical-align: top;
+}
+
+.hotCountImg {
+  width: 28rpx;
+  height: 34rpx;
+  /* margin-left: 90rpx; */
+  margin-right: 8rpx;
+  vertical-align: top;
+}
+
+.schoolLogo {
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.place-text {
+  width: 186rpx;
+  display: inline-block;
 }

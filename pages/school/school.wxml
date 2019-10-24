@@ -1,0 +1,43 @@
+<!--pages/school/school.wxml-->
+<view class="school">
+  <!-- tab切换 -->
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">
+      <view class="swiper-tab-item {{currentTab==0?'active under-border':''}}" data-current="0" bindtap="clickTab">学校简介</view>
+    </view>
+
+    
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">
+    <view class="swiper-tab-item {{currentTab==1?'active under-border':''}}" data-current="1" bindtap="clickTab">项目列表</view>
+    </view>
+
+    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
+    <view class="swiper-tab-item {{currentTab==2?'active under-border':''}}" data-current="2" bindtap="clickTab">录取案例</view>
+    
+    </view>
+  </view>
+
+  <!-- 学校简介 -->
+  <view class = "{{currentTab == 0 ? 'show':'hidden'}}" >
+    <view>
+      学校简介
+    </view>
+  </view>
+
+  <!-- 项目列表 -->
+  <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
+    <view>
+      项目列表
+    </view>
+  </view>
+
+  <!-- 录取案例 -->
+  <view class = "{{currentTab == 2 ? 'show':'hidden'}}" >
+    <view>
+      录取案例
+    </view>
+  </view>
+  
+  <mp-tabbar current="2" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>
+

@@ -31,13 +31,50 @@ Page({
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
-    expertList: [{ //假数据
-      img: "avatar.png",
-      name: "欢顔",
-      tag: "知名情感博主",
-      answer: 134,
-      listen: 2234
-    }]
+    schoolList: [ //假数据
+      { 
+        img: "../../image/项目列表/schools/Oval.png",
+        name: "普林斯顿大学",
+        englishName: "Princeton University",
+        place: "新泽西州",
+        hotCount: "10"
+      },
+      {
+        img: "../../image/项目列表/schools/Oval(1).png",
+        name: "哈佛大学",
+        englishName: "Harvard University",
+        place: "马萨诸塞州",
+        hotCount: "15"
+      },
+      {
+        img: "../../image/项目列表/schools/Oval(2).png",
+        name: "耶鲁大学",
+        englishName: "Yale University",
+        place: "康涅狄格州",
+        hotCount: "15"
+      },
+      {
+        img: "../../image/项目列表/schools/Oval(3).png",
+        name: "芝加哥大学",
+        englishName: "Yale University",
+        place: "伊利诺伊州",
+        hotCount: "15"
+      },
+      {
+        img: "../../image/项目列表/schools/Oval(4).png",
+        name: "哥伦比亚大学",
+        englishName: "Columbia University",
+        place: "纽约州",
+        hotCount: "15"
+      },
+      {
+        img: "../../image/项目列表/schools/Oval(5).png",
+        name: "斯坦福大学",
+        englishName: "Stanford University",
+        place: "康涅狄格州",
+        hotCount: "15"
+      },
+    ]
   },
 
   /**
@@ -51,7 +88,7 @@ Page({
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 180;
+        var calc = clientHeight * rpxR - 180 - 82 - 16;
         console.log(calc)
         that.setData({
           winHeight: calc
