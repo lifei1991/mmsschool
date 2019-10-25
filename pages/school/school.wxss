@@ -2,7 +2,7 @@
 .school {
   background-color: #FAFAFA;
   font-size: 24rpx;
-  padding-bottom: 180rpx;
+  /* padding-bottom: 180rpx; */
 
   height: 100%;
   display: flex;
@@ -11,6 +11,71 @@
   justify-content: space-between;
   box-sizing: border-box;
   font-family: PingFang-SC-Medium,PingFang-SC;
+}
+
+.schoolTitle {
+  background-color: #FFFFFF;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.schoolLogo {
+  width: 130rpx;
+  height: 130rpx;
+  margin: 24rpx 0;
+}
+
+.schoolChinese {
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:44rpx;
+}
+
+.schoolEnglishName {
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  line-height:34rpx;
+  margin: 8rpx 0 40rpx;
+}
+
+.bottom-div {
+  height: 34rpx;
+  line-height: 34rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(102,102,101,1);
+  width: 100%;
+  margin-bottom: 22rpx;
+}
+
+.each-bottom {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.placeImg {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 8rpx;
+  vertical-align: top;
+}
+
+.hotCountImg {
+  width: 34rpx;
+  height: 34rpx;
+  /* margin-left: 90rpx; */
+  margin-right: 8rpx;
+  vertical-align: top;
 }
 
 /* tab切换 */
@@ -27,6 +92,8 @@
     font-size: 28rpx;
     font-family:PingFang-SC-Medium,PingFang-SC;
     background-color: #FFFFFF;
+    margin-top: 16rpx;
+    border-bottom: 2rpx solid #EDEDED;
 }
 .swiper-tab-item{
     width: 50%; 
@@ -59,4 +126,208 @@
   width:113rpx;
   border-bottom: 4rpx solid #28A7A9;
   height: 84rpx;
+  padding-bottom: 2rpx;
+}
+
+/* 学校简介 */
+.info-div {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40rpx 0 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.school-info {
+  width: 670rpx;
+}
+
+.school-title {
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:44rpx;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.rank-div {
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 40rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 4rpx 30rpx 0px rgba(0,0,0,0.07);
+  border-radius:8rpx;
+  margin-top: 16rpx;
+}
+
+.rank-title {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+
+  font-size:28rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  letter-spacing:2rpx;
+}
+
+.rank-number {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+
+  font-size:28rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:600;
+  color:rgba(40,167,169,1);
+}
+
+
+.intro-div {
+  font-size:28rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:48rpx;
+  letter-spacing:2rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 4rpx 30rpx 0px rgba(0,0,0,0.07);
+  border-radius:8rpx;
+  padding: 40rpx;
+  margin-top: 16rpx;
+}
+
+.intro {
+  text-align: left;
+  font-size:28rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  letter-spacing:2rpx;
+}
+
+/* 项目列表 */
+.school-programs {
+  padding: 40rpx;
+  border-bottom: 2rpx solid #F7F7F7;
+  background-color: #FFFFFF;
+  position: relative;
+}
+
+.school-pro-img {
+  width: 108rpx;
+  height: 108rpx;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20rpx;
+}
+
+.school-pro-name-div {
+  display: inline-block;
+}
+
+.school-pro-chineseName {
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:44rpx;
+  margin-bottom: 30rpx;
+}
+
+.school-pro-englishName {
+  width:500rpx;
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  line-height:34rpx;
+}
+
+.logo-right {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: bottom;
+  position: absolute;
+  right: 40rpx;
+  top: 116rpx;
+}
+
+/* 录取案例 */
+.li-div {
+  background-color: #FFFFFF;
+  padding: 40rpx 34rpx 24rpx 46rpx;
+}
+
+.one-div {
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 4rpx 30rpx 0rpx rgba(0,0,0,0.07);
+  border-radius:8rpx;
+  padding: 40rpx;
+  position: relative;
+  margin-bottom: 24rpx;
+}
+
+.student-name {
+  height:44rpx;
+  font-size:32rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:44rpx;
+  margin-bottom: 24rpx;
+}
+
+.offer-job {
+  height:34rpx;
+  font-size:24rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:34rpx;
+  margin-bottom: 40rpx;
+}
+
+.student-achievement {
+  height:34Rpx;
+  font-size:24Rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:34Rpx;
+  margin-bottom: 40rpx;
+}
+
+.student-bak {
+  font-size:24rpx;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+  line-height:34rpx;
+  margin-bottom: 16rpx;
+}
+
+.student-bak-text {
+  font-size:24rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,.7);
+  line-height:34rpx;
+}
+
+.offer-logo {
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  width: 28rpx;
+  height: 52rpx;
 }

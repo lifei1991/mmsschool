@@ -5,7 +5,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: 0,
+    currentTab: 2,
+    school: {
+      logo: "../../image/项目列表/schools/Oval(5).png",
+      schoolChinses: "斯坦福大学",
+      schoolText: "Stanford University",
+      place: "加利福尼亚州",
+      hotCount: "10",
+      programs: [
+        {
+          name:"电气工程系",
+          englishName: "Department of Electrical Engineering Department",
+          img: "../../image/项目列表/programs/1.png",
+        },
+        {
+          name: "电气工程系",
+          englishName: "Department of Electrical Engineering",
+          img: "../../image/项目列表/programs/1.png",
+        },
+        {
+          name: "电气工程系",
+          englishName: "Department of Electrical Engineering",
+          img: "../../image/项目列表/programs/1.png",
+        },
+        {
+          name: "电气工程系",
+          englishName: "Department of Electrical Engineering",
+          img: "../../image/项目列表/programs/1.png",
+        },
+        {
+          name: "电气工程系",
+          englishName: "Department of Electrical Engineering",
+          img: "../../image/项目列表/programs/1.png",
+        },
+      ]
+    }
   },
 
   /**
