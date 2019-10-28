@@ -38,7 +38,7 @@
   <view class = "{{currentTab == 0 ? 'show':'hidden'}}" >
     <view class = "info-div" >
       <view class="school-info">
-        <text class="school-title">学校简介</text>
+        <text class="school-title">最新排名</text>
         <view class="rank-div">
           <view class="rank-title">US NEWS排名</view>
           <view class="rank-number">1</view>
@@ -58,7 +58,7 @@
 
     <view class = "info-div" >
       <view class="school-info">
-        <text class="school-title">学校简介</text>
+        <text class="school-title">学校介绍</text>
         <view class="intro-div">
           <view class="intro">斯坦福大学（Stanford University），全名小利兰·斯坦福大学（Leland Stanford Junior University），简称斯坦福，位于美国加州旧金山湾区南部帕罗奥多市境内，临近世界著名高科技园区硅谷（Silicon Valley），是世界著名私立研究型大学。斯坦福大学于1885年成立、1891年开始正式招生，占地约33平方公里（8180英亩），是美国占地面积第六大的大学。 斯坦福大学与旧金山北湾的加州大学伯克利分校共同构成了美国西部的学术中心，并负责运行管理SLAC国家加速器实验室、胡佛研究所等机构。 据相关机构统计，截止至2018年10月，共有83位斯坦福大学的校友、教授及研究人员曾获得诺贝尔奖（世界第七）、27位曾获得图灵奖（世界第一）、8位曾获得过菲尔兹奖（世界第八）。</view>
         </view>
@@ -68,7 +68,7 @@
 
   <!-- 项目列表 -->
   <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
-    <view class="school-programs" wx:for="{{school.programs}}">
+    <view class="school-programs" wx:for="{{school.programs}}" bindtap='toProgram'>
       <image mode="scaleToFill" class="school-pro-img" src="{{item.img}}"></image>
       <view class="school-pro-name-div">
         <view class="school-pro-chineseName">{{item.name}}</view>
@@ -84,7 +84,20 @@
       <view class="one-div" wx:for="{{school.programs}}">
         <view class="student-name">A同学</view>
         <view class="offer-job">录取专业: 计算机科学硕士</view>
-        <view class="student-achievement">GPA</view>
+        <view class="student-achievement-div">
+          <span class="student-achievement">GPA:</span>
+          <span class="student-achievement">3.7/4.0</span>
+        </view>
+
+        <view class="student-achievement-div">
+          <span class="student-achievement">TOEFL:</span>
+          <span class="student-achievement">100+</span>
+        </view>
+
+        <view class="student-achievement-div">
+          <span class="student-achievement">GRE:</span>
+          <span class="student-achievement">324</span>
+        </view>
         <view class="student-bak">申请背景</view>
         <view class="student-bak-text">同学有明确规划，写文书时，和专业导师的沟通及梳理和框架过程都非常流畅，导师针对同学的兴趣筛选出一些可以继续做研究的项目进行申请</view>
         <image class="offer-logo" src="../../image/项目列表/录取案例@2x.png"></image>

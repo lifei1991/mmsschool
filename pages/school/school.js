@@ -108,5 +108,11 @@ Page({
         currentTab: e.target.dataset.current,
       })
     }
+  },
+
+  toProgram() {
+    wx.navigateTo({
+      url: "../../pages/program/program",
+    })
   }
 })
