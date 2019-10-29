@@ -11,5 +11,9 @@
   <view class="button-div tip-div">
     <button class='tempButton' bindtap="submitFeedback"> 提交反馈 </button>
   </view>
+
+  <mp-dialog ext-class="my-dialog" title="反馈成功" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask-closable="{{false}}">
+    <view>谢谢你的反馈，我们会继续努力哒！</view>
+  </mp-dialog>
   
 </view>

@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/testResult/testResult",
+    "pages/feedback/feedback",
     "pages/program/program",
     "pages/school/school",
     "pages/programs/programs",
     "pages/testHome/testHome",
     "pages/info/info",
-    "pages/feedback/feedback",
     "pages/newPassword/newPassword",
     "pages/getBackPassword/getBackPassword",
     "pages/class/class",

@@ -129,4 +129,8 @@
     <view class="competitiveness-div">
       <button class="competitiveness" bindtap="getCompetitiveness">查看申请竞争力</button>
     </view>
+
+    <mp-dialog ext-class="my-dialog" title="竞争力测评" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}" mask-closable="{{false}}">
+      <view>{{dialogContent}}</view>
+    </mp-dialog>
 </view>

@@ -1,18 +1,23 @@
-// pages/feedback/feedback.js
+// pages/testResult/testResult.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    showLoading: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    let interval = setInterval(function () {
+      that.setData({
+        showLoading: false,
+      })
+    }, 2000)
   },
 
   /**
@@ -62,20 +67,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  //提交反馈
-  submitFeedback() {
-    this.setData({
-      dialogShow: true,
-      buttons: [{ text: '知道啦' }],
-    })
-  },
-  
-  tapDialogButton(e) {
-    this.setData({
-      dialogShow: false,
-      showOneButtonDialog: false
-    })
-  },
+  }
 })

@@ -1,0 +1,30 @@
+<!--pages/testResult/testResult.wxml-->
+<view class="testResult">
+  
+
+  <view wx:if="{{!showLoading}}" class="result-div">
+    <image class="logo" src="../../image/留学测评/测评报告background@2x.png"></image>
+    <view class="result-title">
+      <span>棕小榈</span>
+      <span> 的测评报告</span>
+    </view>
+
+    <view class="my-swiper-div">
+      <swiper class="my-swiper" indicator-dots="{{true}}" previous-margin="60rpx" next-margin="28rpx">
+        <block wx:for="{{[0,1,2]}}" wx:key="*this">
+          <swiper-item>
+            <view class="my-swiper-item">
+              <view class="big-title">申请长短板分析</view>
+              <view class="little-title-div" wx:for="{{[0,1,2,3]}}">
+                <view class="little-title">优势分析</view>
+                <view class="little-content">院校背景在国内不够Top；申请美国的话还需要看到GRE成绩（现在只有雅思）；在背景资料里没有看到其他相关经历</view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <mp-loading extClass="my-loading" show="{{showLoading}}" type="circle" tips="测评报告正在生产中......"></mp-loading>
+</view>

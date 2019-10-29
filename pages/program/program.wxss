@@ -2,7 +2,7 @@
 .program {
   background-color: #FAFAFA;
   font-size: 24rpx;
-  /* padding-bottom: 180rpx; */
+  padding-bottom: 100rpx;
 
   height: 100%;
   display: flex;
@@ -81,7 +81,7 @@ button[plain] {
 
 .share-button-div {
   position: absolute;
-  top: 30rpx;
+  top: 40rpx;
   right: 40rpx;
   width: 32rpx !important;
   height: 32rpx !important;
@@ -91,6 +91,7 @@ button[plain] {
 .share-button-img {
   width: 32rpx !important;
   height: 32rpx !important;
+  vertical-align: top;
 }
 
 /* 基本信息 */
@@ -338,6 +339,8 @@ button[plain] {
 
 .competitiveness-div {
   width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
 .competitiveness {
@@ -350,4 +353,43 @@ button[plain] {
   font-weight: 500;
   color: rgba(255,255,255,1);
   border-radius: 0rpx;
+}
+
+.my-dialog .weui-dialog__btn{
+  font-size:32rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  color:#28A7A9;
+  letter-spacing:4rpx;
+  margin: 0.5px 20px 20px;
+  background:rgba(255,255,255,1);
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius:5px;
+  border: 1px solid #28A7A9;
+}
+
+.my-dialog .weui-dialog__btn:last-child {
+  background-color: #28A7A9;
+  color: #FFFFFF;
+}
+
+.my-dialog .weui-dialog__hd {
+  font-size:14px;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+  font-weight:500;
+  color:rgba(57,60,61,1);
+}
+
+.my-dialog .weui-dialog__bd {
+  font-size:28rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,1);
+  margin-bottom: 40rpx;
+
+}
+
+.my-dialog .weui-dialog__ft:after {
+  border-top: 0;
 }
