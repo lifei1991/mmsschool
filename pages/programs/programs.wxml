@@ -8,9 +8,9 @@
     <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">Top 61-80</view>
     <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">Top 81-100</view>
   </scroll-view>
-  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx" >
     <swiper-item wx:for-index="idx" wx:for="{{[0,1,2,3,4,5]}}">
-      <scroll-view scroll-y="true" class="scoll-h">
+      <scroll-view scroll-y="true" class="scoll-h"  bindscrolltoupper="obtainNews"  bindscrolltolower="obtainNews">
         <block wx:for="{{schoolList}}" wx:key="*this">
           <view class="item-ans">
             <view class="avatar">

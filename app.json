@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/programs/programs",
+    "pages/school/school",
+    "pages/testHome/testHome",
     "pages/testResult/testResult",
     "pages/feedback/feedback",
     "pages/program/program",
-    "pages/school/school",
-    "pages/programs/programs",
-    "pages/testHome/testHome",
     "pages/info/info",
     "pages/newPassword/newPassword",
     "pages/getBackPassword/getBackPassword",
@@ -20,7 +20,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "棕榈选校助手",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json"
 }

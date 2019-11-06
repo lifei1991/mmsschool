@@ -74,7 +74,11 @@ Page({
         place: "康涅狄格州",
         hotCount: "15"
       },
-    ]
+    ],
+    p: 1,    //分页请求
+    totalpage: 10,    //总页数
+    isloading: true,    //是否显示加载动画
+    newsList: []
   },
 
   /**
@@ -95,6 +99,8 @@ Page({
         });
       }
     });
+
+    that.obtainNews();
   },
   footerTap: app.footerTap,
 
@@ -130,14 +136,32 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
+    console.log("shang")
+    // this.onLoad();    //刷新页面
+    // setTimeout(function () {
+    //   wx.hideNavigationBarLoading();    //在当前页面隐藏导航条加载动画
+    //   wx.stopPullDownRefresh();    //停止下拉动作
+    // }, 2000)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
+    console.log("xia")
+    var p = this.data.p;
+    var totalpage = this.data.totalpage + 1;
+    p++;
+    if (p > totalpage) {
+      return;
+    }
+    this.setData({
+      isloading: false,
+      p: p
+    })
+    this.obtainNews();
   },
 
   /**
@@ -195,4 +219,77 @@ Page({
       })
     }
   },
+
+  obtainNews: function () {
+    wx.showLoading({
+      title: '加载中...'
+    })
+    var that = this;
+    // wx.request({
+    //   url: 'http://cms.palmdrive.cn/json/institutes',
+    //   method: 'GET',
+    //   data: {
+    //     status: '',
+    //     s: '',
+    //     f: 'name',
+    //     ps: 10,
+    //     pn: that.data.p
+    //   },
+    //   header: {//定死的格式，不用改，照敲就好
+    //     'Content-Type': 'application/json'
+    //   },
+    //   success: function (res) {
+    //     if (res.data.status == 500) {    //没有更多数据
+    //       wx.showToast({
+    //         title: '没有数据了',
+    //         icon: 'none'
+    //       })
+    //       that.setData({
+    //         isloading: true
+    //       })
+    //     } else {
+    //       var newsArr = that.data.newsList;
+    //       var newSchoolList = that.data.schoolList;
+    //       for (var i = 0; i < res.data.data.institutes.length; i++) {
+    //         newsArr.push(res.data.data.institutes[i]);
+    //         newSchoolList.push({
+    //           img: "../../image/项目列表/schools/Oval.png",
+    //           name: "普林斯顿大学",
+    //           englishName: "Princeton University",
+    //           place: "新泽西州",
+    //           hotCount: "10"
+    //         });
+    //       }
+    //       that.setData({
+    //         newsList: newsArr,
+    //         isloading: false,
+    //         totalpage: res.data.totalpage,
+    //         schoolList: newSchoolList
+    //       })
+    //     }
+    //     wx.hideLoading();
+    //   },
+    //   fail: function (res) {
+    //     console.log('.........fail..........');
+    //     wx.hideLoading();
+    //   }
+    // })
+
+    var newSchoolList = that.data.schoolList;
+    for (var i = 0; i < 10; i++) {
+      newSchoolList.push({
+        img: "../../image/项目列表/schools/Oval.png",
+        name: "普林斯顿大学",
+        englishName: "Princeton University",
+        place: "新泽西州",
+        hotCount: "10"
+      });
+    }
+    that.setData({
+      isloading: false,
+      schoolList: newSchoolList
+    });
+    wx.hideLoading();
+  },
+
 })
