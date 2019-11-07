@@ -10,24 +10,24 @@
   </scroll-view>
   <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx" >
     <swiper-item wx:for-index="idx" wx:for="{{[0,1,2,3,4,5]}}">
-      <scroll-view scroll-y="true" class="scoll-h"  bindscrolltoupper="obtainNews"  bindscrolltolower="obtainNews">
-        <block wx:for="{{schoolList}}" wx:key="*this">
-          <view class="item-ans">
+      <scroll-view scroll-y="true" class="scoll-h"  bindscrolltoupper="pullRefresh"  bindscrolltolower="bottomRefresh">
+        <block wx:for="{{newsList}}" wx:key="*this">
+          <view class="item-ans" bindtap="selectSchool" id='{{item.id}}'>
             <view class="avatar">
               <!-- <image class="img" src="../../image/logo.png"></image> -->
-              <text>{{idx * 10 + index + 1}}</text>
+              <text>{{currentTab == 0 ? index + 1 : (currentTab - 1) * 20 + index + 1}}</text>
             </view>
             <view class="expertInfo">
-              <view class="name">{{item.name}}</view>
-              <view class="tag">{{item.englishName}}</view>
+              <view class="name">{{item.chineseName}}</view>
+              <view class="tag">{{item.name}}</view>
               <view class="place">
                 <image mode="aspectFit" class="placeImg" src="../../image/项目列表/定位@2x.png"></image>
-                <span class="place-text">{{item.place}}</span>
+                <span class="place-text">{{item.state}}</span>
                 <image mode="aspectFit" class="hotCountImg" src="../../image/项目列表/热门项目@2x.png"></image>
                 <span class="hotCount">{{item.hotCount}} 个热门项目</span>
               </view>
             </view>
-            <image class="schoolLogo" mode="aspectFit" src="{{item.img}}"></image>
+            <image class="schoolLogo" mode="aspectFit" src="{{item.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval.png' : item.schoolLogo[0]}}"></image>
           </view>
         </block>
       </scroll-view>

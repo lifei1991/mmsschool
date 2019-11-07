@@ -1,14 +1,14 @@
 <!--pages/school/school.wxml-->
 <view class="school">
   <view class="schoolTitle">
-    <image class="schoolLogo" src="{{school.logo}}"></image>
-    <view class="schoolChinese">{{school.schoolChinses}}</view>
-    <view class="schoolEnglishName">{{school.schoolText}}</view>
+    <image class="schoolLogo" mode="aspectFit" src="{{school.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval(5).png' : school.schoolLogo[0]}}"></image>
+    <view class="schoolChinese">{{school.chineseName}}</view>
+    <view class="schoolEnglishName">{{school.name}}</view>
 
      <view class="bottom-div">
       <view class="each-bottom">
         <image mode="aspectFit" class="placeImg" src="../../image/项目列表/定位@2x.png"></image>
-        <span class="place-text">{{school.place}}</span>
+        <span class="place-text">{{school.state}}</span>
       </view>
       <view class="each-bottom">
         <image mode="aspectFit" class="hotCountImg" src="../../image/项目列表/热门项目@2x.png"></image>
@@ -41,17 +41,17 @@
         <text class="school-title">最新排名</text>
         <view class="rank-div">
           <view class="rank-title">US NEWS排名</view>
-          <view class="rank-number">1</view>
+          <view class="rank-number">{{school.rank.usa}}</view>
         </view>
 
         <view class="rank-div">
           <view class="rank-title">QS排名</view>
-          <view class="rank-number">1</view>
+          <view class="rank-number">{{school.rank.world}}</view>
         </view>
 
         <view class="rank-div">
           <view class="rank-title">泰晤士报排名</view>
-          <view class="rank-number">1</view>
+          <view class="rank-number">{{school.rank.british}}</view>
         </view>
       </view>
     </view>
@@ -60,7 +60,7 @@
       <view class="school-info">
         <text class="school-title">学校介绍</text>
         <view class="intro-div">
-          <view class="intro">斯坦福大学（Stanford University），全名小利兰·斯坦福大学（Leland Stanford Junior University），简称斯坦福，位于美国加州旧金山湾区南部帕罗奥多市境内，临近世界著名高科技园区硅谷（Silicon Valley），是世界著名私立研究型大学。斯坦福大学于1885年成立、1891年开始正式招生，占地约33平方公里（8180英亩），是美国占地面积第六大的大学。 斯坦福大学与旧金山北湾的加州大学伯克利分校共同构成了美国西部的学术中心，并负责运行管理SLAC国家加速器实验室、胡佛研究所等机构。 据相关机构统计，截止至2018年10月，共有83位斯坦福大学的校友、教授及研究人员曾获得诺贝尔奖（世界第七）、27位曾获得图灵奖（世界第一）、8位曾获得过菲尔兹奖（世界第八）。</view>
+          <view class="intro">{{school.schoolIntroduce}}</view>
         </view>
       </view>
     </view>
@@ -68,11 +68,11 @@
 
   <!-- 项目列表 -->
   <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
-    <view class="school-programs" wx:for="{{school.programs}}" bindtap='toProgram'>
-      <image mode="scaleToFill" class="school-pro-img" src="{{item.img}}"></image>
+    <view class="school-programs" wx:for="{{programs}}" bindtap='toProgram'>
+      <image mode="scaleToFill" class="school-pro-img" src="../../image/项目列表/programs/1.png"></image>
       <view class="school-pro-name-div">
-        <view class="school-pro-chineseName">{{item.name}}</view>
-        <view class="school-pro-englishName">{{item.englishName}}</view>
+        <view class="school-pro-chineseName">{{item.cnname}}</view>
+        <view class="school-pro-englishName">{{item.name}}</view>
       </view>
       <image mode="aspectFit" class="logo-right" src="../../image/个人中心/向右@2x.png"></image>
     </view>
@@ -81,7 +81,7 @@
   <!-- 录取案例 -->
   <view class = "{{currentTab == 2 ? 'show':'hidden'}}" >
     <view class="li-div">
-      <view class="one-div" wx:for="{{school.programs}}">
+      <view class="one-div" wx:for="{{offers}}">
         <view class="student-name">A同学</view>
         <view class="offer-job">录取专业: 计算机科学硕士</view>
         <view class="student-achievement-div">

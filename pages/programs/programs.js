@@ -136,32 +136,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
-    console.log("shang")
-    // this.onLoad();    //刷新页面
-    // setTimeout(function () {
-    //   wx.hideNavigationBarLoading();    //在当前页面隐藏导航条加载动画
-    //   wx.stopPullDownRefresh();    //停止下拉动作
-    // }, 2000)
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
-    console.log("xia")
-    var p = this.data.p;
-    var totalpage = this.data.totalpage + 1;
-    p++;
-    if (p > totalpage) {
-      return;
-    }
-    this.setData({
-      isloading: false,
-      p: p
-    })
-    this.obtainNews();
+    
   },
 
   /**
@@ -196,16 +178,47 @@ Page({
       currentTab: e.detail.current
     });
     this.checkCor();
+    
+    if (e.detail.current == 0) {
+      this.setData({
+        p: 1,
+        newsList: [],
+        ps: 20
+      })
+    } else {
+      this.setData({
+        p: e.detail.current,
+        newsList: [],
+        ps: 20
+      })
+    }
+    this.obtainNews()
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
-    if (this.data.currentTaB == cur) { return false; }
-    else {
+    if (this.data.currentTaB == cur) { 
+      return false; 
+    } else {
       this.setData({
         currentTab: cur
       })
+
+      if (cur == 0) {
+        this.setData({
+          p: 1,
+          newsList: [],
+          ps: 20
+        })
+      } else {
+        this.setData({
+          p: cur,
+          newsList: [],
+          ps: 20
+        })
+      }
     }
+    this.obtainNews();
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {
@@ -221,75 +234,106 @@ Page({
   },
 
   obtainNews: function () {
-    wx.showLoading({
-      title: '加载中...'
-    })
-    var that = this;
-    // wx.request({
-    //   url: 'http://cms.palmdrive.cn/json/institutes',
-    //   method: 'GET',
-    //   data: {
-    //     status: '',
-    //     s: '',
-    //     f: 'name',
-    //     ps: 10,
-    //     pn: that.data.p
-    //   },
-    //   header: {//定死的格式，不用改，照敲就好
-    //     'Content-Type': 'application/json'
-    //   },
-    //   success: function (res) {
-    //     if (res.data.status == 500) {    //没有更多数据
-    //       wx.showToast({
-    //         title: '没有数据了',
-    //         icon: 'none'
-    //       })
-    //       that.setData({
-    //         isloading: true
-    //       })
-    //     } else {
-    //       var newsArr = that.data.newsList;
-    //       var newSchoolList = that.data.schoolList;
-    //       for (var i = 0; i < res.data.data.institutes.length; i++) {
-    //         newsArr.push(res.data.data.institutes[i]);
-    //         newSchoolList.push({
-    //           img: "../../image/项目列表/schools/Oval.png",
-    //           name: "普林斯顿大学",
-    //           englishName: "Princeton University",
-    //           place: "新泽西州",
-    //           hotCount: "10"
-    //         });
-    //       }
-    //       that.setData({
-    //         newsList: newsArr,
-    //         isloading: false,
-    //         totalpage: res.data.totalpage,
-    //         schoolList: newSchoolList
-    //       })
-    //     }
-    //     wx.hideLoading();
-    //   },
-    //   fail: function (res) {
-    //     console.log('.........fail..........');
-    //     wx.hideLoading();
-    //   }
+    // wx.showLoading({
+    //   title: '加载中...'
     // })
-
-    var newSchoolList = that.data.schoolList;
-    for (var i = 0; i < 10; i++) {
-      newSchoolList.push({
-        img: "../../image/项目列表/schools/Oval.png",
-        name: "普林斯顿大学",
-        englishName: "Princeton University",
-        place: "新泽西州",
-        hotCount: "10"
-      });
-    }
-    that.setData({
-      isloading: false,
-      schoolList: newSchoolList
-    });
-    wx.hideLoading();
+    var that = this;
+    wx.request({
+      url: 'https://cms.palmdrive.cn/json/institutes',
+      method: 'GET',
+      data: {
+        status: 0,
+        s: '',
+        f: 'name',
+        ps: 20,
+        pn: that.data.p
+      },
+      header: {//定死的格式，不用改，照敲就好
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.status == 500) {    //没有更多数据
+          wx.showToast({
+            title: '没有数据了',
+            icon: 'none'
+          })
+          that.setData({
+            isloading: false
+          })
+        } else {
+          var newsArr = that.data.newsList;
+          for (var i = 0; i < res.data.data.institutes.length; i++) {
+            newsArr.push(res.data.data.institutes[i]);
+          }
+          that.setData({
+            newsList: newsArr,
+            isloading: false,
+            totalpage: res.data.totalpage
+          })
+        }
+        
+        setTimeout(function () {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+          wx.hideLoading();
+        }, 500)
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+        wx.hideLoading();
+      }
+    })
   },
+
+  pullRefresh: function () {
+    if (this.data.currentTab == 0) {
+      // this.onLoad();    //刷新页面
+      this.setData({
+        newsList: [],
+        isloading: true,
+        p: 1,
+        ps: 20
+      })
+
+      wx.showLoading({
+        title: '加载中...'
+      })
+      this.obtainNews();
+
+      setTimeout(function () {
+        wx.hideNavigationBarLoading();    //在当前页面隐藏导航条加载动画
+        wx.stopPullDownRefresh();    //停止下拉动作
+      }, 2000)
+    }
+  },
+
+  bottomRefresh: function () {
+    if (this.data.currentTab == 0) {
+      wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
+      console.log("xia")
+      var p = this.data.p;
+      var totalpage = this.data.totalpage + 1;
+      p++;
+      if (p > totalpage) {
+        return;
+      }
+      this.setData({
+        isloading: false,
+        p: p
+      })
+
+      // wx.showLoading({
+      //   title: '加载中...'
+      // })
+      this.obtainNews();
+    }
+  },
+
+  selectSchool(e) {
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/school/school?id=' + id
+    })
+  }
 
 })

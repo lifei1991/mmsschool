@@ -4,7 +4,7 @@
   font-size: 24rpx;
   /* padding-bottom: 180rpx; */
 
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 360rpx;
 }
 
 .schoolLogo {
@@ -83,7 +84,7 @@
     width: 100%;
     /* border-bottom: 2rpx solid #ccc; */
     text-align: center;
-    height: 88rpx;
+    min-height: 88rpx;
     line-height: 88rpx;
     display: flex;
     flex-flow: row;
@@ -218,6 +219,7 @@
   border-bottom: 2rpx solid #F7F7F7;
   background-color: #FFFFFF;
   position: relative;
+  min-height: 112rpx;
 }
 
 .school-pro-img {
@@ -233,7 +235,8 @@
 }
 
 .school-pro-chineseName {
-  height:44rpx;
+  width:500rpx;
+  min-height:44rpx;
   font-size:32rpx;
   font-family:PingFang-SC-Medium,PingFang-SC;
   font-weight:500;
@@ -244,7 +247,7 @@
 
 .school-pro-englishName {
   width:500rpx;
-  height:34rpx;
+  min-height:34rpx;
   font-size:24rpx;
   font-family:PingFang-SC-Regular,PingFang-SC;
   font-weight:400;

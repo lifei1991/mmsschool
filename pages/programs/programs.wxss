@@ -53,7 +53,7 @@
   justify-content: space-between;
   padding: 24rpx 40rpx 24rpx 0;
   box-sizing: border-box;
-  height: 192rpx;
+  min-height: 192rpx;
   align-items: center;
   /* border-bottom: 1px solid #f2f2f2; */
 
@@ -62,7 +62,7 @@
 }
 
 .avatar {
-  width: 100rpx;
+  min-width: 100rpx;
   height: 100rpx;
   position: relative;
   padding-right: 16rpx;
@@ -96,7 +96,7 @@
 }
 
 .expertInfo .name {
-  height:44rpx;
+  min-height:44rpx;
   font-size:32rpx;
   font-family:PingFang-SC-Medium,PingFang-SC;
   font-weight:500;
@@ -106,7 +106,7 @@
 }
 
 .expertInfo .tag {
-  height:34rpx;
+  min-height:34rpx;
   font-size:24rpx;
   font-family:PingFang-SC-Regular,PingFang-SC;
   font-weight:400;
@@ -116,7 +116,7 @@
 }
 
 .expertInfo .place {
-  height:34rpx;
+  min-height:34rpx;
   font-size:24rpx;
   font-family:PingFang-SC-Regular,PingFang-SC;
   font-weight:400;
