@@ -254,7 +254,7 @@ Page({
         status: "OFFER",
         ps: 10,
         pn: that.data.p,
-        sorts: [{ "k": "student", "v": "-1" }],
+        // sorts: [{ "k": "student", "v": "-1" }],
         beginTime: 0,
         endTime: 0,
         timeSort: -1
@@ -270,7 +270,7 @@ Page({
           console.log('.........fail..........');
         } else {
           that.setData({
-            offers: res.data.data.institutes[0]
+            // offers: res.data.data.institutes[0]
           })
         }
       },

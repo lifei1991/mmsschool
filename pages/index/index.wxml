@@ -4,10 +4,10 @@
     <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
   </view>
   <view class="usermotto">
-    <button class='tempButton'
-        disabled="{{disabled}}" bindtap="bindWeChat"> 微信授权登录 </button>
+    <button class='tempButton' open-type="getUserInfo"
+        disabled="{{disabled}}" bindgetuserinfo="bindWeChat"> 微信授权登录 </button>
     <button class='tempPDButton'
         disabled="{{disabled}}" bindtap="primary"> 使用棕榈大道账号登录 </button>
   </view>
-  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+  <!-- <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar> -->
 </view>

@@ -19,7 +19,8 @@
   /* margin-top: 520rpx; */
   line-height: 84rpx;
   position: absolute;
-  bottom: 318rpx;
+  /* bottom: 318rpx; */
+  bottom: 19.58%;
 }
 
 .tempButton {

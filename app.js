@@ -1,17 +1,17 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // // 展示本地存储能力
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    // // 登录
+    // wx.login({
+    //   success: res => {
+    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //   }
+    // })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -27,7 +27,16 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+
+              // wx.reLaunch({
+              //   url: '../../pages/testHome/testHome',
+              // })
             }
+          })
+        } else {
+          // 未授权，跳转到授权页面
+          wx.reLaunch({
+            url: '../../pages/index/index',
           })
         }
       }
