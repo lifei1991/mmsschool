@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="bind-phone">
   <view class="userinfo">
     <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
   </view>
@@ -29,7 +29,7 @@
 
   <view class="usermotto">
     <button class='tempButton'
-        disabled="{{submitDisabled}}" bindtap="primary"> 绑定手机号 </button>
+        disabled="{{submitDisabled}}" bindtap="submitAll"> 绑定手机号 </button>
   </view>
   <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
 </view>

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="test-home">
+<view class="test-home" >
   <view class="test-type" wx:for="{{array}}">
     <view class="one-type-div">
       <image class="type-image" src="{{item.imgUrl}}" mode="aspectFit"></image>

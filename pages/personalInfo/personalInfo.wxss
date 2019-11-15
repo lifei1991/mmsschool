@@ -1,4 +1,14 @@
 /* pages/personalInfo/personalInfo.wxss */
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 200rpx 0; */
+  box-sizing: border-box;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;

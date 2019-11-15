@@ -1,10 +1,12 @@
 // pages/testHome/testHome.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: app.globalData.userInfo,
     array: [
       {
         imgUrl: "/image/手机摄影.png",
@@ -59,7 +61,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (app.globalData.userInfo) {
+      console.log('page1');
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else{
+      console.log('page2');
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      // 给app.js 定义一个方法。
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    }
   },
 
   /**

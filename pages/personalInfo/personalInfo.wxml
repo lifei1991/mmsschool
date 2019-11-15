@@ -1,5 +1,5 @@
 <!--pages/personalInfo/personalInfo.wxml-->
-<view class="container">
+<view class="personal-info">
   <view class="formTemp">
     <view>
       <text class="lablePhone firstLable">姓名</text>

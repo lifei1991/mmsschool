@@ -4,7 +4,7 @@
   font-size: 24rpx;
   padding-bottom: 180rpx;
 
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@
 
 .one-type-div {
   width: 670rpx;
-  height: 100%;
+  /* height: 100%; */
   padding: 20rpx 0 24rpx;
   position: relative;
 }

@@ -1,4 +1,13 @@
 /* pages/bindphone/bindphone.wxss */
+.bind-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-family:PingFang-SC-Medium,PingFang-SC;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;

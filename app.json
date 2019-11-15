@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/testHome/testHome",
+    "pages/bindphone/bindphone",
     "pages/index/index",
     "pages/school/school",
     "pages/programs/programs",
-    
+    "pages/testHome/testHome",
     "pages/testResult/testResult",
     "pages/feedback/feedback",
     "pages/program/program",
@@ -14,7 +14,7 @@
     "pages/class/class",
     "pages/test/test",
     "pages/personalInfo/personalInfo",
-    "pages/bindphone/bindphone",
+    
     "pages/logs/logs"
   ],
   "window": {

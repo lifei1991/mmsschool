@@ -1,6 +1,6 @@
 // pages/bindphone/bindphone.js
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,7 +12,8 @@ Page({
     time: '发送验证码(60s)', //倒计时 
     currentTime: 61,
     phone: '',
-    yzm: ''
+    yzm: '',
+    returnYZM: ''
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -38,16 +39,42 @@ Page({
       }
     }, 1000)
   },
+
   getVerificationCode() {
+    var that = this;
+    if (!this.data.ajxtrue) {
+      wx.showToast({
+        title: "手机号有误，请重新输入！",
+        icon: 'none',
+        duration: 2000
+      });
+      return
+    }
+
     this.getCode();
-    var that = this
+
+    wx.request({
+      //后台接口地址
+      url: 'https://cms.palmdrive.cn/json/mobilecode',
+      data: {
+        mobile: that.data.phone,
+        itu: that.data.array[that.data.index],
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.data.returnYZM = res;
+      }
+    })
+
     that.setData({
       codeDisable: true
     })
   },
   //监测输入框是否有值
   inputWacth(e) {
-    console.log(e);
     var that = this
     let item = e.currentTarget.dataset.model;
     this.setData({
@@ -60,8 +87,87 @@ Page({
       })
     }
 
-    console.log(this.data.phone);
-    console.log(this.data.yzm);
+    //验证手机号
+    var phone = e.detail.value;
+    if (!(/^1[34578]\d{9}$/.test(phone))) {
+
+      this.setData({
+        ajxtrue: false
+      })
+      if (phone.length > 11) {
+        wx.showToast({
+          title: '手机号有误',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    } else {
+      this.setData({
+        ajxtrue: true
+      })
+      console.log('验证成功', that.data.ajxtrue)
+    }
+  },
+
+  submitAll() {
+    var that = this;
+    wx.request({
+      //后台接口地址
+      url: 'https://cms.palmdrive.cn/json/verifycode',
+      data: {
+        code: that.data.yzm,
+        mobile: that.data.phone,
+        itu: that.data.array[that.data.index],
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        // that.data.returnYZM = res;
+        if (res.data.status == "FAIL") {
+          wx.showToast({
+            title: res.data.description,
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+          wx.showToast({
+            title: "绑定成功",
+            icon: 'none',
+            duration: 2000
+          });
+
+          wx.request({
+            //后台接口地址
+            url: 'https://cms.palmdrive.cn/json/wx/user',
+            data: {
+              wxaUserInfo: app.globalData.userInfo,
+              mobile: that.data.phone,
+              itu: that.data.array[that.data.index],
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              if (res.data.status != "SUCCESS") {
+                wx.showToast({
+                  title: '用户微信信息未保存成功',
+                  icon: 'none',
+                  duration: 2000
+                });
+              } else {
+                app.globalData.user = res.data;
+                wx.redirectTo({
+                  url: '../../pages/personalInfo/personalInfo',
+                })
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   /**

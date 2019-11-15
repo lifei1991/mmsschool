@@ -45,16 +45,35 @@ Page({
               'content-type': 'application/json'
             },
             success: function (res) {
-              console.log('请求成功')
-              wx.navigateTo({
-                url: "../../pages/bindphone/bindphone",
-              })
+              // 获取用户信息
+              wx.getSetting({
+                success: res => {
+                  if (res.authSetting['scope.userInfo']) {
+                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                    wx.getUserInfo({
+                      success: res => {
+                        // 可以将 res 发送给后台解码出 unionId
+                        app.globalData.userInfo = res.userInfo
+                      }
+                    })
+                  }
+                }
+              });
+
+              if (res.data.token == "") {
+                wx.navigateTo({
+                  url: "../../pages/bindphone/bindphone",
+                })
+              } else {
+                wx.navigateTo({
+                  url: "../../pages/testHome/testHome",
+                })
+              }
             }
           })
         }
       })
     } else {
-      console.log(333, '执行到这里，说明拒绝了授权')
       wx.showToast({
         title: "为了您更好的体验,请先同意授权",
         icon: 'none',
