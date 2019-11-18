@@ -1,6 +1,6 @@
 // pages/personalInfo/personalInfo.js
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,7 +13,7 @@ Page({
     currentTime: 61,
     nameX: '',
     nameM: '',
-    psd: '',
+    psd: 'mms-11111111',
     email: ''
   },
   bindPickerChange: function (e) {
@@ -30,32 +30,73 @@ Page({
       [item]: e.detail.value
     });
 
-    if (this.data.nameX != '' && this.data.nameM != '' && this.data.email != '' && this.data.psd != '' ) {
-      that.setData({
+    this.checkSubmit();
+  },
+
+  checkSubmit() {
+    if (this.data.nameX != '' && this.data.nameM != '' && this.data.email != '' && this.data.psd != '') {
+      this.setData({
         submitDisabled: false
       })
     } else {
-      that.setData({
+      this.setData({
         submitDisabled: true
       })
     }
-
-    console.log(this.data.phone);
-    console.log(this.data.yzm);
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      nameX: app.globalData.user.personal.lastName,
+      nameM: app.globalData.user.personal.firstName,
+      email: app.globalData.user.auth.email,
+    });
+  },
 
+  submitAll() {
+    var that = this;
+    wx.request({
+      //后台接口地址
+      url: 'https://cms.palmdrive.cn/json/wx/update',
+      data: {
+        id: app.globalData.user.id,
+        col: 'user',
+        data: {
+          'personal.lastName': that.data.nameX,
+          'personal.firstName': that.data.nameM,
+          'auth.email': that.data.email,
+          'password': that.data.psd,
+        }
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.status != "SUCCESS") {
+          wx.showToast({
+            title: '用户微信信息未保存成功',
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+          app.globalData.user = res.data.data;
+          wx.redirectTo({
+            url: '../../pages/personalInfo/personalInfo',
+          })
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.checkSubmit();
   },
 
   /**

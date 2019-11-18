@@ -2,12 +2,13 @@
 <view class="container">
   <view class="userinfo">
     <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
+    <text class="pd-title">棕榈大道</text>
   </view>
   <view class="usermotto">
     <button class='tempButton' open-type="getUserInfo"
         disabled="{{disabled}}" bindgetuserinfo="bindWeChat"> 微信授权登录 </button>
     <button class='tempPDButton'
-        disabled="{{disabled}}" bindtap="primary"> 使用棕榈大道账号登录 </button>
+        disabled="{{disabled}}" bindtap="loginWithCMS"> 使用棕榈大道账号登录 </button>
   </view>
   <!-- <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar> -->
 </view>

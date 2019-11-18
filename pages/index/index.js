@@ -121,7 +121,13 @@ Page({
     console.log('tab change', e);
     wx.navigateTo({
       url: '../../pages/logs/logs',
-      
+    })
+  },
+
+  //棕榈大道账号登录
+  loginWithCMS() {
+    wx.navigateTo({
+      url: '../../pages/cmsLogin/cmsLogin',
     })
   }
 })

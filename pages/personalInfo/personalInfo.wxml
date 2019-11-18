@@ -4,22 +4,22 @@
     <view>
       <text class="lablePhone firstLable">姓名</text>
       <view class="phoneDiv nameDiv">
-        <input class="name" data-model="nameX" bindinput='inputWacth' type="number" placeholder="姓"/>
-        <input class="name" data-model="nameM" bindinput='inputWacth' type="number" placeholder="名"/>
+        <input class="name" value="{{nameX}}" data-model="nameX" bindinput='inputWacth' type="number" placeholder="姓"/>
+        <input class="name" value="{{nameM}}" data-model="nameM" bindinput='inputWacth' type="number" placeholder="名"/>
       </view>
     </view>
 
     <view class="codeDiv">
       <text class="lablePhone">邮箱</text>
       <view class="phoneDiv">
-        <input class="" data-model='email' bindinput='inputWacth' type="number" placeholder="请填写常用邮箱，可用作登录账号"/>
+        <input class="" value="{{email}}" data-model='email' bindinput='inputWacth' type="number" placeholder="请填写常用邮箱，可用作登录账号"/>
       </view>
     </view>
 
     <view class="codeDiv">
       <text class="lablePhone">账号密码</text>
       <view class="phoneDiv">
-        <input class="" password data-model='psd' bindinput='inputWacth' type="number" placeholder="请设置账号密码"/>
+        <input class="" value="{{psd}}" password data-model='psd' bindinput='inputWacth' type="number" placeholder="请设置账号密码"/>
       </view>
     </view>
 
@@ -37,7 +37,7 @@
 
   <view class="usermotto">
     <button class='tempButton'
-        disabled="{{submitDisabled}}" bindtap="primary"> 确定保存 </button>
+        disabled="{{submitDisabled}}" bindtap="submitAll"> 确定保存 </button>
   </view>
   <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
 </view>

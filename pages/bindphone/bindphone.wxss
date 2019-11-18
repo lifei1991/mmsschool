@@ -6,6 +6,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   font-family:PingFang-SC-Medium,PingFang-SC;
+  /* height: 100%; */
 }
 
 .userinfo {
@@ -81,10 +82,10 @@
 }
 
 .usermotto {
-  margin-top: 300rpx;
+  /* margin-top: 300rpx; */
   line-height: 84rpx;
-  /* position: absolute;
-  bottom: 318rpx; */
+  position: absolute;
+  bottom: 18.6%;
 }
 
 .tempButton {

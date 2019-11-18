@@ -2,6 +2,7 @@
 <view class="bind-phone">
   <view class="userinfo">
     <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
+    <!-- <text class="pd-title">棕榈大道</text> -->
   </view>
 
   <view class="formTemp">

@@ -6,6 +6,8 @@ App({
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
 
+    wx.hideHomeButton();
+
     // 登录
     wx.login({
       success: res => {
@@ -44,6 +46,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    user: null
+    user:  {
+      personal: {}
+    }
   }
 })

@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="cms-login">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
+    <!-- <text class="pd-title">棕榈大道</text> -->
+  </view>
+
+  <view class="formTemp">
+    <view>
+      <text class="lablePhone">账号</text>
+      <view class="phoneDiv">
+        <input class="phoneInput" data-model="phone" bindinput='inputWacth' type="number" placeholder="请输入手机号/邮箱"/>
+      </view>
+    </view>
+
+    <view class="codeDiv">
+      <text class="lablePhone">密码</text>
+      <view class="phoneDiv">
+        <input class="codeInput" data-model='yzm' bindinput='inputWacth' type="password" placeholder="请输入密码"/>
+        <!-- <button class='sendCodeBtn' disabled="{{codeDisable}}" bindtap="getVerificationCode"> {{time}}</button> -->
+      </view>
+
+      <button class='forgetPsd' bindtap="toForgetPsd">忘记密码？</button>
+    </view>
+  </view>
+
+  <view class="usermotto">
+    <button class='tempButton'
+        disabled="{{submitDisabled}}" bindtap="submitAll"> 登  录 </button>
+  </view>
+  <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+</view>

@@ -96,15 +96,40 @@ Page({
     }, 1000)
   },
   getVerificationCode() {
+    var that = this;
+    if (!this.data.ajxtrue) {
+      wx.showToast({
+        title: "手机号有误，请重新输入！",
+        icon: 'none',
+        duration: 2000
+      });
+      return
+    }
+
     this.getCode();
-    var that = this
+
+    wx.request({
+      //后台接口地址
+      url: 'https://cms.palmdrive.cn/json/mobilecode',
+      data: {
+        mobile: that.data.phone,
+        itu: that.data.array[that.data.index],
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.data.returnYZM = res;
+      }
+    })
+
     that.setData({
       codeDisable: true
     })
   },
   //监测输入框是否有值
   inputWacth(e) {
-    console.log(e);
     var that = this
     let item = e.currentTarget.dataset.model;
     this.setData({
@@ -117,16 +142,56 @@ Page({
       })
     }
 
-    console.log(this.data.phone);
-    console.log(this.data.yzm);
+    //验证手机号
+    var phone = e.detail.value;
+    if (!(/^1[34578]\d{9}$/.test(phone))) {
+
+      this.setData({
+        ajxtrue: false
+      })
+      if (phone.length > 11) {
+        wx.showToast({
+          title: '手机号有误',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    } else {
+      this.setData({
+        ajxtrue: true
+      })
+      console.log('验证成功', that.data.ajxtrue)
+    }
   },
 
   continue() {
-    //验证验证码
-    //todo
-
-    wx.navigateTo({
-      url: "../../pages/newPassword/newPassword",
+    var that = this;
+    wx.request({
+      //后台接口地址
+      url: 'https://cms.palmdrive.cn/json/wx/user/modif',
+      data: {
+        code: that.data.yzm,
+        mobile: that.data.phone,
+        itu: that.data.array[that.data.index],
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        // that.data.returnYZM = res;
+        if (res.data.status == "FAIL") {
+          wx.showToast({
+            title: res.data.description,
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+          wx.navigateTo({
+            url: "../../pages/newPassword/newPassword",
+          })
+        }
+      }
     })
   }
 })
