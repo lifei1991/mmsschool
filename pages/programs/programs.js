@@ -78,7 +78,30 @@ Page({
     p: 1,    //分页请求
     totalpage: 10,    //总页数
     isloading: true,    //是否显示加载动画
-    newsList: []
+    newsList: [],
+
+    selectShow: false,//初始option不显示
+    nowText: "美国",//初始内容
+    animationData: {},//右边箭头的动画
+    country: "United States",
+    propArray: [
+      {
+        "id": "United States",
+        "text": "美国"
+      },
+      {
+        "id": "United Kingdom",
+        "text": "英国"
+      },
+      {
+        "id": "Singapore",
+        "text": "新加坡"
+      },
+      {
+        "id": "Hong Kong",
+        "text": "中国香港"
+      },
+    ]
   },
 
   /**
@@ -246,7 +269,8 @@ Page({
         s: '',
         f: 'name',
         ps: 20,
-        pn: that.data.p
+        pn: that.data.p,
+        country: that.data.country
       },
       header: {//定死的格式，不用改，照敲就好
         'Content-Type': 'application/json'
@@ -334,6 +358,55 @@ Page({
     wx.navigateTo({
       url: '/pages/school/school?id=' + id
     })
+  },
+
+
+  selectToggle: function () {
+    var nowShow = this.data.selectShow;//获取当前option显示的状态
+    //创建动画
+    var animation = wx.createAnimation({
+      timingFunction: "ease"
+    })
+    this.animation = animation;
+    if (nowShow) {
+      animation.rotate(0).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    } else {
+      animation.rotate(180).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }
+    this.setData({
+      selectShow: !nowShow
+    })
+  },
+  //设置内容
+  setText: function (e) {
+    var nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
+    var nowIdx = e.target.dataset.index;//当前点击的索引
+    var nowText = nowData[nowIdx].text;//当前点击的内容
+    //再次执行动画，注意这里一定，一定，一定是this.animation来使用动画
+    this.animation.rotate(0).step();
+    this.setData({
+      selectShow: false,
+      nowText: nowText,
+      animationData: this.animation.export(),
+      country: nowData[nowIdx].id,
+      newsList: [],
+      // p: 1,
+      // currentTab: 0
+    })
+
+    if (this.data.currentTab == 0) {
+      this.pullRefresh();
+    } else {
+      this.setData({
+        currentTab: 0
+      })
+    }
   }
 
 })

@@ -1,4 +1,5 @@
 // pages/info/info.js
+var app = getApp();
 Page({
 
   /**
@@ -26,14 +27,28 @@ Page({
         iconPath: "/image/菜单/个人中心-未选中@2x.png",
         selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
       }
-    ]
+    ],
+    avatar: "",
+    name: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // if (app.globalData.userInfo != null) {
+    //   this.setData({
+    //     avatar: app.globalData.userInfo.avatar,
+    //     name: app.globalData.userInfo.name
+    //   });
+    // }
 
+    app.userInfoReadyCallback = res => {
+      this.setData({
+        avatar: app.globalData.userInfo.avatarUrl,
+        name: app.globalData.userInfo.nickName
+      });
+    }
   },
 
   /**

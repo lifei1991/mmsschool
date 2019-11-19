@@ -1,15 +1,17 @@
 {
   "pages": [
+    "pages/programs/programs",
+    "pages/aboutUs/aboutUs",
+    "pages/info/info",
     "pages/cmsLogin/cmsLogin",
     "pages/bindphone/bindphone",
     "pages/index/index",
     "pages/school/school",
-    "pages/programs/programs",
+    
     "pages/testHome/testHome",
     "pages/testResult/testResult",
     "pages/feedback/feedback",
     "pages/program/program",
-    "pages/info/info",
     "pages/newPassword/newPassword",
     "pages/getBackPassword/getBackPassword",
     "pages/class/class",

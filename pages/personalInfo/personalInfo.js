@@ -68,7 +68,7 @@ Page({
           'personal.lastName': that.data.nameX,
           'personal.firstName': that.data.nameM,
           'auth.email': that.data.email,
-          'password': that.data.psd,
+          'auth.password': that.data.psd,
         }
       },
       method: 'POST',

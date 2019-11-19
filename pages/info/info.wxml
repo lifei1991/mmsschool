@@ -1,8 +1,8 @@
 <!--pages/info/info.wxml-->
 <view class="info">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
-    <view class="userinfo-name">棕小榈</view>
+    <image class="userinfo-avatar" src="{{avatar}}" mode="aspectFit"></image>
+    <view class="userinfo-name">{{name}}</view>
   </view>
   
   <view class="space weui-cells__title"></view>
@@ -15,7 +15,7 @@
 
   <view class="space weui-cells__title"></view>
   <view class="cells weui-cells weui-cells_after-title">
-    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="/pages/aboutUs/aboutUs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd">关于我们</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
