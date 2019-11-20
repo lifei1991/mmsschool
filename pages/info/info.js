@@ -62,7 +62,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      avatar: app.globalData.userInfo.avatarUrl,
+      name: app.globalData.userInfo.nickName
+    });
   },
 
   /**

@@ -122,6 +122,7 @@ Page({
       data: {
         user: that.data.phone,
         p: that.data.yzm,
+        wechat: '1'
       },
       method: 'POST',
       header: {

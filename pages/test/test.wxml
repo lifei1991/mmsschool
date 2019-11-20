@@ -19,13 +19,13 @@
   <view class="test-tabbar">
     <view class="tabbar-item" bindtap="tabChange" data-id="0">
       <view class="tabbar-icon-div">
-        <image class="tabbar-icon" src="/image/logo.png"></image>
+        <image class="tabbar-icon" src="{{_dis==0?'/image/留学测评/上一题-不可选@2x.png':'/image/留学测评/上一题-可选@2x.png'}}" mode="aspectFit"></image>
       </view>
       <view class="tabbar-label {{_dis==0?'disabled':''}}">上一题</view>
     </view>
     <view class="tabbar-item" bindtap="tabChange" data-id="1">
       <view class="tabbar-icon-div">
-        <image class="tabbar-icon" src="/image/logo.png"></image>
+        <image class="tabbar-icon" src="{{_dis==1?'/image/留学测评/下一题-不可选@2x.png':'/image/留学测评/下一题-可选@2x.png'}}" mode="aspectFit"></image>
       </view>
       <view class="tabbar-label {{_dis==1?'disabled':''}}">下一题</view>
     </view>

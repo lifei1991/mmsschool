@@ -45,6 +45,7 @@ Page({
               'content-type': 'application/json'
             },
             success: function (res) {
+              let openId = res.data.openid;
               // 获取用户信息
               wx.getSetting({
                 success: res => {
@@ -53,7 +54,8 @@ Page({
                     wx.getUserInfo({
                       success: res => {
                         // 可以将 res 发送给后台解码出 unionId
-                        app.globalData.userInfo = res.userInfo
+                        app.globalData.userInfo = res.userInfo;
+                        app.globalData.userInfo.openId = openId;
                       }
                     })
                   }

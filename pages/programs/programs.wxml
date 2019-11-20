@@ -33,7 +33,7 @@
       </view>
 
       <view class='com-selectBox'>
-        <view class="search-view">
+        <view class="search-view" bindtap="clickSearch">
           <image class="search-icon" src="../../image/项目列表/搜索@2x.png" mode="aspectFit"></image>
         </view>
       </view>
@@ -70,6 +70,10 @@
               <image class="schoolLogo" mode="aspectFit" src="{{item.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval.png' : item.schoolLogo[0]}}"></image>
             </view>
           </block>
+
+          <view class="no-more">
+            没有更多啦
+          </view>
         </scroll-view>
       </swiper-item>
     </swiper>

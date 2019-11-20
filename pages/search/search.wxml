@@ -1,0 +1,51 @@
+<!--pages/search/search.wxml-->
+<view class="search-div">
+  <view class="search-view">
+    <mp-searchbar ext-class="my-search-style" placeholder="搜索学校"  focus="{{true}}" bindselectresult="selectResult" cancel="{{false}}" search="{{search}}"></mp-searchbar>
+  </view>
+
+  <view class="no-content" wx:if="{{newsList.length == 0}}">
+    <image class="no-list-icon" src="../../image/项目列表/无搜索结果@2x.png" mode="aspectFit"></image>
+    <view class="no-list-text">
+      暂无搜索结果
+    </view>
+    <view class="no-list-text">
+      棕榈小助手在努力补全信息啦
+    </view>
+  </view>
+
+  <view class="has-content">
+    
+    <!-- <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+      <swiper-item wx:for-index="idx" wx:for="{{[0,1,2,3,4,5]}}">
+        <scroll-view scroll-y="true" class="scoll-h" bindscrolltoupper="pullRefresh" bindscrolltolower="bottomRefresh"> -->
+          <block wx:for="{{newsList}}" wx:key="*this">
+            <view class="item-ans" bindtap="selectSchool" id='{{item.id}}'>
+              <view class="avatar">
+                <!-- <image class="img" src="../../image/logo.png"></image> -->
+                <text>{{currentTab == 0 ? index + 1 : (currentTab - 1) * 20 + index + 1}}</text>
+              </view>
+              <view class="expertInfo">
+                <view class="name">{{item.chineseName}}</view>
+                <view class="tag">{{item.name}}</view>
+                <view class="place">
+                  <image mode="aspectFit" class="placeImg" src="../../image/项目列表/定位@2x.png"></image>
+                  <span class="place-text">{{item.state}}</span>
+                  <image mode="aspectFit" class="hotCountImg" src="../../image/项目列表/热门项目@2x.png"></image>
+                  <span class="hotCount">{{item.hotCount}} 个热门项目</span>
+                </view>
+              </view>
+              <image class="schoolLogo" mode="aspectFit" src="{{item.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval.png' : item.schoolLogo[0]}}"></image>
+            </view>
+          </block>
+
+          <view class="no-more">
+            没有更多啦
+          </view>
+        <!-- </scroll-view>
+      </swiper-item>
+    </swiper> -->
+
+    <!-- <mp-tabbar current="1" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar> -->
+  </view>
+</view>

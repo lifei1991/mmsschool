@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "mp-loading": "../../components/loading/loading"
-  }
+  },
+  "navigationBarTitleText": "留学国家测评"
 }

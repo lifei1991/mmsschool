@@ -44,7 +44,8 @@ Page({
         iconPath: "",
         selectedIconPath: "",
       }
-    ]
+    ],
+    name: '棕小榈'
   },
 
   /**
@@ -69,7 +70,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      avatar: app.globalData.userInfo.avatarUrl,
+      name: app.globalData.userInfo.nickName
+    });
   },
 
   /**
@@ -168,12 +172,18 @@ Page({
       this.setData({
         _dis: 1,
       });
+    } else {
+      this.setData({
+        _dis: 2,
+      });
     }
     
   },
 
   //确认提交
   submitTest() {
-
+    wx.navigateTo({
+      url: '/pages/testResult/testResult'
+    })
   }
 })

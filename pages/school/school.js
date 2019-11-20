@@ -82,17 +82,16 @@ Page({
     if (this.data.currentTab == 1) {
       wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
       console.log("xia")
-      var pn = this.data.pn;
+      var p = this.data.p;
       var totalpage = this.data.totalpage + 1;
-      pn++;
-      if (pn > totalpage) {
+      p++;
+      if (p > totalpage) {
         return;
       }
       this.setData({
         isloading: false,
-        pn: pn
+        p: p
       })
-
       // wx.showLoading({
       //   title: '加载中...'
       // })

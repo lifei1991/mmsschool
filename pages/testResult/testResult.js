@@ -1,11 +1,13 @@
 // pages/testResult/testResult.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showLoading: false
+    showLoading: false,
+    name: '棕小榈'
   },
 
   /**
@@ -31,7 +33,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      avatar: app.globalData.userInfo.avatarUrl,
+      name: app.globalData.userInfo.nickName
+    });
   },
 
   /**

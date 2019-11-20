@@ -5,7 +5,7 @@
   <view wx:if="{{!showLoading}}" class="result-div">
     <image class="logo" src="../../image/留学测评/测评报告background@2x.png"></image>
     <view class="result-title">
-      <span>棕小榈</span>
+      <span>{{name}}</span>
       <span> 的测评报告</span>
     </view>
 

@@ -85,7 +85,7 @@ Page({
         } else {
           app.globalData.user = res.data.data;
           wx.redirectTo({
-            url: '../../pages/personalInfo/personalInfo',
+            url: '../../pages/testHome/testHome',
           })
         }
       }
