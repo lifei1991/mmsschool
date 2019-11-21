@@ -51,6 +51,7 @@
   font-weight:600;
   line-height:44rpx;
   margin-bottom: 16rpx;
+  width: 80%;
 }
 
 .program-name-english {
@@ -60,6 +61,7 @@
   color:rgba(255,255,255,1);
   line-height:32rpx;
   letter-spacing:2rpx;
+  width: 80%;
 }
 
 .program-share {

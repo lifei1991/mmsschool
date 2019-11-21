@@ -12,6 +12,8 @@ Page({
     buttons: [{ text: '返回' }, { text: '完成测评' }],
     isloading: true,
     totalpage: 10,
+    p1: 1,
+    program: {}
   },
 
   /**
@@ -124,7 +126,7 @@ Page({
           var newsArr = res.data.data.objs[0];
           
           that.setData({
-            programs: newsArr,
+            program: newsArr,
             isloading: false,
             totalpage: res.data.totalpage
           })

@@ -4,8 +4,8 @@
     <image class="banner-img" src="../../image/手机摄影.png"></image>
     <view class="banner-info-div">
       <view class="info-content">
-        <view class="program-name">电气工程系</view>
-        <view class="program-name-english">Department of Electrical Engineerin</view>
+        <view class="program-name">{{program.cnname}}</view>
+        <view class="program-name-english">{{program.name}}</view>
         <button class="share-button-div" open-type='share' plain='true'>
           <image mode="aspectFit" class="share-button-img" src="../../image/项目列表/分享@2x.png"></image>
         </button>
@@ -18,17 +18,17 @@
         <text class="school-title">基本信息</text>
         <view class="rank-div">
           <view class="rank-title">专业排名</view>
-          <view class="rank-number theme-color">1</view>
+          <view class="rank-number theme-color">{{filter.qsWorldShow(program)}}</view>
         </view>
 
         <view class="rank-div">
           <view class="rank-title">官网链接</view>
-          <view class="rank-number">https://ee.stanford.edu/</view>
+          <view class="rank-number">{{program.url}}</view>
         </view>
 
         <view class="rank-div">
           <view class="rank-title">申请截止时间</view>
-          <view class="rank-number">2019-12-15</view>
+          <view class="rank-number" wx:for="{{program.deadlines}}">{{filter.formateTime(item.date)}}</view>
         </view>
 
         <view class="rank-div">

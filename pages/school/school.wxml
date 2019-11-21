@@ -69,7 +69,7 @@
 
   <!-- 项目列表 -->
   <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
-    <view class="school-programs" wx:for="{{programs}}" id='{{item.id}}' bindtap='toProgram'>
+    <view class="school-programs" wx:for="{{programs}}" wx:key="*this" id='{{item.id}}' bindtap='toProgram'>
       <image mode="scaleToFill" class="school-pro-img" src="../../image/项目列表/programs/1.png"></image>
       <view class="school-pro-name-div">
         <view class="school-pro-chineseName">{{item.cnname}}</view>
@@ -82,9 +82,9 @@
   <!-- 录取案例 -->
   <view class = "{{currentTab == 2 ? 'show':'hidden'}}" >
     <view class="li-div">
-      <view class="one-div" wx:for="{{offers}}">
+      <view class="one-div" wx:for="{{offers}}" wx:key="*this">
         <view class="student-name">{{item.user.personal.name}}</view>
-        <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}" wx:for-item="major">录取专业: {{major}}</view>
+        <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this" wx:for-item="major">录取专业: {{major}}</view>
         <view class="student-achievement-div">
           <span class="student-achievement">GPA:</span>
           <span class="student-achievement">{{filter.showGPA(item.user.student.academic.schools)}}</span>
