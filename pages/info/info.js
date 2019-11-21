@@ -28,7 +28,7 @@ Page({
         selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
       }
     ],
-    avatar: "",
+    avatar: "../../image/logo.png",
     name: ""
   },
 
@@ -62,10 +62,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      avatar: app.globalData.userInfo.avatarUrl,
-      name: app.globalData.userInfo.nickName
-    });
+    if (app.globalData.userInfo == null) {
+      this.setData({
+        avatar: '../../image/logo.png',
+        name: app.globalData.user.personal.name
+      });
+    } else {
+      this.setData({
+        avatar: app.globalData.userInfo.avatarUrl,
+        name: app.globalData.userInfo.nickName
+      });
+    }
   },
 
   /**

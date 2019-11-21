@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/school/school",
+    "pages/testHome/testHome",
     "pages/index/index",
     "pages/programs/programs",
     "pages/search/search",
@@ -9,8 +11,8 @@
     "pages/cmsLogin/cmsLogin",
     "pages/bindphone/bindphone",
     
-    "pages/school/school",
-    "pages/testHome/testHome",
+    
+    
     "pages/testResult/testResult",
     "pages/feedback/feedback",
     "pages/program/program",

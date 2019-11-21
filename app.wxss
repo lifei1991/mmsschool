@@ -36,3 +36,9 @@ page{ height:100%;}
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon,.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon>i,.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
   color:#28A7A9 !important;
 }
+
+/* 自定义字体 */
+/* @font-face{
+  font-family: 'PingFang-SC'; 
+  src: url('../../font/PingFang-SC-Regular.ttf');
+} */

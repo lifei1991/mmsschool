@@ -83,6 +83,10 @@ Page({
       that.setData({
         submitDisabled: false
       })
+    } else {
+      that.setData({
+        submitDisabled: true
+      })
     }
 
     //验证手机号
@@ -142,7 +146,9 @@ Page({
           //   icon: 'none',
           //   duration: 2000
           // });
-
+          app.globalData.user = res.data.data;
+          wx.setStorageSync('logined', true);
+          wx.setStorageSync('user', res.data.data);
           wx.redirectTo({
             url: "../../pages/testHome/testHome",
           })

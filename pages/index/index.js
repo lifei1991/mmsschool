@@ -67,7 +67,7 @@ Page({
                   url: "../../pages/bindphone/bindphone",
                 })
               } else {
-                wx.navigateTo({
+                wx.redirectTo({
                   url: "../../pages/testHome/testHome",
                 })
               }

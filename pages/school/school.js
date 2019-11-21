@@ -246,20 +246,16 @@ Page({
     // })
     var that = this;
     wx.request({
-      url: 'https://cms.palmdrive.cn/json/user/offers',
+      url: 'https://cms.palmdrive.cn/json/wx/offers',
       method: 'GET',
       data: {
-        // kvs: JSON.stringify([{ "k": "offerShoolId", "v": that.data.id, "wild": true }]),
-        status: "OFFER",
+        school: that.data.id,
         ps: 10,
         pn: that.data.p,
-        // sorts: [{ "k": "student", "v": "-1" }],
-        beginTime: 0,
-        endTime: 0,
-        timeSort: -1
       },
       header: {//定死的格式，不用改，照敲就好
-        'Content-Type': 'application/json'
+        // 'content-type': 'application/json'
+        'content-type': 'application/texts'
       },
       success: function (res) {
         if (res.data.status == 500) {
@@ -269,7 +265,7 @@ Page({
           console.log('.........fail..........');
         } else {
           that.setData({
-            // offers: res.data.data.institutes[0]
+            offers: res.data.data.objs
           })
         }
       },

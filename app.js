@@ -41,6 +41,19 @@ App({
           //   url: '../../pages/index/index',
           // })
         }
+
+        //查看是否已登录过
+        // if (wx.getStorageSync('logined')) {
+        //   wx.reLaunch({
+        //     url: '../../pages/testHome/testHome',
+        //   })
+        // }
+
+        if (!wx.getStorageSync('logined')) {
+          wx.reLaunch({
+            url: '../../pages/index/index',
+          })
+        }
       }
     })
   },

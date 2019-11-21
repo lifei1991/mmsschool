@@ -54,7 +54,8 @@ Page({
         iconPath: "/image/菜单/个人中心-未选中@2x.png",
         selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
       }
-    ]
+    ],
+    show: false
   },
 
   /**
@@ -79,20 +80,26 @@ Page({
         })
       }
     }
+
+    this.setData({
+      show: wx.getStorageSync('logined')
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      show: wx.getStorageSync('logined')
+    })
   },
 
   /**

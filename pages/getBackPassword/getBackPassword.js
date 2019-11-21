@@ -1,4 +1,5 @@
 // pages/getBackPassword/getBackPassword.js
+var app = getApp();
 Page({
 
   /**
@@ -140,6 +141,10 @@ Page({
       that.setData({
         submitDisabled: false
       })
+    } else {
+      that.setData({
+        submitDisabled: true
+      })
     }
 
     //验证手机号
@@ -187,6 +192,7 @@ Page({
             duration: 2000
           });
         } else {
+          app.globalData.user = res.data.data;
           wx.navigateTo({
             url: "../../pages/newPassword/newPassword",
           })

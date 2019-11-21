@@ -1,4 +1,5 @@
 // pages/newPassword/newPassword.js
+var app = getApp();
 Page({
 
   /**
@@ -79,9 +80,55 @@ Page({
       that.setData({
         submitDisabled: false
       })
+    } else {
+      that.setData({
+        submitDisabled: true
+      })
     }
 
     console.log(this.data.phone);
     console.log(this.data.yzm);
   },
+
+  submit() {
+    if (this.data.phone != this.data.yzm) {
+      wx.showToast({
+        title: "密码输入不一致，请重新输入！",
+        icon: 'none',
+        duration: 2000
+      });
+      return
+    } else {
+      var that = this;
+      wx.request({
+        //后台接口地址
+        url: 'https://cms.palmdrive.cn/json/wx/update',
+        data: {
+          id: app.globalData.user.id,
+          col: 'user',
+          data: {
+            'auth.password': that.data.yzm,
+          }
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          if (res.data.status != "SUCCESS") {
+            wx.showToast({
+              title: '新密码未保存成功',
+              icon: 'none',
+              duration: 2000
+            });
+          } else {
+            // app.globalData.user = res.data.data;
+            wx.redirectTo({
+              url: '../../pages/cmsLogin/cmsLogin',
+            })
+          }
+        }
+      })
+    }
+  }
 })
