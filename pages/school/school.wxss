@@ -100,12 +100,13 @@
     border-bottom: 2rpx solid #EDEDED;
 }
 .swiper-tab-item{
-    width: 50%; 
+    /* width: 50%;  */
     color:rgba(102,102,101,.5);
     display: flex;
     flex-flow: column;
     text-align: center;
     align-items: center;
+    flex: 1;
 }
 .active{
   color:#28A7A9;
@@ -294,7 +295,7 @@
 }
 
 .offer-job {
-  height:34rpx;
+  /* height:34rpx; */
   font-size:24rpx;
   font-family:PingFang-SC-Medium,PingFang-SC;
   font-weight:500;

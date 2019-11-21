@@ -21,7 +21,8 @@ Page({
     pn: 1,    //分页请求
     totalpage: 10,    //总页数
     isloading: true,    //是否显示加载动画
-    p: 1, //录取案例分页
+    p1: 1, 
+    p2: 1, //录取案例分页
     offers: []
   },
 
@@ -82,15 +83,15 @@ Page({
     if (this.data.currentTab == 1) {
       wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
       console.log("xia")
-      var p = this.data.p;
+      var p1 = this.data.p1;
       var totalpage = this.data.totalpage + 1;
-      p++;
-      if (p > totalpage) {
+      p1++;
+      if (p1 > totalpage) {
         return;
       }
       this.setData({
         isloading: false,
-        p: p
+        p1: p1
       })
       // wx.showLoading({
       //   title: '加载中...'
@@ -101,15 +102,15 @@ Page({
     if (this.data.currentTab == 2) {
       wx.showNavigationBarLoading();    //在当前页面显示导航条加载动画
       console.log("xia")
-      var p = this.data.p;
+      var p2 = this.data.p2;
       var totalpage = this.data.totalpage + 1;
-      p++;
-      if (p > totalpage) {
+      p2++;
+      if (p2 > totalpage) {
         return;
       }
       this.setData({
         isloading: false,
-        p: p
+        p2: p2
       })
 
       // wx.showLoading({
@@ -134,13 +135,15 @@ Page({
     } else {
       that.setData({
         currentTab: e.target.dataset.current,
+        // p: 1
       })
     }
   },
 
-  toProgram() {
+  toProgram(e) {
+    var id = e.currentTarget.id;
     wx.navigateTo({
-      url: "../../pages/program/program",
+      url: "../../pages/program/program?id=" + id
     })
   },
 
@@ -201,7 +204,7 @@ Page({
       data: {
         school: that.data.id,
         ps: 10,
-        pn: that.data.p
+        pn: that.data.p1
       },
       header: {//定死的格式，不用改，照敲就好
         'Content-Type': 'application/json'
@@ -251,23 +254,39 @@ Page({
       data: {
         school: that.data.id,
         ps: 10,
-        pn: that.data.p,
+        pn: that.data.p2,
       },
       header: {//定死的格式，不用改，照敲就好
         // 'content-type': 'application/json'
         'content-type': 'application/texts'
       },
       success: function (res) {
-        if (res.data.status == 500) {
+        if (res.data.status == "FAIL") {
           that.setData({
             isloading: false
           })
           console.log('.........fail..........');
         } else {
+          // that.setData({
+          //   offers: res.data.data.objs
+          // })
+
+          let offersArr = that.data.offers;
+          for (var i = 0; i < res.data.data.objs.length; i++) {
+            offersArr.push(res.data.data.objs[i]);
+          }
           that.setData({
-            offers: res.data.data.objs
+            offers: offersArr,
+            isloading: false,
+            totalpage: res.data.totalpage
           })
         }
+
+        setTimeout(function () {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+          wx.hideLoading();
+        }, 500)
       },
       fail: function (res) {
         console.log('.........fail..........');

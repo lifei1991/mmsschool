@@ -1,4 +1,5 @@
 <!--pages/school/school.wxml-->
+<wxs src='../../filter/filter.wxs' module='filter' />
 <view class="school">
   <view class="schoolTitle">
     <image class="schoolLogo" mode="aspectFit" src="{{school.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval(5).png' : school.schoolLogo[0]}}"></image>
@@ -28,7 +29,7 @@
     <view class="swiper-tab-item {{currentTab==1?'active under-border':''}}" data-current="1" bindtap="clickTab">项目列表</view>
     </view>
 
-    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
+    <view wx:if="{{offers.length > 0}}" class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
     <view class="swiper-tab-item {{currentTab==2?'active under-border':''}}" data-current="2" bindtap="clickTab">录取案例</view>
     
     </view>
@@ -68,7 +69,7 @@
 
   <!-- 项目列表 -->
   <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
-    <view class="school-programs" wx:for="{{programs}}" bindtap='toProgram'>
+    <view class="school-programs" wx:for="{{programs}}" id='{{item.id}}' bindtap='toProgram'>
       <image mode="scaleToFill" class="school-pro-img" src="../../image/项目列表/programs/1.png"></image>
       <view class="school-pro-name-div">
         <view class="school-pro-chineseName">{{item.cnname}}</view>
@@ -82,22 +83,43 @@
   <view class = "{{currentTab == 2 ? 'show':'hidden'}}" >
     <view class="li-div">
       <view class="one-div" wx:for="{{offers}}">
-        <view class="student-name">A同学</view>
-        <view class="offer-job">录取专业: 计算机科学硕士</view>
+        <view class="student-name">{{item.user.personal.name}}</view>
+        <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}" wx:for-item="major">录取专业: {{major}}</view>
         <view class="student-achievement-div">
           <span class="student-achievement">GPA:</span>
-          <span class="student-achievement">3.7/4.0</span>
+          <span class="student-achievement">{{filter.showGPA(item.user.student.academic.schools)}}</span>
         </view>
 
-        <view class="student-achievement-div">
+        <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.tofels.length > 0}}">
           <span class="student-achievement">TOEFL:</span>
-          <span class="student-achievement">100+</span>
+          <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.tofels)}}</span>
         </view>
 
-        <view class="student-achievement-div">
-          <span class="student-achievement">GRE:</span>
-          <span class="student-achievement">324</span>
+        <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.ieltss.length > 0}}">
+          <span class="student-achievement">IELTS:</span>
+          <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.ieltss)}}</span>
         </view>
+
+        <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.gmats.length > 0}}">
+          <span class="student-achievement">GMAT:</span>
+          <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.gmats)}}</span>
+        </view>
+
+        <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.gres.length > 0}}">
+          <span class="student-achievement">GRE:</span>
+          <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.gres)}}</span>
+        </view>
+
+        <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.lsats.length > 0}}">
+          <span class="student-achievement">LSAT:</span>
+          <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.lsats)}}</span>
+        </view>
+
+        <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.mcats.length > 0}}">
+          <span class="student-achievement">MCAT:</span>
+          <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.mcats)}}</span>
+        </view>
+        
         <view class="student-bak">申请背景</view>
         <view class="student-bak-text">同学有明确规划，写文书时，和专业导师的沟通及梳理和框架过程都非常流畅，导师针对同学的兴趣筛选出一些可以继续做研究的项目进行申请</view>
         <image class="offer-logo" src="../../image/项目列表/录取案例@2x.png"></image>

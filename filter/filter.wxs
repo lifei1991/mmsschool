@@ -1,0 +1,31 @@
+var showGPA = function (schools) {
+  for (var i = 0; i < schools.length; i++) {
+    var school = schools[i];
+    if (school.degree.toUpperCase() == "BACHELOR") {
+      return school.gpa;
+    }
+  }
+
+  return schools[0].gpa;
+}
+
+
+var showExamination = function (list) {
+  var tempL = list.map(function (a) { return a.total });
+
+  var a = tempL[0];
+  for (var i = 0; i <= tempL.length - 2; i++) {
+    if (a < tempL[i + 1]) {
+      a = tempL[i + 1];
+    }
+  }
+
+  return isNaN() ? list[0].total : a;
+
+  // return isNaN(Math.max.apply(Math, list.map(function (a) { return a.total }))) ? list[0].total : Math.max.apply(Math, list.map(function (f) { return f.total }));
+}
+
+module.exports = {
+  showGPA: showGPA,
+  showExamination: showExamination
+};
