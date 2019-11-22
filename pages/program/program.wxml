@@ -1,4 +1,5 @@
 <!--pages/program/program.wxml-->
+<wxs src='../../filter/filter.wxs' module='filter' />
 <view class="program">
   <view class="banner-div">
     <image class="banner-img" src="../../image/手机摄影.png"></image>
@@ -28,12 +29,12 @@
 
         <view class="rank-div">
           <view class="rank-title">申请截止时间</view>
-          <view class="rank-number" wx:for="{{program.deadlines}}">{{filter.formateTime(item.date)}}</view>
+          <view class="rank-number" wx:for="{{program.deadlines}}">{{(item.formatDate)}}</view>
         </view>
 
         <view class="rank-div">
           <view class="rank-title">入学时间</view>
-          <view class="rank-number">2020年秋季</view>
+          <view class="rank-number">{{program.year}}年{{filter.changeSeason(program.season)}}</view>
         </view>
       </view>
     </view>
@@ -43,7 +44,7 @@
         <text class="school-title">项目介绍</text>
         <view class="intro-div">
           <view class="{{select ? 'select-box':'intro'}} ">
-            斯坦福大学（Stanford University），全名小利兰·斯坦福大学（Leland Stanford Junior University），简称斯坦福，位于美国加州旧金山湾区南部帕罗奥多市境内，临近世界著名高科技园区硅谷（Silicon Valley），是世界著名私立研究型大学。斯坦福大学于1885年成立、1891年开始正式招生，占地约33平方公里（8180英亩），是美国占地面积第六大的大学。 斯坦福大学与旧金山北湾的加州大学伯克利分校共同构成了美国西部的学术中心，并负责运行管理SLAC国家加速器实验室、胡佛研究所等机构。 据相关机构统计，截止至2018年10月，共有83位斯坦福大学的校友、教授及研究人员曾获得诺贝尔奖（世界第七）、27位曾获得图灵奖（世界第一）、8位曾获得过菲尔兹奖（世界第八）。
+            {{program.departmentsIntroduce}}
           </view>
           <view class="more" bindtap='bindShowMsg'>{{btnText}}</view>
         </view>
@@ -54,24 +55,20 @@
       <view class="school-info">
         <text class="school-title">申请要求</text>
         <view class="rank-div">
-          <view class="rank-title">GPA成绩</view>
-          <view class="rank-number">3.8/4.0</view>
+          <view class="rank-title">TOEFL/IELTS要求</view>
+          <view class="rank-number">{{program.tofelMinimumScore}}</view>
         </view>
 
         <view class="rank-div">
-          <view class="rank-title">TOEFL成绩</view>
-          <view class="rank-number">100+</view>
+          <view class="rank-title">GRE/GMAT要求</view>
+          <view class="rank-number">{{program.greMinimumScore}}</view>
         </view>
 
         <view class="rank-div">
-          <view class="rank-title">雅思成绩</view>
-          <view class="rank-number">7.0+</view>
+          <view class="rank-title">成绩要求</view>
+          <view class="rank-number">{{program.gpa}}</view>
         </view>
 
-        <view class="rank-div">
-          <view class="rank-title">GRE成绩</view>
-          <view class="rank-number">320+</view>
-        </view>
 
         <view class="rank-div-lager">
           <view class="rank-title title-lager">申请材料要求</view>
@@ -101,23 +98,44 @@
     <view class = "info-div" >
       <view class="school-info">
         <text class="school-title">录取案例</text>
-        <view class="one-div" wx:for="{{[0,1]}}">
-          <view class="student-name">A同学</view>
-          <view class="offer-job">录取专业: 计算机科学硕士</view>
+        <view class="one-div" wx:for="{{offers}}" wx:key="*this">
+          <view class="student-name">{{item.user.personal.name}}</view>
+          <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this">录取专业: {{major}}</view>
           <view class="student-achievement-div">
             <span class="student-achievement">GPA:</span>
-            <span class="student-achievement">3.7/4.0</span>
+            <span class="student-achievement">{{filter.showGPA(item.user.student.academic.schools)}}</span>
           </view>
 
-          <view class="student-achievement-div">
+          <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.tofels.length > 0}}">
             <span class="student-achievement">TOEFL:</span>
-            <span class="student-achievement">100+</span>
+            <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.tofels)}}</span>
           </view>
 
-          <view class="student-achievement-div">
-            <span class="student-achievement">GRE:</span>
-            <span class="student-achievement">324</span>
+          <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.ieltss.length > 0}}">
+            <span class="student-achievement">IELTS:</span>
+            <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.ieltss)}}</span>
           </view>
+
+          <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.gmats.length > 0}}">
+            <span class="student-achievement">GMAT:</span>
+            <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.gmats)}}</span>
+          </view>
+
+          <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.gres.length > 0}}">
+            <span class="student-achievement">GRE:</span>
+            <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.gres)}}</span>
+          </view>
+
+          <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.lsats.length > 0}}">
+            <span class="student-achievement">LSAT:</span>
+            <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.lsats)}}</span>
+          </view>
+
+          <view class="student-achievement-div" wx:if="{{item.user.student.academic.examination.mcats.length > 0}}">
+            <span class="student-achievement">MCAT:</span>
+            <span class="student-achievement">{{filter.showExamination(item.user.student.academic.examination.mcats)}}</span>
+          </view>
+
           <view class="student-bak">申请背景</view>
           <view class="student-bak-text">同学有明确规划，写文书时，和专业导师的沟通及梳理和框架过程都非常流畅，导师针对同学的兴趣筛选出一些可以继续做研究的项目进行申请</view>
           <image class="offer-logo" src="../../image/项目列表/录取案例@2x.png"></image>

@@ -160,7 +160,7 @@ button[plain] {
 
 .rank-title {
   display: inline-block;
-  width: 50%;
+  width: 45%;
   text-align: left;
   font-size:32rpx;
   font-family:PingFang-SC-Regular,PingFang-SC;
@@ -168,6 +168,7 @@ button[plain] {
   color:rgba(57,60,61,1);
   letter-spacing:2rpx;
   vertical-align: top;
+  margin-right: 5%;
 }
 
 .theme-color {
@@ -192,7 +193,7 @@ button[plain] {
   color:rgba(57,60,61,1);
   line-height:48rpx;
   letter-spacing:2rpx;
-  width: 80% !important;
+  width: 75% !important;
 }
 
 .request-number-style {
@@ -220,7 +221,7 @@ button[plain] {
   font-weight:500;
   color:rgba(57,60,61,.7);
   letter-spacing:2rpx;
-  height: 224rpx;
+  max-height: 224rpx;
   overflow: hidden;
 }
 

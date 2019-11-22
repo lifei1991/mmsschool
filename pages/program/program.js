@@ -13,7 +13,8 @@ Page({
     isloading: true,
     totalpage: 10,
     p1: 1,
-    program: {}
+    program: {},
+    offers: []
   },
 
   /**
@@ -27,6 +28,7 @@ Page({
     }
 
     this.getProgram();
+    this.getOffers();
   },
 
   /**
@@ -83,7 +85,7 @@ Page({
     // wx.showLoading({
     //   title: '加载中...'
     // })
-    this.getProgramOffers();
+    this.getOffers();
   },
 
   /**
@@ -108,7 +110,7 @@ Page({
       data: {
         id: that.data.id,
         ps: 10,
-        pn: that.data.p1
+        pn: 1
       },
       header: {//定死的格式，不用改，照敲就好
         'Content-Type': 'application/json'
@@ -124,6 +126,11 @@ Page({
           })
         } else {
           var newsArr = res.data.data.objs[0];
+
+          for (let item of newsArr.deadlines) {
+            item.formatDate = that.formateTime(item.date);
+          }
+          
           
           that.setData({
             program: newsArr,
@@ -143,10 +150,6 @@ Page({
         wx.hideLoading();
       }
     })
-  },
-
-  getProgramOffers() {
-
   },
 
   //查看申请竞争力
@@ -171,4 +174,75 @@ Page({
       showOneButtonDialog: false
     })
   },
+
+  //获取该专业的成功案例
+  getOffers: function () {
+    // wx.showLoading({
+    //   title: '加载中...'
+    // })
+    var that = this;
+    wx.request({
+      url: 'https://cms.palmdrive.cn/json/wx/offers',
+      method: 'GET',
+      data: {
+        program: that.data.id,
+        ps: 10,
+        pn: that.data.p1,
+      },
+      header: {//定死的格式，不用改，照敲就好
+        // 'content-type': 'application/json'
+        'content-type': 'application/texts'
+      },
+      success: function (res) {
+        if (res.data.status == "FAIL") {
+          that.setData({
+            isloading: false
+          })
+          console.log('.........fail..........');
+        } else {
+          // that.setData({
+          //   offers: res.data.data.objs
+          // })
+
+          let offersArr = that.data.offers;
+          for (var i = 0; i < res.data.data.objs.length; i++) {
+            offersArr.push(res.data.data.objs[i]);
+          }
+          that.setData({
+            offers: offersArr,
+            isloading: false,
+            totalpage: res.data.totalpage
+          })
+        }
+
+        setTimeout(function () {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+          wx.hideLoading();
+        }, 500)
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+        wx.hideLoading();
+      }
+    })
+  },
+
+  formateTime(unixtime) {
+    var date = new Date(unixtime);
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    // return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;//年月日时分秒
+    // return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
+    return y + '-' + m + '-' + d ;
+  }
 })
