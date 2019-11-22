@@ -1,6 +1,5 @@
 <!--pages/testResult/testResult.wxml-->
 <view class="testResult">
-  
 
   <view wx:if="{{!showLoading}}" class="result-div">
     <image class="logo" src="../../image/留学测评/测评报告background@2x.png"></image>
@@ -10,7 +9,7 @@
     </view>
 
     <view class="my-swiper-div">
-      <swiper class="my-swiper" indicator-dots="{{true}}" previous-margin="60rpx" next-margin="28rpx">
+      <swiper class="my-swiper" indicator-dots="{{false}}" previous-margin="60rpx" next-margin="28rpx" current="{{currentTab}}" bindchange="switchTab">
         <block wx:for="{{[0,1,2]}}" wx:key="*this">
           <swiper-item>
             <view class="my-swiper-item">
@@ -23,6 +22,17 @@
           </swiper-item>
         </block>
       </swiper>
+    </view>
+
+    <view class="dots">
+      <view class="my-swiper-dot {{currentTab==0?'my-swiper-dot-active':''}}"></view>
+      <view class="my-swiper-dot {{currentTab==1?'my-swiper-dot-active':''}}"></view>
+      <view class="my-swiper-dot {{currentTab==2?'my-swiper-dot-active':''}}"></view>
+    </view>
+
+    <view class="buttons">
+      <button class="bt re-test-button" bindtap="reTest">重新测试</button>
+      <button class="bt save-button" bindtap="saveLocal">保存本地</button>
     </view>
   </view>
 

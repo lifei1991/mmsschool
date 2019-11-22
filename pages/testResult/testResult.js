@@ -7,7 +7,8 @@ Page({
    */
   data: {
     showLoading: false,
-    name: '棕小榈'
+    name: '棕小榈',
+    currentTab: 0,
   },
 
   /**
@@ -34,7 +35,6 @@ Page({
    */
   onShow: function () {
     this.setData({
-      avatar: app.globalData.userInfo.avatarUrl,
       name: app.globalData.userInfo.nickName
     });
   },
@@ -72,5 +72,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  // 滚动切换标签样式
+  switchTab: function (e) {
+    this.setData({
+      currentTab: e.detail.current
+    });
+  },
+
+  reTest() {
+    wx.redirectTo({
+      url: '../../pages/test/test',
+    })
   }
 })

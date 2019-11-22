@@ -46,6 +46,7 @@ Page({
             },
             success: function (res) {
               let openId = res.data.openid;
+              let token = res.data.token;
               // 获取用户信息
               wx.getSetting({
                 success: res => {
@@ -59,18 +60,18 @@ Page({
                       }
                     })
                   }
+
+                  if (token == "" || !wx.getStorageSync('logined')) {
+                    wx.navigateTo({
+                      url: "../../pages/bindphone/bindphone",
+                    })
+                  } else {
+                    wx.redirectTo({
+                      url: "../../pages/testHome/testHome",
+                    })
+                  }
                 }
               });
-
-              if (res.data.token == "") {
-                wx.navigateTo({
-                  url: "../../pages/bindphone/bindphone",
-                })
-              } else {
-                wx.redirectTo({
-                  url: "../../pages/testHome/testHome",
-                })
-              }
             }
           })
         }
@@ -131,5 +132,12 @@ Page({
     wx.navigateTo({
       url: '../../pages/cmsLogin/cmsLogin',
     })
-  }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    wx.hideHomeButton();
+  },
 })

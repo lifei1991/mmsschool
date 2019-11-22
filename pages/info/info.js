@@ -128,4 +128,13 @@ Page({
       url: tempUrl,
     })
   },
+
+  //退出登录
+  clearStorage() {
+    wx.clearStorage();
+
+    wx.redirectTo({
+      url: "../../pages/index/index",
+    })
+  }
 })

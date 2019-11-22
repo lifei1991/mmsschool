@@ -1,20 +1,15 @@
 {
   "pages": [
     "pages/testHome/testHome",
+    "pages/testResult/testResult",
     "pages/school/school",
-    
     "pages/index/index",
     "pages/programs/programs",
     "pages/search/search",
-    
     "pages/aboutUs/aboutUs",
     "pages/info/info",
     "pages/cmsLogin/cmsLogin",
     "pages/bindphone/bindphone",
-    
-    
-    
-    "pages/testResult/testResult",
     "pages/feedback/feedback",
     "pages/program/program",
     "pages/newPassword/newPassword",

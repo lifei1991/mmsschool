@@ -5,7 +5,7 @@
   </view>
 
   <view class="content-div">
-    <textarea class="content" placeholder="请输入反馈内容" auto-focus />
+    <textarea bindinput='inputWacth' value="{{text}}" class="content" data-model="text" placeholder="请输入反馈内容" auto-focus />
   </view>
 
   <view class="button-div tip-div">
