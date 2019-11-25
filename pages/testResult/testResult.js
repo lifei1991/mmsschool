@@ -34,9 +34,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      name: app.globalData.userInfo.nickName
-    });
+    if (app.globalData.userInfo == null) {
+      if (app.globalData.user.personal.name == undefined) {
+        let tempUser = wx.getStorageSync('user');
+        this.setData({
+          name: tempUser.personal.name
+        });
+      } else {
+        this.setData({
+          name: app.globalData.user.personal.name
+        });
+      }
+    } else {
+      this.setData({
+        name: app.globalData.userInfo.nickName
+      });
+    }
   },
 
   /**

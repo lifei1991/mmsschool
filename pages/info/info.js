@@ -63,10 +63,18 @@ Page({
    */
   onShow: function () {
     if (app.globalData.userInfo == null) {
-      this.setData({
-        avatar: '../../image/logo.png',
-        name: app.globalData.user.personal.name
-      });
+      if (app.globalData.user.personal.name == undefined) {
+        let tempUser = wx.getStorageSync('user');
+        this.setData({
+          avatar: '../../image/logo.png',
+          name: tempUser.personal.name
+        });
+      } else {
+        this.setData({
+          avatar: '../../image/logo.png',
+          name: app.globalData.user.personal.name
+        });
+      }
     } else {
       this.setData({
         avatar: app.globalData.userInfo.avatarUrl,
