@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/class/class",
     "pages/testHome/testHome",
     "pages/testResult/testResult",
     "pages/school/school",
@@ -14,10 +15,10 @@
     "pages/program/program",
     "pages/newPassword/newPassword",
     "pages/getBackPassword/getBackPassword",
-    "pages/class/class",
     "pages/test/test",
     "pages/personalInfo/personalInfo",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/webView/webView"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,5 +27,4 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
-  
 }

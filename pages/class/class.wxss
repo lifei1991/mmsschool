@@ -1,7 +1,7 @@
 /* pages/class/class.wxss */
 /* pages/testHome/testHome.wxss */
 .class-home {
-  background-color: #FAFAFA;
+  /* background-color: #FAFAFA; */
   font-size: 24rpx;
   padding-bottom: 180rpx;
 
@@ -123,6 +123,7 @@
 .show{
   display: block;
   width: 100%;
+  background-color: #FAFAFA;
 }
 .hidden{
   display: none;
@@ -132,4 +133,16 @@
   width:113rpx;
   border-bottom: 4rpx solid #28A7A9;
   height: 84rpx;
+}
+
+.no-more {
+  height:28rpx;
+  font-size:20rpx;
+  font-family:PingFang-SC-Regular,PingFang-SC;
+  font-weight:400;
+  color:rgba(57,60,61,.3);
+  line-height:28rpx;
+  margin-top: 32rpx;
+  text-align: center;
+  margin-bottom: 100rpx;
 }

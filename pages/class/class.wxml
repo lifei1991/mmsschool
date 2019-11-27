@@ -19,13 +19,13 @@
       <view class="class-type" wx:for="{{array}}">
         <view class="one-type-div">
           <view class="type-title">{{item.title}}</view>
-          <image class="type-image" src="{{item.imgUrl}}" mode="scaleToFill"></image>
+          <image class="type-image" src="{{item.images}}" mode="scaleToFill"></image>
           
           <view class="right-div">
             <view class="type-count">{{item.time}} 开课</view>
-            <view class="type-people">{{item.testPeople}}人已报名</view>
+            <view class="type-people">2220人已报名</view>
             <button class='type-button-text'
-              disabled="{{disabled}}" bindtap="primary">立即报名</button>
+              disabled="{{disabled}}" data-url="{{item.url}}" bindtap="toUrl">立即报名</button>
           </view>
         </view>
       </view>
@@ -41,14 +41,18 @@
           <image class="type-image" src="{{item.imgUrl}}" mode="scaleToFill"></image>
           
           <view class="right-div">
-            <view class="type-count">关键词 【{{item.word}}】</view>
-            <view class="type-people">{{item.testPeople}}人已报名</view>
+            <view class="type-count">关键词 【{{item.keyWorld}}】</view>
+            <view class="type-people">2200人已报名</view>
             <button class='type-button-text'
-              disabled="{{disabled}}" bindtap="primary">获取资料</button>
+              disabled="{{disabled}}" data-url="{{item.url}}" bindtap="toUrl">获取资料</button>
           </view>
         </view>
       </view>
     </view>
+  </view>
+
+  <view class="no-more">
+    没有更多啦
   </view>
   
   <mp-tabbar current="2" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
