@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="test">
+<view class="test" wx:if="{{array.length > 0}}">
   <view class="test-div">
     <view class="one-type-div">
       <view class="title">{{index + 1}}: {{showItem.title}}</view>
@@ -29,5 +29,11 @@
       </view>
       <view class="tabbar-label {{_dis==1?'disabled':''}}">下一题</view>
     </view>
+  </view>
+</view>
+
+<view class="noTest" wx:if="{{array.length == 0}}">
+  <view class="no-more">
+    暂未开放
   </view>
 </view>
