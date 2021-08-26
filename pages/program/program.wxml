@@ -2,13 +2,15 @@
 <wxs src='../../filter/filter.wxs' module='filter' />
 <view class="program">
   <view class="banner-div">
-    <image class="banner-img" src="../../image/手机摄影.png"></image>
+    <image class="banner-img" src="{{program.iconShow}}"></image>
     <view class="banner-info-div">
       <view class="info-content">
-        <view class="program-name">{{program.cnname}}</view>
+        <image wx:if="{{schoolChinese}}" mode="scaleToFill" class="school-img" src="../../image/pd.png"></image>
+        <view wx:if="{{schoolChinese}}" class="program-name school-chinese">{{schoolChinese}}</view>
+        <view class="program-name" wx:if="{{program.cnname}}">{{program.cnname}}</view>
         <view class="program-name-english">{{program.name}}</view>
         <button class="share-button-div" open-type='share' plain='true'>
-          <image mode="aspectFit" class="share-button-img" src="../../image/项目列表/分享@2x.png"></image>
+          <image mode="aspectFit" class="share-button-img" src="../../image/project/share.png"></image>
         </button>
       </view>
     </view>
@@ -17,34 +19,72 @@
   <view class = "info-div" >
       <view class="school-info">
         <text class="school-title">基本信息</text>
-        <view class="rank-div">
+        <view class="rank-div" wx:if="{{program.programName.departmentNameForProgram != ''}}">
+          <view class="rank-title">项目所在院系</view>
+          <view class="rank-number">
+            <text>{{ program.programName.departmentNameForProgram }}</text>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.url != ''}}">
+          <view class="rank-title">官网链接</view>
+          <view class="rank-number"><text selectable="true" class='zonglvHelp' bindtap='textPaste' data-url="{{program.url}}">{{program.url}}</text></view>
+        </view>
+
+        <view class="rank-div" wx:if="{{filter.qsWorldShow(program) != ''}}">
           <view class="rank-title">专业排名</view>
           <view class="rank-number theme-color">{{filter.qsWorldShow(program)}}</view>
         </view>
 
-        <view class="rank-div">
-          <view class="rank-title">官网链接</view>
-          <view class="rank-number">{{program.url}}</view>
+        <view class="rank-div" wx:if="{{program.programName.degree != ''}}">
+          <view class="rank-title">学位</view>
+          <view class="rank-number">{{filter.changeDegree(program.programName.degree)}}</view>
         </view>
 
-        <view class="rank-div">
-          <view class="rank-title">申请截止时间</view>
-          <view class="rank-number" wx:for="{{program.deadlines}}">{{(item.formatDate)}}</view>
-        </view>
-
-        <view class="rank-div">
-          <view class="rank-title">入学时间</view>
+        <view class="rank-div" wx:if="{{program.year != ''}}">
+          <view class="rank-title">入学年份/季节</view>
           <view class="rank-number">{{program.year}}年{{filter.changeSeason(program.season)}}</view>
         </view>
+
+        <view class="rank-div" wx:if="{{program.deadlines.length != 0}}">
+          <view class="rank-title">截止日期</view>
+          <view class="rank-number" wx:for="{{program.deadlines}}">
+            <view wx:if="{{item.date != '' && item.date != 0 && item.date != '0'}}">{{item.formatDate}}</view>
+            <view wx:if="{{item.name}}">
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+
+        
       </view>
     </view>
 
-    <view class = "info-div" >
+    <view class = "info-div" wx:if="{{!(program.professionalCharacteristics == '' && program.departmentsIntroduce == '' && program.selectFactor == '' && program.directionSubdivision == '' && program.trainingGoal == '')}}">
       <view class="school-info">
         <text class="school-title">项目介绍</text>
         <view class="intro-div">
           <view class="{{select ? 'select-box':'intro'}} ">
-            {{program.departmentsIntroduce}}
+            <view wx:if="{{program.professionalCharacteristics != ''}}">
+              <span class="theme-color">专业特点：</span>
+              <text>{{program.professionalCharacteristics}}</text>
+            </view>
+            <view wx:if="{{program.departmentsIntroduce != ''}}">
+              <span class="theme-color">院系介绍：</span>
+              <text>{{program.departmentsIntroduce}}</text>
+            </view>
+            <view wx:if="{{program.selectFactor != ''}}">
+              <span class="theme-color">择校因素：</span>
+              <text>{{program.selectFactor}}</text>
+            </view>
+            <view wx:if="{{program.directionSubdivision != ''}}">
+              <span class="theme-color">方向细分：</span>
+              <text>{{program.directionSubdivision}}</text>
+            </view>
+            <view wx:if="{{program.trainingGoal != ''}}">
+              <span class="theme-color">培养目标：</span>
+              <text>{{program.trainingGoal}}</text>
+            </view>
           </view>
           <view class="more" bindtap='bindShowMsg'>{{btnText}}</view>
         </view>
@@ -54,23 +94,115 @@
     <view class = "info-div" >
       <view class="school-info">
         <text class="school-title">申请要求</text>
-        <view class="rank-div">
-          <view class="rank-title">TOEFL/IELTS要求</view>
-          <view class="rank-number">{{program.tofelMinimumScore}}</view>
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.languageEmptyReason != '' || program.languageRequire != ''}}">
+          <view class="rank-title">语言分数要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.languageEmptyReason != ''}}">{{program.fieldEmptyReason.languageEmptyReason}}</view>
+            <view wx:if="{{program.languageRequire != ''}}">
+              <text>{{program.languageRequire}}</text>
+            </view>
+          </view>
         </view>
 
-        <view class="rank-div">
-          <view class="rank-title">GRE/GMAT要求</view>
-          <view class="rank-number">{{program.greMinimumScore}}</view>
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.greOrGmatRequireEmptyReason != '' || program.greOrGmatRequire != ''}}">
+          <view class="rank-title">GRE/GMAT分数要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.greOrGmatRequireEmptyReason != ''}}">{{program.fieldEmptyReason.greOrGmatRequireEmptyReason}}</view>
+            <view wx:if="{{program.greOrGmatRequire != ''}}">
+              <text>{{program.greOrGmatRequire}}</text>
+            </view>
+          </view>
         </view>
 
-        <view class="rank-div">
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.gpaEmptyReason != '' || program.gpa != ''}}">
+          <view class="rank-title">学术背景要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.gpaEmptyReason != ''}}">{{program.fieldEmptyReason.gpaEmptyReason}}</view>
+            <view wx:if="{{program.gpa != ''}}">
+              <text>{{program.gpa}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.interviewEmptyReason != '' || program.interview != ''}}">
+          <view class="rank-title">面试要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.interviewEmptyReason != ''}}">{{program.fieldEmptyReason.interviewEmptyReason}}</view>
+            <view wx:if="{{program.interview != ''}}">
+              <text>{{program.interview}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.essayEmptyReason != '' || program.essaies.length != 0}}">
+          <view class="rank-title">文书官网要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.essayEmptyReason != ''}}">{{program.fieldEmptyReason.essayEmptyReason}}</view>
+            <view wx:for="{{program.essaies}}" wx:if="{{item.name != ''}}">
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason != '' || program.wsApplySystemRequire != ''}}">
+          <view class="rank-title">文书申请系统要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason != ''}}">{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason}}</view>
+            <view wx:if="{{program.wsApplySystemRequire != ''}}">
+              <text>{{program.wsApplySystemRequire}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.wsOpen != ''}}">
+          <view class="rank-title">是否需要WS/RP或作品集及要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.wsOpen != ''}}">
+              <text>{{program.wsOpen}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.fieldEmptyReason.resumeEmptyReason != '' || program.resume != ''}}">
+          <view class="rank-title">简历要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.fieldEmptyReason.resumeEmptyReason != ''}}">{{program.fieldEmptyReason.resumeEmptyReason}}</view>
+            <view wx:if="{{program.resume != ''}}">
+              <text>{{program.resume}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="rank-div" wx:if="{{program.referenceLetterRequire != ''}}">
+          <view class="rank-title">推荐信要求</view>
+          <view class="rank-number">
+            <view wx:if="{{program.referenceLetterRequire != ''}}">
+              <text>{{program.referenceLetterRequire}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- <view class="rank-div" wx:if="{{program.gpa != ''}}">
           <view class="rank-title">成绩要求</view>
-          <view class="rank-number">{{program.gpa}}</view>
+          <view class="rank-number">{{program.gpa == '官方无要求' ? '无' : program.gpa}}</view>
+        </view> -->
+
+        <!-- <view class="rank-div" wx:if="{{program.resume != ''}}">
+          <view class="rank-title">简历要求</view>
+          <view class="rank-number">{{program.resume == '官方无要求' ? '无' : program.resume}}</view>
         </view>
 
+        <view class="rank-div" wx:if="{{program.essaies.length != 0}}">
+          <view class="rank-title">文书要求</view>
+          <view class="rank-number">
+            <view wx:for="{{program.essaies}}">
+              <span class="theme-color">{{index + 1}}.</span>
+              {{item.name == '官方无要求' ? '无' : item.name}}
+            </view>
+          </view>
+        </view> -->
 
-        <view class="rank-div-lager">
+        <!-- <view class="rank-div-lager">
           <view class="rank-title title-lager">申请材料要求</view>
           <view class="rank-number number-lager"></view>
 
@@ -91,16 +223,16 @@
 
           <view class="rank-title title-lager request-style">推荐信</view>
           <view class="rank-number number-lager request-style request-number-style">X2</view>
-        </view>
+        </view> -->
       </view>
     </view>
 
-    <view class = "info-div" >
+    <view class = "info-div" wx:if="{{offers.length > 0}}">
       <view class="school-info">
         <text class="school-title">录取案例</text>
         <view class="one-div" wx:for="{{offers}}" wx:key="*this">
-          <view class="student-name">{{item.user.personal.name}}</view>
-          <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this">录取专业: {{major}}</view>
+          <!-- <view class="student-name">{{item.user.personal.name}}</view> -->
+          <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this">录取专业: {{item}}</view>
           <view class="student-achievement-div">
             <span class="student-achievement">GPA:</span>
             <span class="student-achievement">{{filter.showGPA(item.user.student.academic.schools)}}</span>
@@ -137,8 +269,10 @@
           </view>
 
           <view class="student-bak">申请背景</view>
-          <view class="student-bak-text">同学有明确规划，写文书时，和专业导师的沟通及梳理和框架过程都非常流畅，导师针对同学的兴趣筛选出一些可以继续做研究的项目进行申请</view>
-          <image class="offer-logo" src="../../image/项目列表/录取案例@2x.png"></image>
+          <view class="student-bak-text" wx:for="{{item.user.student.academic.schools}}" wx:for-item="school">毕业院校：{{school.instituteChinses != '' ? school.instituteChinses : school.institute}}；
+          毕业专业：{{school.major}}；
+          </view>
+          <image class="offer-logo" src="../../image/project/demoLogo.png"></image>
         </view>
       </view>
     </view>

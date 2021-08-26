@@ -42,7 +42,7 @@ Page({
 
   getVerificationCode() {
     var that = this;
-    if (!this.data.ajxtrue) {
+    if (this.data.index == 0 && !this.data.ajxtrue) {
       wx.showToast({
         title: "手机号有误，请重新输入！",
         icon: 'none',

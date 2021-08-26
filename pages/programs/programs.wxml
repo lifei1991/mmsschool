@@ -1,7 +1,7 @@
 <!--pages/programs/programs.wxml-->
 <view class="programs">
   <view class="no-content" wx:if="{{newsList.length == 0 && showNoList}}">
-    <image class="no-list-icon" src="../../image/项目列表/无搜索结果@2x.png" mode="aspectFit"></image>
+    <image class="no-list-icon" src="../../image/project/noSearchResult.png" mode="aspectFit"></image>
     <view class="no-list-text">
       暂无搜索结果
     </view>
@@ -11,63 +11,145 @@
   </view>
 
   <view class="has-content">
-    <view class="filter">
-      <view class='com-selectBox'>
-        <view class='com-sContent' bindtap='selectToggle'>
-          <view class='com-sTxt'>{{nowText}}</view>
-          <image src='../../image/项目列表/下拉选框@2x.png' class='com-sImg' animation="{{animationData}}"></image>
+    <view class="fixed">
+      <view class="filter">
+        <view class='com-selectBox'>
+          <view class='com-sContent' bindtap='selectToggle'>
+            <view class='com-sTxt' style="color:rgba(40,167,169,1);">{{nowText}}
+            <image src='../../image/project/downSelect.png' class='com-sImg' animation="{{animationData}}"></image>
+            </view>
+            
+          </view>
+          <view class='com-sList' wx:if="{{selectShow}}">
+            <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
+          </view>
         </view>
-        <view class='com-sList' wx:if="{{selectShow}}">
-          <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
+
+        <view class='com-selectBox'>
+          <!-- <view class='com-sContent' bindtap='selectToggle'>
+            <view class='com-sTxt'>{{nowText}}</view>
+            <image src='../../image/project/downSelect.png' class='com-sImg' animation="{{animationData}}"></image>
+          </view>
+          <view class='com-sList' wx:if="{{selectShow}}">
+            <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
+          </view> -->
+
+          <view class="section com-sTxt com-sContent">
+            <!-- <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+              <view class="picker com-sTxt my-picker">
+                {{major}} -->
+                <!-- {{multiArray[0][multiIndex[0]]}} -->
+              <!-- </view>
+              <image src='../../image/project/downSelect.png' class='com-sImg' animation="{{animationData}}"></image>
+            </picker> -->
+          </view>
+        </view>
+
+        <view class='com-selectBox'>
+          <view class="search-view" bindtap="clickSearch">
+            <image class="search-icon" src="../../image/project/search.png" mode="aspectFit"></image>
+          </view>
         </view>
       </view>
 
-      <view class='com-selectBox'>
-        <!-- <view class='com-sContent' bindtap='selectToggle'>
-          <view class='com-sTxt'>{{nowText}}</view>
-          <image src='../../image/项目列表/下拉选框@2x.png' class='com-sImg' animation="{{animationData}}"></image>
+      <!-- 美国排名 -->
+      <view class="filter " wx:if="{{nowText == '美国'}}">
+        <view class='com-selectBox'>
+          <view class="com-sContent {{currentTab2==0?'active':''}}" bindtap='selectUS' data-current="0">
+            <view class='com-sTxt'>US news排名</view>
+          </view>
         </view>
-        <view class='com-sList' wx:if="{{selectShow}}">
-          <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' bindtap='setText'>{{item.text}}</view>
-        </view> -->
+
+        <view class='com-selectBox'>
+          <view class="com-sContent {{currentTab2==1?'active':''}}" bindtap='selectQS' data-current="1">
+            <view class='com-sTxt'>QS 排名</view>
+          </view>
+        </view>
+
+        <view class='com-selectBox'>
+          <view class="section com-sTxt com-sContent {{currentTab2==2?'active':''}}" bindtap='selectMajorBtn' data-current="2" >
+            <view class='com-sTxt'>选择专业</view>
+          </view>
+        </view>
       </view>
 
-      <view class='com-selectBox'>
-        <view class="search-view" bindtap="clickSearch">
-          <image class="search-icon" src="../../image/项目列表/搜索@2x.png" mode="aspectFit"></image>
+      <!-- 英国排名 -->
+      <view class="filter " wx:if="{{nowText == '英国'}}">
+        <view class='com-selectBox'>
+          <view class="com-sContent {{currentTab2==0?'active':''}}" bindtap='selectTWS' data-current="0">
+            <view class='com-sTxt'>泰晤士报排名</view>
+          </view>
+        </view>
+
+        <view class='com-selectBox'>
+          <view class="com-sContent {{currentTab2==1?'active':''}}" bindtap='selectQS' data-current="1">
+            <view class='com-sTxt'>QS 排名</view>
+          </view>
+        </view>
+
+        <view class='com-selectBox'>
+          <view class="section com-sTxt com-sContent {{currentTab2==2?'active':''}}" bindtap='selectMajorBtn' data-current="2">
+            <view class='com-sTxt'>选择专业</view>
+          </view>
         </view>
       </view>
+
+      <view class="filter " wx:if="{{showMajorDiv}}">
+        <view class='com-selectBox'>
+          <view class="section com-sTxt com-sContent">
+            <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+              <view class="picker com-sTxt my-picker">
+                {{major}}
+              </view>
+              <image src='../../image/project/downSelect.png' class='com-sImg' animation="{{animationData}}"></image>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">全部</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">Top 1-20</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">Top 21-40</view>
+        <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">Top 41-60</view>
+        <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">Top 61-80</view>
+        <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">Top 81-100</view>
+      </scroll-view>
     </view>
-
+    <!-- QS排名一栏 -->
+  
     <view class="mask" hidden="{{!selectShow}}"></view>
-    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-      <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">全部</view>
-      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">Top 1-20</view>
-      <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">Top 21-40</view>
-      <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">Top 41-60</view>
-      <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">Top 61-80</view>
-      <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">Top 81-100</view>
-    </scroll-view>
-    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    
+    <swiper class="tab-content {{showMajorDiv?'more-tab':''}}" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
       <swiper-item wx:for-index="idx" wx:for="{{[0,1,2,3,4,5]}}">
-        <scroll-view scroll-y="true" class="scoll-h" bindscrolltoupper="pullRefresh" bindscrolltolower="bottomRefresh">
-          <block wx:for="{{newsList}}" wx:key="*this">
-            <view class="item-ans" bindtap="selectSchool" id='{{item.id}}'>
+        <!-- <scroll-view scroll-y="true" class="scoll-h" bindscrolltoupper="pullRefresh" bindscrolltolower="bottomRefresh"> -->
+        <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="bottomRefresh">
+          <block wx:for="{{newsList}}" wx:key="*this" wx:if="{{!(item.programs.objs.length == 0 && major != '选择专业')}}">
+            <view class="item-ans" bindtap="selectSchool" id='{{item.institute.id}}' data-item='{{item}}'>
               <view class="avatar">
                 <!-- <image class="img" src="../../image/logo.png"></image> -->
                 <text>{{currentTab == 0 ? index + 1 : (currentTab - 1) * 20 + index + 1}}</text>
               </view>
               <view class="expertInfo">
-                <view class="name">{{item.chineseName}}</view>
-                <view class="tag">{{item.name}}</view>
+                <view class="name">{{item.institute.chineseName}}</view>
+                <view class="tag">{{item.institute.name}}</view>
                 <view class="place">
-                  <image mode="aspectFit" class="placeImg" src="../../image/项目列表/定位@2x.png"></image>
-                  <span class="place-text">{{item.state}}</span>
-                  <image mode="aspectFit" class="hotCountImg" src="../../image/项目列表/热门项目@2x.png"></image>
-                  <span class="hotCount">{{item.hotCount}} 个热门项目</span>
+                  <image mode="aspectFit" class="placeImg" src="../../image/project/location.png"></image>
+                  <span class="place-text {{item.programs.objs.length == 0?'place-text-all':''}}">{{item.institute.country}}<text wx:if="item.institute.state != ''">-</text>{{item.institute.state}}</span> 
+                  <image wx:if="{{item.programs.objs.length > 0}}" mode="aspectFit" class="hotCountImg" src="../../image/project/hotProject.png"></image>
+                  <span wx:if="{{item.programs.objs.length > 0}}" class="hotCount">{{item.institute.hotCount}} {{item.programs.objs.length}}个项目</span>
                 </view>
               </view>
-              <image class="schoolLogo" mode="aspectFit" src="{{item.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval.png' : item.schoolLogo[0]}}"></image>
+              <image class="schoolLogo" mode="aspectFit" src="{{item.institute.schoolLogo.length > 0 ? 'http://cms.palmdrive.cn' + item.institute.schoolLogo[0].url : '../../image/mrSchoolLogo.png'}}"></image>
+
+            </view>
+
+            <view class="cells weui-cells weui-cells_after-title" wx:for="{{item.programs.objs}}" wx:for-item="program">
+              <navigator url="{{'../../pages/program/program?id=' + program.id + '&school=' + item.institute.id + '&schoolChinese=' + item.institute.chineseName}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                  <image mode="scaleToFill" class="program-img" src="{{program.iconShow}}"></image>
+                  <view class="weui-cell__bd major">{{program.name}}</view>
+                  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </navigator>
             </view>
           </block>
 

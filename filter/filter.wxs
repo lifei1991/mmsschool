@@ -52,10 +52,28 @@ var changeSeason = function (value) {
   }
 }
 
+var changeDegree = function (value) {
+  if (value == "BACHELOR") {
+    return "本科";
+  }
+
+  if (value == "MASTER") {
+    return "硕士";
+  }
+
+  if (value == "PHD") {
+    return "博士";
+  }
+
+  if (value == "HIGHSCHOOL") {
+    return "高中";
+  }
+}
 
 module.exports = {
   showGPA: showGPA,
   showExamination: showExamination,
   qsWorldShow: qsWorldShow,
-  changeSeason: changeSeason
+  changeSeason: changeSeason,
+  changeDegree: changeDegree,
 };

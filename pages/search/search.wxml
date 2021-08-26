@@ -5,7 +5,7 @@
   </view>
 
   <view class="no-content" wx:if="{{newsList.length == 0}}">
-    <image class="no-list-icon" src="../../image/项目列表/无搜索结果@2x.png" mode="aspectFit"></image>
+    <image class="no-list-icon" src="../../image/project/noSearchResult.png" mode="aspectFit"></image>
     <view class="no-list-text">
       暂无搜索结果
     </view>
@@ -29,13 +29,16 @@
                 <view class="name">{{item.chineseName}}</view>
                 <view class="tag">{{item.name}}</view>
                 <view class="place">
-                  <image mode="aspectFit" class="placeImg" src="../../image/项目列表/定位@2x.png"></image>
-                  <span class="place-text">{{item.state}}</span>
-                  <image mode="aspectFit" class="hotCountImg" src="../../image/项目列表/热门项目@2x.png"></image>
-                  <span class="hotCount">{{item.hotCount}} 个热门项目</span>
+                  <image mode="aspectFit" class="placeImg" src="../../image/project/location.png"></image>
+                  <span class="place-text">
+                  {{item.country}}
+                  <span wx:if="{{item.state != ''}}">-</span>
+                  {{item.state}}</span>
+                  <!-- <image mode="aspectFit" class="hotCountImg" src="../../image/project/hotProject.png"></image>
+                  <span class="hotCount">{{item.hotCount}} 个热门项目</span> -->
                 </view>
               </view>
-              <image class="schoolLogo" mode="aspectFit" src="{{item.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval.png' : item.schoolLogo[0]}}"></image>
+              <image class="schoolLogo" mode="aspectFit" src="{{item.schoolLogo.length > 0 ? 'http://cms.palmdrive.cn' + item.schoolLogo[0].url : '../../image/mrSchoolLogo.png'}}"></image>
             </view>
           </block>
 

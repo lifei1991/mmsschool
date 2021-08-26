@@ -15,7 +15,8 @@ Page({
       usa: "1",
       world: "",
       british: "",
-      hotCount: "10"
+      hotCount: "10",
+      id: ""
     },
     programs: [],
     pn: 1,    //分页请求
@@ -23,7 +24,14 @@ Page({
     isloading: true,    //是否显示加载动画
     p1: 1, 
     p2: 1, //录取案例分页
-    offers: []
+    offers: [],
+    hot: "10",
+    programsCount: "",
+    major: "选择专业",
+    multiIndex: [0],
+    multiArray: [['Business', 'Law', 'Engineering', 'Science', 'Social Science & Humanities', 'Medicine', 'Arts & Design'], ['Accounting']],
+    majorsArray: [],
+    majorId: ''
   },
 
   /**
@@ -32,48 +40,15 @@ Page({
   onLoad: function (query) {
     if (query.id != undefined) {
       this.setData({
-        id: query.id
+        id: query.id,
+        hot: query.hot
       });
     }
 
     this.getSchool();
     this.getSchoolPrograms();
     this.getOffers();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+    this.getMajors(this.data.multiArray[0][0]);
   },
 
   /**
@@ -113,9 +88,6 @@ Page({
         p2: p2
       })
 
-      // wx.showLoading({
-      //   title: '加载中...'
-      // })
       this.getOffers();
     }
   },
@@ -143,7 +115,7 @@ Page({
   toProgram(e) {
     var id = e.currentTarget.id;
     wx.navigateTo({
-      url: "../../pages/program/program?id=" + id
+      url: "../../pages/program/program?id=" + id + "&school=" + this.data.school.id + "&schoolChinese=" + this.data.school.chineseName
     })
   },
 
@@ -204,7 +176,9 @@ Page({
       data: {
         school: that.data.id,
         ps: 10,
-        pn: that.data.p1
+        pn: that.data.p1,
+        major: that.data.majorId,
+        year: new Date().getFullYear() + 1
       },
       header: {//定死的格式，不用改，照敲就好
         'Content-Type': 'application/json'
@@ -221,12 +195,36 @@ Page({
         } else {
           var newsArr = that.data.programs;
           for (var i = 0; i < res.data.data.objs.length; i++) {
+            if (res.data.data.objs[i].icons.length == 0) {
+              //商科
+              if (res.data.data.objs[i].category == 'Business') {
+                res.data.data.objs[i].iconShow = "../../image/mock/sk/1.jpg"
+              }
+
+              //理工科
+              if (res.data.data.objs[i].category == 'Engineering' || res.data.data.objs[i].category == 'Science' || res.data.data.objs[i].category == 'Medicine') {
+                res.data.data.objs[i].iconShow = "../../image/mock/lgk/1.jpg"
+              }
+
+              //文科
+              if (res.data.data.objs[i].category == 'Social Science & Humanities' || res.data.data.objs[i].category == 'Law') {
+                res.data.data.objs[i].iconShow = "../../image/mock/wk/1.jpg"
+              }
+
+              if (res.data.data.objs[i].category == '') {
+                res.data.data.objs[i].iconShow = "../../image/mock/sk/2.jpg"
+              }
+
+            } else {
+              res.data.data.objs[i].iconShow = "http://cms.palmdrive.cn" + res.data.data.objs[i].icons[0].url
+            }
             newsArr.push(res.data.data.objs[i]);
           }
           that.setData({
             programs: newsArr,
             isloading: false,
-            totalpage: res.data.totalpage
+            totalpage: res.data.totalpage,
+            programsCount: res.data.data.count
           })
         }
 
@@ -244,9 +242,6 @@ Page({
   },
 
   getOffers: function () {
-    // wx.showLoading({
-    //   title: '加载中...'
-    // })
     var that = this;
     wx.request({
       url: 'https://cms.palmdrive.cn/json/wx/offers',
@@ -267,10 +262,6 @@ Page({
           })
           console.log('.........fail..........');
         } else {
-          // that.setData({
-          //   offers: res.data.data.objs
-          // })
-
           let offersArr = that.data.offers;
           for (var i = 0; i < res.data.data.objs.length; i++) {
             offersArr.push(res.data.data.objs[i]);
@@ -291,6 +282,84 @@ Page({
       fail: function (res) {
         console.log('.........fail..........');
         wx.hideLoading();
+      }
+    })
+  },
+
+  getImgUrl: function (item) {
+    return "http://cms.palmdrive.cn" + item.icons[0].url
+  },
+
+  bindMultiPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndex: e.detail.value,
+      major: this.data.multiArray[1][e.detail.value[1]],
+      majorId: this.data.majorsArray[e.detail.value[1]].id,
+      programs: []
+    })
+    
+    this.getSchoolPrograms();
+  },
+  bindMultiPickerColumnChange: function (e) {
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        this.getMajors(data.multiArray[0][e.detail.value])
+    }
+    console.log(data.multiIndex);
+    this.setData(data);
+  },
+
+  //根据专业大类获取专业
+  getMajors(item) {
+    var that = this;
+    wx.request({
+      url: 'https://cms.palmdrive.cn/json/majors',
+      method: 'GET',
+      data: {
+        f: item,
+      },
+      header: {//定死的格式，不用改，照敲就好
+        'content-type': 'application/json'
+        // 'content-type': 'application/texts'
+      },
+      success: function (res) {
+        if (res.data.status == "FAIL") {
+          that.setData({
+            isloading: false
+          })
+          console.log('.........fail..........');
+        } else {
+          let tempList = [];
+          for(let major of res.data.data.majors) {
+            tempList.push(major.name);
+          }
+
+          that.data.multiArray[1] = tempList;
+
+          //存储整个major对象
+          that.data.majorsArray = res.data.data.majors
+
+          that.setData({
+            multiArray: that.data.multiArray
+          })
+        }
+
+        setTimeout(function () {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+          // wx.hideLoading();
+        }, 500)
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+        // wx.hideLoading();
       }
     })
   },

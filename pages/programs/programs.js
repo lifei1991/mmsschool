@@ -9,23 +9,23 @@ Page({
     list: [
       {
         text: "留学测评",
-        iconPath: "/image/菜单/留学测评-未选中@2x.png",
-        selectedIconPath: "/image/菜单/留学测评-选中@2x.png",
+        iconPath: "/image/menu/testHome.png",
+        selectedIconPath: "/image/menu/testHomeSelected.png",
       },
       {
         text: "项目列表",
-        iconPath: "/image/菜单/项目列表-未选中@2x.png",
-        selectedIconPath: "/image/菜单/项目列表-选中@2x.png",
+        iconPath: "/image/menu/programs.png",
+        selectedIconPath: "/image/menu/programsSelected.png",
       },
-      {
-        text: "申请课堂",
-        iconPath: "/image/菜单/申请课堂-未选中@2x.png",
-        selectedIconPath: "/image/菜单/申请课堂-选中@2x.png",
-      },
+      // {
+      //   text: "申请课堂",
+      //   iconPath: "/image/menu/class.png",
+      //   selectedIconPath: "/image/menu/classSelected.png",
+      // },
       {
         text: "个人中心",
-        iconPath: "/image/菜单/个人中心-未选中@2x.png",
-        selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
+        iconPath: "/image/menu/info.png",
+        selectedIconPath: "/image/menu/infoSelected.png",
       }
     ],
     winHeight: "",//窗口高度
@@ -33,42 +33,42 @@ Page({
     scrollLeft: 0, //tab标题的滚动条位置
     schoolList: [ //假数据
       { 
-        img: "../../image/项目列表/schools/Oval.png",
+        img: "../../image/project/schools/Oval.png",
         name: "普林斯顿大学",
         englishName: "Princeton University",
         place: "新泽西州",
         hotCount: "10"
       },
       {
-        img: "../../image/项目列表/schools/Oval(1).png",
+        img: "../../image/project/schools/Oval(1).png",
         name: "哈佛大学",
         englishName: "Harvard University",
         place: "马萨诸塞州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(2).png",
+        img: "../../image/project/schools/Oval(2).png",
         name: "耶鲁大学",
         englishName: "Yale University",
         place: "康涅狄格州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(3).png",
+        img: "../../image/project/schools/Oval(3).png",
         name: "芝加哥大学",
         englishName: "Yale University",
         place: "伊利诺伊州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(4).png",
+        img: "../../image/project/schools/Oval(4).png",
         name: "哥伦比亚大学",
         englishName: "Columbia University",
         place: "纽约州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(5).png",
+        img: "../../image/project/schools/Oval(5).png",
         name: "斯坦福大学",
         englishName: "Stanford University",
         place: "康涅狄格州",
@@ -94,15 +94,22 @@ Page({
         "id": "United Kingdom",
         "text": "英国"
       },
-      {
-        "id": "Singapore",
-        "text": "新加坡"
-      },
-      {
-        "id": "Hong Kong",
-        "text": "中国香港"
-      },
-    ]
+      // {
+      //   "id": "Singapore",
+      //   "text": "新加坡"
+      // },
+      // {
+      //   "id": "Hong Kong",
+      //   "text": "中国香港"
+      // },
+    ],
+    major: "选择专业",
+
+    multiIndex: [0],
+    multiArray: [['Business', 'Law', 'Engineering', 'Science', 'Social Science & Humanities', 'Medicine', 'Arts & Design'], ['Accounting']],
+    status: 2,
+    currentTab2: 0,
+    currentTab3: 0,
   },
 
   /**
@@ -125,6 +132,7 @@ Page({
     });
 
     that.obtainNews();
+    that.getMajors(that.data.multiArray[0][0]);
   },
   footerTap: app.footerTap,
 
@@ -181,13 +189,21 @@ Page({
   tabChange(e) {
     let tempUrl = "../../pages/testHome/testHome";
 
+    // if (e.detail.index == 0) {
+    //   tempUrl = "../../pages/testHome/testHome";
+    // } else if (e.detail.index == 1) {
+    //   tempUrl = "../../pages/programs/programs";
+    // } else if (e.detail.index == 2) {
+    //   tempUrl = "../../pages/class/class";
+    // } else if (e.detail.index == 3) {
+    //   tempUrl = "../../pages/info/info";
+    // }
+
     if (e.detail.index == 0) {
       tempUrl = "../../pages/testHome/testHome";
     } else if (e.detail.index == 1) {
       tempUrl = "../../pages/programs/programs";
     } else if (e.detail.index == 2) {
-      tempUrl = "../../pages/class/class";
-    } else if (e.detail.index == 3) {
       tempUrl = "../../pages/info/info";
     }
 
@@ -258,20 +274,21 @@ Page({
   },
 
   obtainNews: function () {
-    // wx.showLoading({
-    //   title: '加载中...'
-    // })
+    wx.showLoading({
+      title: '加载中...'
+    })
     var that = this;
     wx.request({
-      url: 'https://cms.palmdrive.cn/json/institutes',
+      url: 'https://cms.palmdrive.cn/json/institutes/wechat',
       method: 'GET',
       data: {
-        status: 0,
+        status: that.data.status,
         s: '',
         f: 'name',
         ps: 20,
         pn: that.data.p,
-        country: that.data.country
+        country: that.data.country,
+        major: that.data.major,
       },
       header: {//定死的格式，不用改，照敲就好
         'Content-Type': 'application/json'
@@ -287,21 +304,49 @@ Page({
           })
         } else {
           var newsArr = that.data.newsList;
-          for (var i = 0; i < res.data.data.institutes.length; i++) {
-            newsArr.push(res.data.data.institutes[i]);
+          for (var j = 0; j < res.data.data.instituteAndProgramInfos.length; j++) {
+
+            for (var i = 0; i < res.data.data.instituteAndProgramInfos[j].programs.objs.length; i++) {
+              let tempProgram = res.data.data.instituteAndProgramInfos[j].programs.objs[i];
+              if (tempProgram.icons.length == 0) {
+                //商科
+                if (tempProgram.category == 'Business') {
+                  tempProgram.iconShow = "../../image/mock/sk/1.jpg"
+                }
+  
+                //理工科
+                if (tempProgram.category == 'Engineering' || tempProgram.category == 'Science' || tempProgram.category == 'Medicine') {
+                  tempProgram.iconShow = "../../image/mock/lgk/1.jpg"
+                }
+  
+                //文科
+                if (tempProgram.category == 'Social Science & Humanities' || tempProgram.category == 'Law') {
+                  tempProgram.iconShow = "../../image/mock/wk/1.jpg"
+                }
+  
+                if (tempProgram.category == '') {
+                  tempProgram.iconShow = "../../image/mock/sk/2.jpg"
+                }
+  
+              } else {
+                tempProgram.iconShow = "http://cms.palmdrive.cn" + tempProgram.icons[0].url
+              }
+            }
+
+            newsArr.push(res.data.data.instituteAndProgramInfos[j]);
           }
           that.setData({
             newsList: newsArr,
             isloading: false,
             totalpage: res.data.totalpage
           })
+
+          setTimeout(function () {
+            wx.hideNavigationBarLoading();
+            wx.stopPullDownRefresh();
+            wx.hideLoading();
+          }, 500)
         }
-        
-        setTimeout(function () {
-          wx.hideNavigationBarLoading();
-          wx.stopPullDownRefresh();
-          wx.hideLoading();
-        }, 500)
       },
       fail: function (res) {
         console.log('.........fail..........');
@@ -356,8 +401,9 @@ Page({
 
   selectSchool(e) {
     var id = e.currentTarget.id;
+    var item = e.currentTarget.dataset.item;
     wx.navigateTo({
-      url: '/pages/school/school?id=' + id
+      url: '/pages/school/school?id=' + id +'&hot=' + item.programs.objs.length
     })
   },
 
@@ -386,9 +432,9 @@ Page({
   },
   //设置内容
   setText: function (e) {
-    var nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
-    var nowIdx = e.target.dataset.index;//当前点击的索引
-    var nowText = nowData[nowIdx].text;//当前点击的内容
+    var nowData = this.properties.propArray;
+    var nowIdx = e.target.dataset.index;
+    var nowText = nowData[nowIdx].text;
     //再次执行动画，注意这里一定，一定，一定是this.animation来使用动画
     this.animation.rotate(0).step();
     this.setData({
@@ -400,6 +446,24 @@ Page({
       // p: 1,
       // currentTab: 0
     })
+
+    if(nowText == "美国") {
+      this.setData({
+        status: 2,
+        currentTab2: 0,
+        showMajorDiv: false,
+        major: "选择专业",
+        showMajorDiv: false
+      })
+    } else {
+      this.setData({
+        status: 4,
+        currentTab2: 0,
+        showMajorDiv: false,
+        major: "选择专业",
+        showMajorDiv: false
+      })
+    }
 
     if (this.data.currentTab == 0) {
       this.pullRefresh();
@@ -414,5 +478,167 @@ Page({
     wx.navigateTo({
       url: '/pages/search/search'
     })
+  },
+
+
+  bindMultiPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      multiIndex: e.detail.value,
+      major: this.data.multiArray[1][e.detail.value[1]]
+    })
+
+    // this.data.major = this.data.multiArray[1][e.detail.value[1]];
+    this.data.newsList = [];
+    this.obtainNews();
+  },
+  bindMultiPickerColumnChange: function (e) {
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        this.getMajors(data.multiArray[0][e.detail.value])
+        // switch (data.multiIndex[0]) {
+        //   case 0:
+        //     data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
+        //     break;
+        //   case 1:
+        //     data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
+        //     break;
+        // }
+        // data.multiIndex[1] = 0;
+        // // data.multiIndex[2] = 0;
+        // break;
+      
+    }
+    console.log(data.multiIndex);
+    this.setData(data);
+  },
+
+  //根据专业大类获取专业
+  getMajors(item) {
+    var that = this;
+    wx.request({
+      url: 'https://cms.palmdrive.cn/json/majors',
+      method: 'GET',
+      data: {
+        f: item,
+      },
+      header: {//定死的格式，不用改，照敲就好
+        'content-type': 'application/json'
+        // 'content-type': 'application/texts'
+      },
+      success: function (res) {
+        if (res.data.status == "FAIL") {
+          that.setData({
+            isloading: false
+          })
+          console.log('.........fail..........');
+        } else {
+          let tempList = [];
+          for(let major of res.data.data.majors) {
+            tempList.push(major.name);
+          }
+
+          that.data.multiArray[1] = tempList;
+
+          that.setData({
+            multiArray: that.data.multiArray
+          })
+        }
+
+        setTimeout(function () {
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+          // wx.hideLoading();
+        }, 500)
+      },
+      fail: function (res) {
+        console.log('.........fail..........');
+        // wx.hideLoading();
+      }
+    })
+  },
+
+  selectUS(e) {
+    var cur = e.currentTarget.dataset.current;
+    if (this.data.currentTab2 == cur) { 
+      return false; 
+    } else {
+      this.setData({
+        status: 2,
+        currentTab2: cur,
+        newsList: [],
+        major: "选择专业",
+        showMajorDiv: false
+      })
+    }
+
+    this.obtainNews();
+  },
+
+  selectQS(e) {
+    var cur = e.currentTarget.dataset.current;
+    if (this.data.currentTab2 == cur) { 
+      return false; 
+    } else {
+      this.setData({
+        status: 0,
+        currentTab2: cur,
+        newsList: [],
+        major: "选择专业",
+        showMajorDiv: false
+      })
+    }
+
+    this.obtainNews();
+  },
+
+  selectMajorBtn(e) {
+    var cur = e.currentTarget.dataset.current;
+    if (this.data.currentTab2 == cur) { 
+      this.setData({
+        showMajorDiv: !this.data.showMajorDiv
+      })
+      return false; 
+    } else {
+      if (this.data.nowText == "美国") {
+        this.setData({
+          status: 2,
+          currentTab2: cur,
+          showMajorDiv: true
+        })
+      } else {
+        this.setData({
+          status: 4,
+          currentTab2: cur,
+          showMajorDiv: true
+        })
+      }
+      
+    }
+
+    // this.obtainNews();
+  },
+
+  selectTWS(e) {
+    var cur = e.currentTarget.dataset.current;
+    if (this.data.currentTab2 == cur) { 
+      return false; 
+    } else {
+      this.setData({
+        status: 4,
+        currentTab2: cur,
+        newsList: [],
+        major: "选择专业",
+        showMajorDiv: false
+      })
+    }
+
+    this.obtainNews();
   }
 })

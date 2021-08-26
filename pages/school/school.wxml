@@ -2,18 +2,18 @@
 <wxs src='../../filter/filter.wxs' module='filter' />
 <view class="school">
   <view class="schoolTitle">
-    <image class="schoolLogo" mode="aspectFit" src="{{school.schoolLogo.length == 0 ? '../../image/项目列表/schools/Oval(5).png' : school.schoolLogo[0]}}"></image>
+    <image class="schoolLogo" mode="aspectFit" src="http://cms.palmdrive.cn{{school.schoolLogo[0].url}}"></image>
     <view class="schoolChinese">{{school.chineseName}}</view>
     <view class="schoolEnglishName">{{school.name}}</view>
 
      <view class="bottom-div">
       <view class="each-bottom">
-        <image mode="aspectFit" class="placeImg" src="../../image/项目列表/定位@2x.png"></image>
-        <span class="place-text">{{school.state}}</span>
+        <image mode="aspectFit" class="placeImg" src="../../image/project/location.png"></image>
+        <span class="place-text">{{school.country}} <text wx:if="school.state != ''">-</text> {{school.state}}</span>
       </view>
       <view class="each-bottom">
-        <image mode="aspectFit" class="hotCountImg" src="../../image/项目列表/热门项目@2x.png"></image>
-        <span class="hotCount">{{school.hotCount}} 个热门项目</span>
+        <image mode="aspectFit" class="hotCountImg" src="../../image/project/hotProject.png"></image>
+        <span class="hotCount">{{programsCount}}个项目</span>
       </view>
      </view>
   </view>
@@ -24,12 +24,11 @@
       <view class="swiper-tab-item {{currentTab==0?'active under-border':''}}" data-current="0" bindtap="clickTab">学校简介</view>
     </view>
 
-    
     <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">
     <view class="swiper-tab-item {{currentTab==1?'active under-border':''}}" data-current="1" bindtap="clickTab">项目列表</view>
     </view>
 
-    <view wx:if="{{offers.length > 0}}" class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
+    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">
     <view class="swiper-tab-item {{currentTab==2?'active under-border':''}}" data-current="2" bindtap="clickTab">录取案例</view>
     
     </view>
@@ -40,17 +39,17 @@
     <view class = "info-div" >
       <view class="school-info">
         <text class="school-title">最新排名</text>
-        <view class="rank-div">
+        <view class="rank-div" wx:if="{{school.rank.usa > 0}}">
           <view class="rank-title">US NEWS排名</view>
           <view class="rank-number">{{school.rank.usa}}</view>
         </view>
 
-        <view class="rank-div">
+        <view class="rank-div" wx:if="{{school.rank.world > 0}}">
           <view class="rank-title">QS排名</view>
           <view class="rank-number">{{school.rank.world}}</view>
         </view>
 
-        <view class="rank-div">
+        <view class="rank-div" wx:if="{{school.rank.british > 0}}">
           <view class="rank-title">泰晤士报排名</view>
           <view class="rank-number">{{school.rank.british}}</view>
         </view>
@@ -69,13 +68,27 @@
 
   <!-- 项目列表 -->
   <view class = "{{currentTab == 1 ? 'show':'hidden'}}" >
+    <view class="filter">
+        <view class='com-selectBox'>
+          <view class="section com-sTxt com-sContent">
+            <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+              <view class="picker com-sTxt my-picker">
+                {{major}}
+                <!-- {{multiArray[0][multiIndex[0]]}} -->
+              </view>
+              <!-- <image src='../../image/project/downSelect.png' class='com-sImg' animation="{{animationData}}"></image> -->
+            </picker>
+          </view>
+        </view>
+      </view>
+
     <view class="school-programs" wx:for="{{programs}}" wx:key="*this" id='{{item.id}}' bindtap='toProgram'>
-      <image mode="scaleToFill" class="school-pro-img" src="../../image/项目列表/programs/1.png"></image>
+      <image mode="scaleToFill" class="school-pro-img" src="{{item.iconShow}}"></image>
       <view class="school-pro-name-div">
-        <view class="school-pro-chineseName">{{item.cnname}}</view>
+        <!-- <view class="school-pro-chineseName">{{item.cnname}}</view> -->
         <view class="school-pro-englishName">{{item.name}}</view>
       </view>
-      <image mode="aspectFit" class="logo-right" src="../../image/个人中心/向右@2x.png"></image>
+      <image mode="aspectFit" class="logo-right" src="../../image/personalCenter/right.png"></image>
     </view>
   </view>
 
@@ -83,7 +96,7 @@
   <view class = "{{currentTab == 2 ? 'show':'hidden'}}" >
     <view class="li-div">
       <view class="one-div" wx:for="{{offers}}" wx:key="*this">
-        <view class="student-name">{{item.user.personal.name}}</view>
+        <!-- <view class="student-name">{{item.user.personal.name}}</view> -->
         <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this" wx:for-item="major">录取专业: {{major}}</view>
         <view class="student-achievement-div">
           <span class="student-achievement">GPA:</span>
@@ -121,8 +134,10 @@
         </view>
         
         <view class="student-bak">申请背景</view>
-        <view class="student-bak-text">同学有明确规划，写文书时，和专业导师的沟通及梳理和框架过程都非常流畅，导师针对同学的兴趣筛选出一些可以继续做研究的项目进行申请</view>
-        <image class="offer-logo" src="../../image/项目列表/录取案例@2x.png"></image>
+        <view class="student-bak-text" wx:for="{{item.user.student.academic.schools}}" wx:for-item="school">毕业院校：{{school.instituteChinses != '' ? school.instituteChinses : school.institute}}；
+        毕业专业：{{school.major}}；
+        </view>
+        <image class="offer-logo" src="../../image/project/demoLogo.png"></image>
       </view>
       
     </view>

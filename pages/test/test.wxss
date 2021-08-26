@@ -1,11 +1,12 @@
 /* pages/test/test.wxss */
 .test {
-  background-color: rgba(250,250,250,1);
+  /* background-color: rgba(250,250,250,1); */
   font-size: 28rpx;
   color:rgba(35,31,35,1);
   padding-bottom: 250rpx;
 
-  height: 100%;
+  /* height: 100%; */
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +15,7 @@
   font-family: PingFang-SC-Medium,PingFang-SC;
 
   margin: 0;
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   top: 0;
   bottom: 0;
@@ -23,8 +24,9 @@
 
 .test-div {
   width:630rpx;
-  min-height: 95%; 
-  background:rgba(255,255,255,1);
+  /* min-height: 95%;  */
+  /* background:rgba(255,255,255,1); */
+  background-color: rgba(250,250,250,1);
   box-shadow:0rpx 4rpx 30rpx 0rpx rgba(0,0,0,0.07);
   border-radius:8rpx;
   margin-top: 20rpx;
@@ -33,6 +35,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  padding-bottom: 300rpx;
 }
 
 .one-type-div {
@@ -51,7 +54,7 @@
 
 .select-item {
   margin-top: 40rpx;
-  height: 80rpx;
+  /* height: 80rpx; */
   background:rgba(255,255,255,1);
   box-shadow:0px 2px 15px 0px rgba(0,0,0,0.07);
   border-radius:10rpx;
@@ -63,6 +66,7 @@
   font-family:PingFang-SC-Regular,PingFang-SC;
   font-weight:400;
   color:rgba(57,60,61,1);
+  margin-bottom: 40rpx;
 }
 
 .selected {
@@ -135,16 +139,19 @@
 }
 
 .submit {
-  position: absolute;
-  bottom: 80rpx;
+  /* position: absolute;
+  bottom: 80rpx; */
   width: 550rpx;
   height: 84rpx;
   line-height: 84rpx;
-
   font-size:32rpx;
   font-family:PingFang-SC-Medium,PingFang-SC;
   font-weight:500;
   color:rgba(255,255,255,1);
+
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+
 }
 
 .disabled {
@@ -161,4 +168,8 @@
   margin-top: 32rpx;
   text-align: center;
   margin-bottom: 100rpx;
+}
+
+.testnput {
+  height: 100rpx;
 }

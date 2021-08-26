@@ -2,5 +2,5 @@
   "usingComponents": {
     "mp-tabbar": "../../components/tabbar/tabbar"
   },
-  "navigationBarTitleText": "留学国家测评"
+  "navigationBarTitleText": "测评"
 }

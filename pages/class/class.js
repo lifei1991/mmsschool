@@ -9,99 +9,99 @@ Page({
     p1: 1,
     p2: 1,
     array: [
-      // {
-      //   imgUrl: "../../image/手机摄影.png",
-      //   title: "剑桥全奖得主英国申请“私货”全分享",
-      //   time: "08-24 20:00",
-      //   testPeople: "999",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "/image/手机摄影(1).png",
-      //   title: "如何花最短的时间拿到最爱的offer？",
-      //   time: "08-24 20:00",
-      //   testPeople: "999",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "/image/手机摄影(2).png",
-      //   title: "雅思入门进阶七日训练营",
-      //   time: "08-24 20:00",
-      //   testPeople: "999",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "../../image/手机摄影.png",
-      //   title: "剑桥全奖得主英国申请“私货”全分享",
-      //   time: "08-24 20:00",
-      //   testPeople: "999",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "/image/手机摄影(1).png",
-      //   title: "如何花最短的时间拿到最爱的offer？",
-      //   time: "08-24 20:00",
-      //   testPeople: "999",
-      //   buttonUrl: ""
-      // },
+      {
+        imgUrl: "../../image/phone.png",
+        title: "剑桥全奖得主英国申请“私货”全分享",
+        time: "08-24 20:00",
+        testPeople: "999",
+        buttonUrl: "https://palmdrive.cn/"
+      },
+      {
+        imgUrl: "/image/phone1.png",
+        title: "如何花最短的时间拿到最爱的offer？",
+        time: "08-24 20:00",
+        testPeople: "999",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "/image/phone2.png",
+        title: "雅思入门进阶七日训练营",
+        time: "08-24 20:00",
+        testPeople: "999",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "../../image/phone.png",
+        title: "剑桥全奖得主英国申请“私货”全分享",
+        time: "08-24 20:00",
+        testPeople: "999",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "/image/phone1.png",
+        title: "如何花最短的时间拿到最爱的offer？",
+        time: "08-24 20:00",
+        testPeople: "999",
+        buttonUrl: ""
+      },
     ],
     arrayZL: [
-      // {
-      //   imgUrl: "../../image/手机摄影.png",
-      //   title: "30天DIY搞定文书",
-      //   word: "文书",
-      //   testPeople: "2200",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "/image/手机摄影(1).png",
-      //   title: "美国名校CS专业多维度详解",
-      //   word: "CS",
-      //   testPeople: "2200",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "/image/手机摄影(2).png",
-      //   title: "名校导师推荐信模板",
-      //   word: "推荐信",
-      //   testPeople: "2200",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "../../image/手机摄影.png",
-      //   title: "剑桥全奖得主英国申请“私货”全分享",
-      //   word: "文书",
-      //   testPeople: "2200",
-      //   buttonUrl: ""
-      // },
-      // {
-      //   imgUrl: "/image/手机摄影(1).png",
-      //   title: "美国名校CS专业多维度详解",
-      //   word: "CS",
-      //   testPeople: "2200",
-      //   buttonUrl: ""
-      // },
+      {
+        imgUrl: "../../image/phone.png",
+        title: "30天DIY搞定文书",
+        word: "文书",
+        testPeople: "2200",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "/image/phone1.png",
+        title: "美国名校CS专业多维度详解",
+        word: "CS",
+        testPeople: "2200",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "/image/phone2.png",
+        title: "名校导师推荐信模板",
+        word: "推荐信",
+        testPeople: "2200",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "../../image/phone.png",
+        title: "剑桥全奖得主英国申请“私货”全分享",
+        word: "文书",
+        testPeople: "2200",
+        buttonUrl: ""
+      },
+      {
+        imgUrl: "/image/phone1.png",
+        title: "美国名校CS专业多维度详解",
+        word: "CS",
+        testPeople: "2200",
+        buttonUrl: ""
+      },
     ],
     list: [
       {
         text: "留学测评",
-        iconPath: "/image/菜单/留学测评-未选中@2x.png",
-        selectedIconPath: "/image/菜单/留学测评-选中@2x.png",
+        iconPath: "/image/menu/testHome.png",
+        selectedIconPath: "/image/menu/testHomeSelected.png",
       },
       {
         text: "项目列表",
-        iconPath: "/image/菜单/项目列表-未选中@2x.png",
-        selectedIconPath: "/image/菜单/项目列表-选中@2x.png",
+        iconPath: "/image/menu/programs.png",
+        selectedIconPath: "/image/menu/programsSelected.png",
       },
-      {
-        text: "申请课堂",
-        iconPath: "/image/菜单/申请课堂-未选中@2x.png",
-        selectedIconPath: "/image/菜单/申请课堂-选中@2x.png",
-      },
+      // {
+      //   text: "申请课堂",
+      //   iconPath: "/image/menu/class.png",
+      //   selectedIconPath: "/image/menu/classSelected.png",
+      // },
       {
         text: "个人中心",
-        iconPath: "/image/菜单/个人中心-未选中@2x.png",
-        selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
+        iconPath: "/image/menu/info.png",
+        selectedIconPath: "/image/menu/infoSelected.png",
       }
     ]
   },
@@ -199,13 +199,21 @@ Page({
   tabChange(e) {
     let tempUrl = "../../pages/testHome/testHome";
 
+    // if (e.detail.index == 0) {
+    //   tempUrl = "../../pages/testHome/testHome";
+    // } else if (e.detail.index == 1) {
+    //   tempUrl = "../../pages/programs/programs";
+    // } else if (e.detail.index == 2) {
+    //   tempUrl = "../../pages/class/class";
+    // } else if (e.detail.index == 3) {
+    //   tempUrl = "../../pages/info/info";
+    // }
+
     if (e.detail.index == 0) {
       tempUrl = "../../pages/testHome/testHome";
     } else if (e.detail.index == 1) {
       tempUrl = "../../pages/programs/programs";
     } else if (e.detail.index == 2) {
-      tempUrl = "../../pages/class/class";
-    } else if (e.detail.index == 3) {
       tempUrl = "../../pages/info/info";
     }
 
@@ -267,9 +275,9 @@ Page({
             arrayTemp.push(res.data.data.objs[i]);
           }
 
-          for (let item of arrayTemp) {
-            item.time = that.formateTime(item.beginTime);
-          }
+          // for (let item of arrayTemp) {
+          //   item.time = that.formateTime(item.beginTime);
+          // }
 
           if (that.data.currentTab == 0) {
             that.setData({

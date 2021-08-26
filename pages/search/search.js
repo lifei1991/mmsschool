@@ -9,23 +9,23 @@ Page({
     list: [
       {
         text: "留学测评",
-        iconPath: "/image/菜单/留学测评-未选中@2x.png",
-        selectedIconPath: "/image/菜单/留学测评-选中@2x.png",
+        iconPath: "/image/menu/testHome.png",
+        selectedIconPath: "/image/menu/testHomeSelected.png",
       },
       {
         text: "项目列表",
-        iconPath: "/image/菜单/项目列表-未选中@2x.png",
-        selectedIconPath: "/image/菜单/项目列表-选中@2x.png",
+        iconPath: "/image/menu/programs.png",
+        selectedIconPath: "/image/menu/programsSelected.png",
       },
-      {
-        text: "申请课堂",
-        iconPath: "/image/菜单/申请课堂-未选中@2x.png",
-        selectedIconPath: "/image/菜单/申请课堂-选中@2x.png",
-      },
+      // {
+      //   text: "申请课堂",
+      //   iconPath: "/image/menu/class.png",
+      //   selectedIconPath: "/image/menu/classSelected.png",
+      // },
       {
         text: "个人中心",
-        iconPath: "/image/菜单/个人中心-未选中@2x.png",
-        selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
+        iconPath: "/image/menu/info.png",
+        selectedIconPath: "/image/menu/infoSelected.png",
       }
     ],
     winHeight: "",//窗口高度
@@ -33,42 +33,42 @@ Page({
     scrollLeft: 0, //tab标题的滚动条位置
     schoolList: [ //假数据
       {
-        img: "../../image/项目列表/schools/Oval.png",
+        img: "../../image/project/schools/Oval.png",
         name: "普林斯顿大学",
         englishName: "Princeton University",
         place: "新泽西州",
         hotCount: "10"
       },
       {
-        img: "../../image/项目列表/schools/Oval(1).png",
+        img: "../../image/project/schools/Oval(1).png",
         name: "哈佛大学",
         englishName: "Harvard University",
         place: "马萨诸塞州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(2).png",
+        img: "../../image/project/schools/Oval(2).png",
         name: "耶鲁大学",
         englishName: "Yale University",
         place: "康涅狄格州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(3).png",
+        img: "../../image/project/schools/Oval(3).png",
         name: "芝加哥大学",
         englishName: "Yale University",
         place: "伊利诺伊州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(4).png",
+        img: "../../image/project/schools/Oval(4).png",
         name: "哥伦比亚大学",
         englishName: "Columbia University",
         place: "纽约州",
         hotCount: "15"
       },
       {
-        img: "../../image/项目列表/schools/Oval(5).png",
+        img: "../../image/project/schools/Oval(5).png",
         name: "斯坦福大学",
         englishName: "Stanford University",
         place: "康涅狄格州",
@@ -185,13 +185,21 @@ Page({
   tabChange(e) {
     let tempUrl = "../../pages/testHome/testHome";
 
+    // if (e.detail.index == 0) {
+    //   tempUrl = "../../pages/testHome/testHome";
+    // } else if (e.detail.index == 1) {
+    //   tempUrl = "../../pages/programs/programs";
+    // } else if (e.detail.index == 2) {
+    //   tempUrl = "../../pages/class/class";
+    // } else if (e.detail.index == 3) {
+    //   tempUrl = "../../pages/info/info";
+    // }
+
     if (e.detail.index == 0) {
       tempUrl = "../../pages/testHome/testHome";
     } else if (e.detail.index == 1) {
       tempUrl = "../../pages/programs/programs";
     } else if (e.detail.index == 2) {
-      tempUrl = "../../pages/class/class";
-    } else if (e.detail.index == 3) {
       tempUrl = "../../pages/info/info";
     }
 

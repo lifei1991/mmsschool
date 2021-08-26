@@ -77,11 +77,11 @@ Page({
         }
       })
     } else {
-      wx.showToast({
-        title: "为了您更好的体验,请先同意授权",
-        icon: 'none',
-        duration: 2000
-      });
+      // wx.showToast({
+      //   title: "为了您更好的体验,请先同意授权",
+      //   icon: 'none',
+      //   duration: 2000
+      // });
     }
   },
   onLoad: function () {

@@ -1,21 +1,22 @@
 {
   "pages": [
+    "pages/programs/programs",
     "pages/testHome/testHome",
+    
+    "pages/program/program",
+    "pages/test/test",
     "pages/class/class",
     "pages/testResult/testResult",
     "pages/school/school",
     "pages/index/index",
-    "pages/programs/programs",
     "pages/search/search",
     "pages/aboutUs/aboutUs",
     "pages/info/info",
     "pages/cmsLogin/cmsLogin",
     "pages/bindphone/bindphone",
     "pages/feedback/feedback",
-    "pages/program/program",
     "pages/newPassword/newPassword",
     "pages/getBackPassword/getBackPassword",
-    "pages/test/test",
     "pages/personalInfo/personalInfo",
     "pages/logs/logs",
     "pages/webView/webView"

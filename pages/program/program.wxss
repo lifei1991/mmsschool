@@ -159,8 +159,8 @@ button[plain] {
 }
 
 .rank-title {
-  display: inline-block;
-  width: 45%;
+  /* display: inline-block; */
+  /* width: 45%; */
   text-align: left;
   font-size:32rpx;
   font-family:PingFang-SC-Regular,PingFang-SC;
@@ -169,6 +169,7 @@ button[plain] {
   letter-spacing:2rpx;
   vertical-align: top;
   margin-right: 5%;
+  color:rgba(40,167,169,1) !important;
 }
 
 .theme-color {
@@ -176,14 +177,15 @@ button[plain] {
 }
 
 .rank-number {
-  display: inline-block;
-  width: 50%;
-  text-align: right;
+  /* display: inline-block; */
+  /* width: 50%; */
+  /* text-align: right; */
   font-size:28rpx;
   font-family:PingFang-SC-Regular,PingFang-SC;
   font-weight:500;
   color:rgba(57,60,61,1);
-  word-break: break-all;
+  /* word-break: break-all; */
+  word-break: break-word;
 }
 
 .request-style {
@@ -397,4 +399,15 @@ button[plain] {
 
 .my-dialog .weui-dialog__ft:after {
   border-top: 0;
+}
+
+.school-img {
+  width:32rpx;
+  height:42rpx;
+  margin-right: 12rpx;
+  vertical-align: top;
+}
+
+.school-chinese {
+  display: inline-block;
 }

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "mp-searchbar": "../components/searchbar/searchbar"
+    "mp-searchbar": "../../components/searchbar/searchbar"
   },
   "navigationBarTitleText": "搜索"
 }

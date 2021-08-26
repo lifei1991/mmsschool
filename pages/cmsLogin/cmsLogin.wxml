@@ -9,7 +9,7 @@
     <view>
       <text class="lablePhone">账号</text>
       <view class="phoneDiv">
-        <input class="phoneInput" data-model="phone" bindinput='inputWacth' type="number" placeholder="请输入手机号/邮箱"/>
+        <input class="phoneInput" data-model="phone" bindinput='inputWacth' placeholder="请输入手机号/邮箱"/>
       </view>
     </view>
 

@@ -9,23 +9,23 @@ Page({
     list: [
       {
         text: "留学测评",
-        iconPath: "/image/菜单/留学测评-未选中@2x.png",
-        selectedIconPath: "/image/菜单/留学测评-选中@2x.png",
+        iconPath: "/image/menu/testHome.png",
+        selectedIconPath: "/image/menu/testHomeSelected.png",
       },
       {
         text: "项目列表",
-        iconPath: "/image/菜单/项目列表-未选中@2x.png",
-        selectedIconPath: "/image/菜单/项目列表-选中@2x.png",
+        iconPath: "/image/menu/programs.png",
+        selectedIconPath: "/image/menu/programsSelected.png",
       },
-      {
-        text: "申请课堂",
-        iconPath: "/image/菜单/申请课堂-未选中@2x.png",
-        selectedIconPath: "/image/菜单/申请课堂-选中@2x.png",
-      },
+      // {
+      //   text: "申请课堂",
+      //   iconPath: "/image/menu/class.png",
+      //   selectedIconPath: "/image/menu/classSelected.png",
+      // },
       {
         text: "个人中心",
-        iconPath: "/image/菜单/个人中心-未选中@2x.png",
-        selectedIconPath: "/image/菜单/个人中心-选中@2x.png",
+        iconPath: "/image/menu/info.png",
+        selectedIconPath: "/image/menu/infoSelected.png",
       }
     ],
     avatar: "../../image/logo.png",
@@ -122,13 +122,21 @@ Page({
   tabChange(e) {
     let tempUrl = "../../pages/testHome/testHome";
 
+    // if (e.detail.index == 0) {
+    //   tempUrl = "../../pages/testHome/testHome";
+    // } else if (e.detail.index == 1) {
+    //   tempUrl = "../../pages/programs/programs";
+    // } else if (e.detail.index == 2) {
+    //   tempUrl = "../../pages/class/class";
+    // } else if (e.detail.index == 3) {
+    //   tempUrl = "../../pages/info/info";
+    // }
+
     if (e.detail.index == 0) {
       tempUrl = "../../pages/testHome/testHome";
     } else if (e.detail.index == 1) {
       tempUrl = "../../pages/programs/programs";
     } else if (e.detail.index == 2) {
-      tempUrl = "../../pages/class/class";
-    } else if (e.detail.index == 3) {
       tempUrl = "../../pages/info/info";
     }
 

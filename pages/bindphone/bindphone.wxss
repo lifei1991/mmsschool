@@ -57,7 +57,7 @@
 
 .phoneInput {
   margin-left: 60rpx;
-  width: 80%;
+  width: 70%;
 }
 
 .codeInput {

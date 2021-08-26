@@ -163,13 +163,18 @@
   vertical-align: top;
 }
 
+.hotCount {
+  vertical-align: top;
+}
+
 .schoolLogo {
   width: 130rpx;
   height: 130rpx;
 }
 
 .place-text {
-  width: 186rpx;
+  /* width: 186rpx; */
+  width: 80%;
   display: inline-block;
 }
 

@@ -19,13 +19,13 @@
       <view class="class-type" wx:for="{{array}}">
         <view class="one-type-div">
           <view class="type-title">{{item.title}}</view>
-          <image class="type-image" src="{{item.images}}" mode="scaleToFill"></image>
+          <image class="type-image" src="{{item.imgUrl}}" mode="scaleToFill"></image>
           
           <view class="right-div">
             <view class="type-count">{{item.time}} 开课</view>
             <view class="type-people">2220人已报名</view>
             <button class='type-button-text'
-              disabled="{{disabled}}" data-url="{{item.url}}" bindtap="toUrl">立即报名</button>
+              disabled="{{disabled}}" data-url="{{item.buttonUrl}}" bindtap="toUrl">立即报名</button>
           </view>
         </view>
       </view>
@@ -44,7 +44,7 @@
             <view class="type-count">关键词 【{{item.keyWorld}}】</view>
             <view class="type-people">2200人已报名</view>
             <button class='type-button-text'
-              disabled="{{disabled}}" data-url="{{item.url}}" bindtap="toUrl">获取资料</button>
+              disabled="{{disabled}}" data-url="{{item.buttonUrl}}" bindtap="toUrl">获取资料</button>
           </view>
         </view>
       </view>

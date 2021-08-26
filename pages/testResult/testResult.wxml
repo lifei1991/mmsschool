@@ -2,7 +2,7 @@
 <view class="testResult">
 
   <view wx:if="{{!showLoading}}" class="result-div">
-    <image class="logo" src="../../image/留学测评/测评报告background@2x.png"></image>
+    <image class="logo" src="../../image/test/reportBG.png"></image>
     <view class="result-title">
       <span>{{name}}</span>
       <span> 的测评报告</span>
@@ -10,13 +10,118 @@
 
     <view class="my-swiper-div">
       <swiper class="my-swiper" indicator-dots="{{false}}" previous-margin="60rpx" next-margin="28rpx" current="{{currentTab}}" bindchange="switchTab">
-        <block wx:for="{{[0,1,2]}}" wx:key="*this">
+        <block>
           <swiper-item>
             <view class="my-swiper-item">
               <view class="big-title">申请长短板分析</view>
-              <view class="little-title-div" wx:for="{{[0,1,2,3]}}">
-                <view class="little-title">优势分析</view>
-                <view class="little-content">院校背景在国内不够Top；申请美国的话还需要看到GRE成绩（现在只有雅思）；在背景资料里没有看到其他相关经历</view>
+              <view class="little-title-div">
+                <view class="echart-div">
+                  <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
+                </view>
+
+                <!-- <view class="little-title">优势分析</view> -->
+                <view class="little-content">Hello {{name}}同学,你的申请竞争力报告已经生成，请查收~ ꒰๑• ̫•๑꒱ ♡</view>
+                <view class="little-content">你的综合实力为 <text class="zonglvHelp">{{Z0}}/5</text> 分，每个人的努力都是有收获的！</view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+
+        <block>
+          <swiper-item>
+            <view class="my-swiper-item">
+              <!-- <view class="big-title">申请长短板分析</view> -->
+              <view class="little-title-div">
+
+                <!-- <view class="little-title">优势分析</view> -->
+                <!-- N2点评 -->
+                <view class="little-content" wx:if="{{N2 == 5}}">同学申请对口方向，一定要认真对待专业课的成绩喔！会比较关键~</view>
+                <view class="little-content" wx:if="{{N2 == 4}}">同学选择的目标专业和本专业高度相关，利于发挥你的学科优势~</view>
+                <view class="little-content" wx:if="{{N2 == 3}}">同学选择的目标专业和本专业有一定关联度，需要了解下需要提前补充的专业课程以及修课途径，申请前or入学前满足先修课的要求喔~</view>
+                <view class="little-content" wx:if="{{N2 == 2 && N1 == 4}}">同学申请的目标专业和本专业有些差距呢，转换跑道是会增加难度滴~不过目标专业没有太苛刻的先修课程要求，记得也不要放松本科专业的学习，GPA依然是学习能力的量化呈现喔！此外，建议同学尽可能通过学校选课或者网课深入了解目标专业~</view>
+                <view class="little-content" wx:if="{{N2 == 2 && N1 == 1}}">申请博士转专业是会非常难得哦。建议同学可以考虑选择自己所学相同方向，或者选择博士硕士混合申请 ( ง⁼̴̀ω⁼̴́)ง</view>
+                <view class="little-content" wx:if="{{N2 == 1}}">很遗憾同学的本专业和目标专业不太相关呢，转专业的难度很大！建议同学可以考虑选择自己所学相同或相关专业，或者尝试多专业混合申请ଘ(੭ˊ꒳ˋ)੭✧（悄悄：如果对跨专业申请范围不明确 / 想知道自己适合哪些专业 可以直接添加小助手 来和我沟通噢！）</view>
+
+                <!-- C0点评 -->
+                <view class="little-content" wx:if="{{C0 == 5}}">GPA方面恭喜你有这样优秀的成绩,  w(ﾟДﾟ)w也太厉害了！请继续保持你的优势，高GPA和成绩曲线同样重要！全球TOP50的大学等着你冲啦~</view>
+                <view class="little-content" wx:if="{{C0 == 4}}">GPA方面恭喜你取得优秀的成绩，全球TOP100的院校你都可以考虑一下啦！继续努力冲到3.8+的话，美国藤校和英国G5也有很大机会~</view>
+                <view class="little-content" wx:if="{{C0 == 3 && (Y1 == '商科' || Y1 == '艺术')}}">你所选专业看重相关的实践/实习经历，不过GPA这边也不能放松喔！名校往往会卡3.5这条线，加油冲！（此处名校指：美国TOP50，英国TOP10，全球TOP100）</view>
+                <view class="little-content" wx:if="{{C0 == 3 && (Y1 == '文科' || Y1 == '理科' || Y1 == '工科' || Y1 == '医学')}}">你所选专业需要扎实的学科基础，也就是会很看重GPA的情况，名校往往会卡3.5这条线，加油冲！（此处名校指：美国TOP50，英国TOP10，全球TOP100）</view>
+                <view class="little-content" wx:if="{{C0 == 2}}">你目前的GPA比较普通哦，如果想要冲刺名校，后面努努力也有机会，因为申请的时候也会看GPA的变化曲线！可以先给自己定一个小目标，争取在余下的学期，每学期每门课都争取85+，总体提升到3.3+，申请美国TOP100和英国TOP30会更有把握！</view>
+                <view class="little-content" wx:if="{{C0 == 1}}">你目前GPA不太理想喔，比较不错的学校一般都会卡3.0这条线~后续要努力辣！申请的时候也会看GPA的变化曲线，可以先给自己定一个小目标，争取在余下的学期，每学期每门课都争取85+，把总GPA提升到3.0+</view>
+                <view class="little-content" wx:if="{{C0 == 0}}">你目前的成绩不太乐观啦 (,,•́ . •̀,,)  ，在申请中，GPA还是最关键的！一定要认真对待必修课，和学长学姐打听容易拿高分的选修课，咬牙把GPA提升到3.0，才能掌握选校的主动权哦~</view>
+
+                <!-- E1/E2 点评 -->
+                <view class="little-content" wx:if="{{E1 == 5 || E2 == 5}}">你的语言成绩很优秀辣！满足99%学校的录取要求，只要成绩申请时在有效期内，目前可以把重心放在其他part上了~</view>
+                <view class="little-content" wx:if="{{(E1 == 4 || E2 == 4) && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">你的<text class="little-content zonglvHelp" wx:if="{{E1 != 0}}">托福</text><text class="little-content zonglvHelp" wx:if="{{E2 != 0}}">雅思</text>成绩很优秀辣！只要成绩申请时在有效期内，目前可以把重心放在其他part上了~</view>
+                <view class="little-content" wx:if="{{(E1 == 4 || E2 == 4) && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术')}}">你的<text class="little-content zonglvHelp" wx:if="{{E1 != 0}}">托福</text><text class="little-content zonglvHelp" wx:if="{{E2 != 0}}">雅思</text>成绩不错惹，满足了绝大部分院校的要求~如果想要冲刺顶尖的院校项目，还是建议抽时间二刷下，争取托福105+，小分25+；或者雅思7.5+，小分7.0+</view>
+                <view class="little-content" wx:if="{{(E1 == 3 || E2 == 3) && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">你的<text class="little-content zonglvHelp" wx:if="{{E1 != 0}}">托福</text><text class="little-content zonglvHelp" wx:if="{{E2 != 0}}">雅思</text>满足大部分理工科强校的要求辣！但是综合排名高的院校（比如美国藤校）更看重同学的综合素质，建议合理安排时间，刷分到100+喔~</view>
+                <view class="little-content" wx:if="{{(E1 == 3 || E2 == 3) && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术')}}">英语成绩方面托福100/雅思7是大部分学校的门槛喔，同学还需要再努力刷刷语言分数~</view>
+                <view class="little-content" wx:if="{{(E1 == 2 || E2 == 2) && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">你的<text class="little-content zonglvHelp" wx:if="{{E1 != 0}}">托福</text><text class="little-content zonglvHelp" wx:if="{{E2 != 0}}">雅思</text>满足一部分理工科强校的要求啦~但是综合排名靠前的院校更看重同学的综合素质，建议合理安排时间继续刷分喔，保90+冲100+/雅思6.5+</view>
+                <view class="little-content" wx:if="{{(E1 == 2 || E2 == 2) && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术')}}">你的<text class="little-content zonglvHelp" wx:if="{{E1 != 0}}">托福</text><text class="little-content zonglvHelp" wx:if="{{E2 != 0}}">雅思</text>分数不是很理想惹，美国T100英国TOP30大部分院校的要求是托福100/雅思7，建议合理安排时间继续刷分喔，保90+争100+/雅思6.5+</view>
+                <view class="little-content" wx:if="{{(E1 == 1) || (E2 == 1)}}">目前你的<text class="little-content zonglvHelp" wx:if="{{E1 != 0}}">托福</text><text class="little-content zonglvHelp" wx:if="{{E2 != 0}}">雅思</text>分数不太理想QAQ继续努力！再安排2-3场考试刷分~争取托福90+/雅思6.5+。如果时间紧张、考不出来也不用太担心，可以考虑申请英联邦院校，递交时可以暂时不提供语言成绩或者不用满足语言要求，拿到con-offer后继续刷分or参加语言班来达到入学语言要求就ok~</view>
+                <view class="little-content" wx:if="{{E1 == 0 && E2 == 0}}">你目前还缺乏语言 托福/雅思 成绩，通常情况下，考出满意的成绩需要进行2-3次考试，请同学合理安排时间，尽早着手准备哦！建议在大二下/大三上的时候至少参加一次考试，既能保证成绩在有效期（两年）内，又不至于太仓促，方便后续刷分的安排~最晚于申请当年9月前考出满意的分数是比较合适滴~不然申请季会事情太多太忙啦！</view>
+
+                <!-- E3/E4点评 -->
+                <view class="little-content" wx:if="{{E3 == 5 || E4 == 5}}">你的<text class="little-content zonglvHelp" wx:if="{{E3 != 0}}">GRE</text><text class="little-content zonglvHelp" wx:if="{{E4 != 0}}">GMAT</text>成绩很棒！冲刺TOP校的优势点！</view>
+                <view class="little-content" wx:if="{{E3 == 4 || E4 == 3}}">你有优秀的<text class="little-content zonglvHelp" wx:if="{{E3 != 0}}">GRE</text><text class="little-content zonglvHelp" wx:if="{{E4 != 0}}">GMAT</text>分数！看看你的其他条件是不是和这么优秀的G相匹配~如果其他方面有欠缺，可以转移重心啦，集中精力补短板！</view>
+                <view class="little-content" wx:if="{{E3 == 3 || E4 == 3}}">你的<text class="little-content zonglvHelp" wx:if="{{E3 != 0}}">GRE</text><text class="little-content zonglvHelp" wx:if="{{E4 != 0}}">GMAT</text>成绩是可用于申请的成绩啦，但是依然有进步空间哦！如果有时间和精力，建议再安排1-2次刷分考试，冲刺GRE325+/720+</view>
+                <view class="little-content" wx:if="{{E3 == 2 || E4 == 2}}">你的<text class="little-content zonglvHelp" wx:if="{{E3 != 0}}">GRE</text><text class="little-content zonglvHelp" wx:if="{{E4 != 0}}">GMAT</text>成绩还有进步的空间哦！虽然大部分院校对<text class="little-content zonglvHelp" wx:if="{{E3 != 0}}">GRE</text><text class="little-content zonglvHelp" wx:if="{{E4 != 0}}">GMAT</text>没有底线要求，不过美国TOP50院校的平均录取分数都在GRE320+/GMAT700+哦~建议再安排1-2次刷分考试，冲刺320+/690+</view>
+                <view class="little-content" wx:if="{{E3 == 1 || E4 == 1}}">你的<text class="little-content zonglvHelp" wx:if="{{E3 != 0}}">GRE</text><text class="little-content zonglvHelp" wx:if="{{E4 != 0}}">GMAT</text>需要继续刷分冲冲冲~定下最低目标GRE315+, GMAT 650+；理想目标GRE320+， GMAT690+</view>
+                <view class="little-content" wx:if="{{E3 == 0 && E4 == 0}}">你的申请还缺乏 GRE/GMAT 成绩。通常情况下，考出满意的成绩需要进行2-3次考试，请同学合理安排时间，尽早着手准备哦！G的有效期长达5年，英语基础好（高考英语140+/四级600+/六级550+）的同学也可以先准备G的考试，最晚于申请当年9月前考出满意的分数是比较合适滴~不然申请季会事情太多太忙啦！</view>
+
+                <!-- S0 点评 -->
+                <view class="little-content" wx:if="{{S0 == 5 && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术')}}">{{Y1}}申请非常看重相关实习经历，恭喜你目前的经历已经很充裕啦！为我们的文书和面试准备都提供了丰富的素材~请和上级保持良好沟通互动，争取拿到有力的推荐信！</view>
+                <view class="little-content" wx:if="{{S0 == 5 && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">你有很丰富的实习和工作经历，为我们的文书和面试准备都提供了丰富的素材~请和上级保持良好沟通互动，争取拿到有力的推荐信！</view>
+                <view class="little-content" wx:if="{{(S0 == 4 || S0 == 3) && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术')}}">{{Y1}}申请非常看重相关实习经历，同学目前的经历还不错，为我们的文书和面试准备都提供了丰富的素材~ 如果精力够用，建议再争取一段含金量高的实习（比如世界知名公司3个月及以上的实习，或者国内知名企业6个月及以上的长期实习）</view>
+                <view class="little-content" wx:if="{{(S0 == 4 || S0 == 3) && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">你有还不错的实习和工作经历，为我们的文书和面试准备都提供了一定的素材~请和上级保持良好沟通互动，争取拿到有力的推荐信！</view>
+                <view class="little-content" wx:if="{{S0 == 2 && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术') && N1 == 4}}">{{Y1}}硕士申请非常看重相关实习经历，同学目前的实习经历偏少啦~建议再争取一段含金量高的实习（比如世界知名公司3个月及以上的实习），或者两段大公司的实习机会，通过实习进一步思索自己的职业规划，丰富后续文书/面试的素材~ 寒暑假是实习的黄金时间，快抓紧时间改简历吧~</view>
+                <view class="little-content" wx:if="{{S0 == 1 && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术') && N1 == 4}}">{{Y1}}硕士申请非常看重相关实习经历，同学目前的实习经历不足喔QAQ建议再争取一段含金量高的实习（比如世界知名公司3个月及以上的实习），或者两段大公司的实习机会，通过实习进一步思索自己的职业规划，丰富后续文书/面试的素材~ 寒暑假是实习的黄金时间，快抓紧时间改简历吧~</view>
+                <view class="little-content" wx:if="{{S0 == 0 && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术') && N1 == 4}}">{{Y1}}硕士申请非常看重相关实习经历，建议申请前积累2-3段实习经历，最好拥有一段知名公司3个月及以上的实习经历~寒暑假是实习的黄金时间，快抓紧时间改简历吧~</view>
+
+                <!-- K0 点评 -->
+                <view class="little-content" wx:if="{{K0 == 5}}">你的科研非常优秀，已经超过90%的本科同学啦！继续完成好手里的课题，并和教授保持良好的沟通互动，争取拿到有力的推荐信~</view>
+                <view class="little-content" wx:if="{{K0 == 4}}">你的科研很好很好！请继续完成好手里的课题，并和教授保持良好的沟通互动，争取拿到有力的推荐信！</view>
+                <view class="little-content" wx:if="{{K0 == 3}}">你的科研非常不错哦！本科期间能积累一段完整、长期的经历还是比较难得滴~手里如果有课题的话继续完成，并争取更进一步、独立承担研究任务~多和指导老师沟通学习，为之后争取推荐信做准备！</view>
+                <view class="little-content" wx:if="{{K0 == 2 && N1 == 1}}">另外必须要大声告诉你：科研是申请博士的核心竞争力！̋(๑˃́ꇴ˂̀๑) 你的科研如果手里有课题的话继续完成，并争取更进一步、独立承担研究任务~最好能在申请前完成可发表的文章并投递，同时多和指导老师沟通学习，为之后争取推荐信做准备！</view>
+                <view class="little-content" wx:if="{{K0 == 2 && N1 == 4 && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">另外必须要大声告诉你：科研是申请理工科的核心竞争力！̋(๑˃́ꇴ˂̀๑) 你的科研如果手里有课题的话继续完成，并争取更进一步、独立承担研究任务~最好能在申请前完成可发表的文章并投递，同时多和指导老师沟通学习，为之后争取推荐信做准备！</view>
+                <view class="little-content" wx:if="{{K0 == 1 && N1 == 1}}">另外必须要大声告诉你：科研是申请博士的核心竞争力！̋(๑˃́ꇴ˂̀๑) 课业项目不等于科研项目喔！要开始梳理一下自己的技能和经历啦，寻找可迁移的技能，找到方向对口的教授毛遂自荐~在申请前积累1-2段正式的科研经历~</view>
+                <view class="little-content" wx:if="{{K0 == 1 && N1 == 4 && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">另外必须要大声告诉你：科研是申请理工科的核心竞争力！̋(๑˃́ꇴ˂̀๑) 课业项目不等于科研项目喔！要开始梳理一下自己的技能和经历啦，寻找可迁移的技能，找到方向对口的教授毛遂自荐~在申请前积累1-2段正式的科研经历~</view>
+                <view class="little-content" wx:if="{{K0 == 0 && N1 == 1}}">另外必须要大声告诉你：科研是申请博士的核心竞争力！̋(๑˃́ꇴ˂̀๑), 如果没有科研经历，甚至没有相关课程经历，文书很难下笔QAQ赶快开始寻找吧! 参考路径：课程项目-校内助研-海外助研</view>
+                <view class="little-content" wx:if="{{K0 == 0 && N1 == 4 && (Y1 == '理科' || Y1 == '工科' || Y1 == '医科')}}">另外必须要大声告诉你：科研是申请理工科的核心竞争力！̋(๑˃́ꇴ˂̀๑), 如果没有科研经历，甚至没有相关课程经历，文书很难下笔QAQ赶快开始寻找吧! 参考路径：课程项目-校内助研-海外助研</view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+
+        <block>
+          <swiper-item>
+            <view class="my-swiper-item">
+              <!-- <view class="big-title">申请长短板分析</view> -->
+              <view class="little-title-div">
+
+                <!-- <view class="little-title">优势分析</view> -->
+                <view class="little-content">
+                  当然啦，我知道你的申请目标远不于此，如果想申请
+                  <text class="zonglvHelp"> {{Y2}} </text>
+                  专业的顶级项目，
+                  <text class="little-content zonglvHelp" wx:if="{{C0 <= 3}}">学术总成绩，</text>
+                  <text class="little-content zonglvHelp" wx:if="{{E1 <= 3 && E1 != 0}}">托福，</text>
+                  <text class="little-content zonglvHelp" wx:if="{{E2 <= 3 && E2 != 0}}">雅思，</text>
+                  <text class="little-content zonglvHelp" wx:if="{{E3 <= 3 && E3 != 0}}">GRE，</text>
+                  <text class="little-content zonglvHelp" wx:if="{{E4 <= 3 && E4 != 0}}">GMAT，</text>
+                  <text class="little-content zonglvHelp" wx:if="{{S1 <= 3 && (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术')}}">实习/工作质量，</text>
+                  <text class="little-content zonglvHelp" wx:if="{{K1 <= 3 && (((Y1 == '理科' || Y1 == '工科' || Y1 == '医科') && N1 == 1) || (Y1 == '文科' || Y1 == '商科' || Y1 == '艺术'))}}">科研项目完成度</text>
+                  一定不能松懈，好好做准备噢！
+                </view>
+                <view class="little-content">此外，希望你能在申请季来临之前，做好充分的背景提升计划。</view>
+                <view class="little-content">别急还有！精彩的简历和文书将是你申请道路上最重要的筹码，请好好准备。祝你申请顺利呀~</view>
+                <view class="little-content">如果你也想知道：</view>
+                <view class="little-content">我该重点准备哪个领域？</view>
+                <view class="little-content">我该如何有条理地进行规划？</view>
+                <view class="little-content">我该如何获有帮助的背景提升资源？</view>
+                <view class="little-content">快来+我（<text selectable="true" class='zonglvHelp' bindtap='textPaste'>棕榈小助手</text>），火速前来帮你解答！(ˊωˋ*) ✧*</view>
+                
               </view>
             </view>
           </swiper-item>
@@ -32,7 +137,7 @@
 
     <view class="buttons">
       <button class="bt re-test-button" bindtap="reTest">重新测试</button>
-      <button class="bt save-button" bindtap="saveLocal">保存本地</button>
+      <!-- <button class="bt save-button" bindtap="saveLocal">保存本地</button> -->
     </view>
   </view>
 

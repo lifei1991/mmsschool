@@ -28,6 +28,6 @@
 
   <button class="exit" bindtap="clearStorage"> 退出登录 </button>
 
-  <mp-tabbar current="3" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
+  <mp-tabbar current="2" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{list}}" bindchange="tabChange"></mp-tabbar>
 </view>
 

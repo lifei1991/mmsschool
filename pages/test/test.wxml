@@ -3,10 +3,15 @@
   <view class="test-div">
     <view class="one-type-div">
       <view class="title">{{index + 1}}: {{showItem.title}}</view>
-      <button class="select-item {{_num==1?'selected':''}}" data-num="1" bindtap="selectedItem">A {{showItem.selectA}}</button>
-      <button class="select-item {{_num==2?'selected':''}}" data-num="2" bindtap="selectedItem">B {{showItem.selectB}}</button>
-      <button class="select-item {{_num==3?'selected':''}}" data-num="3" bindtap="selectedItem">C {{showItem.selectC}}</button>
-      <button class="select-item {{_num==4?'selected':''}}" data-num="4" bindtap="selectedItem">D {{showItem.selectD}}</button>
+      <button wx:if="{{showItem.type == 'select'}}" wx:for="{{showItem.options}}" wx:for-index="idx" wx:key="*this" class="select-item {{showItem.answer==idx?'selected':''}}" data-num="{{idx}}" data-testindex="{{index}}" data-item="{{showItem}}" bindtap="selectedItem" hover-class="selected">{{item.index}}. {{item.text}}</button>
+      
+      <input wx:if="{{showItem.type == 'input'}}" value='{{showItem.answer}}' class="testnput select-item" data-item="{{showItem}}" data-model="major" data-testindex="{{index}}"bindinput='inputWacth' placeholder="{{showItem.placeholder}}"/>
+
+      <input wx:if="{{showItem.type == 'number'}}" value='{{showItem.answer}}' type="digit" class="testnput select-item" data-item="{{showItem}}" data-model="major" data-testindex="{{index}}" bindinput='inputWacth' placeholder="{{showItem.placeholder}}"/>
+
+      <input wx:if="{{showItem.type == 'numberAndSelect'}}" value="{{showItem.answer == 0 ? '' : showItem.answer}}" type="digit" class="testnput select-item" data-item="{{showItem}}" data-testindex="{{index}}" data-model="major" bindinput='inputWacth' placeholder="{{showItem.placeholder}}"/>
+
+      <button wx:if="{{showItem.type == 'numberAndSelect'}}" class="select-item {{showItem.answer===0 || showItem.answer==='0'?'selected':''}}" data-item="{{showItem}}" data-testindex="{{index}}" bindtap="selectedNo" hover-class="selected">暂无成绩</button>
 
       <button wx:if="{{index == array.length - 1}}" class="submit selected" bindtap="submitTest">确认提交</button>
     </view>
@@ -19,13 +24,13 @@
   <view class="test-tabbar">
     <view class="tabbar-item" bindtap="tabChange" data-id="0">
       <view class="tabbar-icon-div">
-        <image class="tabbar-icon" src="{{_dis==0?'/image/留学测评/上一题-不可选@2x.png':'/image/留学测评/上一题-可选@2x.png'}}" mode="aspectFit"></image>
+        <image class="tabbar-icon" src="{{_dis==0?'/image/test/up.png':'/image/test/upSelected.png'}}" mode="aspectFit"></image>
       </view>
       <view class="tabbar-label {{_dis==0?'disabled':''}}">上一题</view>
     </view>
     <view class="tabbar-item" bindtap="tabChange" data-id="1">
       <view class="tabbar-icon-div">
-        <image class="tabbar-icon" src="{{_dis==1?'/image/留学测评/下一题-不可选@2x.png':'/image/留学测评/下一题-可选@2x.png'}}" mode="aspectFit"></image>
+        <image class="tabbar-icon" src="{{_dis==1?'/image/test/down.png':'/image/test/downSelected.png'}}" mode="aspectFit"></image>
       </view>
       <view class="tabbar-label {{_dis==1?'disabled':''}}">下一题</view>
     </view>

@@ -6,6 +6,7 @@ Page({
    */
   data: {
     id: "",
+    school: "",
     select: false,
     btnText: "展开全部",
     dialogContent: "你还没有完成竞争力测评哦，完成测评即可查看你的申请竞争力！",
@@ -14,7 +15,8 @@ Page({
     totalpage: 10,
     p1: 1,
     program: {},
-    offers: []
+    offers: [],
+    schoolChinese: ""
   },
 
   /**
@@ -23,7 +25,9 @@ Page({
   onLoad: function (query) {
     if (query.id != undefined) {
       this.setData({
-        id: query.id
+        id: query.id,
+        school: query.school,
+        schoolChinese: query.schoolChinese,
       });
     }
 
@@ -130,6 +134,30 @@ Page({
           for (let item of newsArr.deadlines) {
             item.formatDate = that.formateTime(item.date);
           }
+
+          if (newsArr.icons.length == 0) {
+            //商科
+            if (newsArr.category == 'Business') {
+              newsArr.iconShow = "../../image/mock/sk/1-1.jpg"
+            }
+
+            //理工科
+            if (newsArr.category == 'Engineering' || newsArr.category == 'Science' || newsArr.category == 'Medicine') {
+              newsArr.iconShow = "../../image/mock/lgk/1-1.jpg"
+            }
+
+            //文科
+            if (newsArr.category == 'Social Science & Humanities' || newsArr.category == 'Law') {
+              newsArr.iconShow = "../../image/mock/wk/1-1.jpg"
+            }
+
+            if (newsArr.category == '') {
+              newsArr.iconShow = "../../image/mock/sk/2-1.jpg"
+            }
+
+          } else {
+            newsArr.iconShow = "http://cms.palmdrive.cn" + newsArr.icons[0].url
+          }
           
           
           that.setData({
@@ -154,21 +182,30 @@ Page({
 
   //查看申请竞争力
   getCompetitiveness() {
-    // this.setData({
-    //   dialogShow: true,
-    //   dialogContent: "你还没有完成竞争力测评哦，完成测评即可查看你的申请竞争力！",
-    //   buttons: [{ text: '返回' }, { text: '完成测评' }],
-    // })
-
-    this.setData({
-      dialogShow: true,
-      dialogContent: "你当前在此项目的申请竞争力为：",
-      buttons: [{ text: '知道啦' }],
-    })
+    if (wx.getStorageSync('Z0')) {
+      let temp = "你当前在此项目的申请竞争力为：" + wx.getStorageSync('Z0');
+      this.setData({
+        dialogShow: true,
+        dialogContent: temp,
+        buttons: [{ text: '知道啦' }],
+      })
+    } else {
+      this.setData({
+        dialogShow: true,
+        dialogContent: "你还没有完成竞争力测评哦，完成测评即可查看你的申请竞争力！",
+        buttons: [{ text: '返回' }, { text: '完成测评' }],
+      })
+    }
   },
 
   tapDialogButton(e) {
     console.log('dialog', e.detail)
+    if (e.detail.index == 1) {
+      wx.redirectTo({
+        url: '../../pages/test/test',
+      })
+    }
+
     this.setData({
       dialogShow: false,
       showOneButtonDialog: false
@@ -188,6 +225,7 @@ Page({
         program: that.data.id,
         ps: 10,
         pn: that.data.p1,
+        school: that.data.school
       },
       header: {//定死的格式，不用改，照敲就好
         // 'content-type': 'application/json'
@@ -244,5 +282,28 @@ Page({
     // return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;//年月日时分秒
     // return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
     return y + '-' + m + '-' + d ;
-  }
+  },
+
+  //复制小助手
+  textPaste(e){
+    var url = e.target.dataset.url;
+    wx.setClipboardData({
+      data: url,
+      success: function (res) {
+        // wx.hideToast();
+        wx.showToast({
+          title: '链接复制成功，请去浏览器中粘贴打开！',
+          icon: 'none',
+          duration: 3000
+        })
+
+        wx.getClipboardData({
+          success: function (res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+    
+  },
 })

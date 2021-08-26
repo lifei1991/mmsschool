@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "mp-loading": "../../components/loading/loading"
+    "mp-loading": "../../components/loading/loading",
+    "ec-canvas": "../../ec-canvas/ec-canvas"
   },
   "navigationBarTitleText": "留学国家测评"
 }

@@ -14,15 +14,15 @@
   line-height: 82rpx;
   background: #FFFFFF;
   white-space: nowrap;
-  position: fixed;
-  top: 82rpx;
+  /* position: fixed; */
+  /* top: 82rpx; */
   left: 0;
-  z-index: 98;
+  /* z-index: 98; */
   font-size:24rpx;
   font-family:PingFang-SC-Medium,PingFang-SC;
   font-weight:500;
   /* margin-top: 2rpx; */
-  border-top: 2px solid #F5F5F5;
+  /* border-top: 2px solid #F5F5F5; */
   color:rgba(57,60,61,.5);
 }
 
@@ -60,7 +60,9 @@
   /* border-bottom: 1px solid #f2f2f2; */
 
   background-color: #FFFFFF;
-  margin-bottom: 8rpx;
+  /* margin-bottom: 8rpx; */
+  border-bottom: 1px solid #F0F0F0;
+
 }
 
 .avatar {
@@ -139,9 +141,10 @@
 }
 
 .tab-content {
-  height: 100%;
-  padding-top: 180rpx;
-  /* padding-bottom: 500rpx; */
+  /* height: 100%; */
+  /* padding-top: 180rpx; */
+  padding-top: 262rpx;
+  /* padding-bottom: 262rpx; */
 }
 
 .scoll-h {
@@ -163,6 +166,10 @@
   vertical-align: top;
 }
 
+.hotCount {
+  vertical-align: top;
+}
+
 .schoolLogo {
   width: 130rpx;
   height: 130rpx;
@@ -171,15 +178,25 @@
 .place-text {
   width: 186rpx;
   display: inline-block;
+  margin-right: 10rpx;
+}
+
+.place-text-all {
+  width: 80% !important;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
 }
 
 .filter {
   display: flex;
   background: white;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 99;
+  border-bottom: 2px solid #F5F5F5;
+
 }
 
 /* 下拉框 */
@@ -195,7 +212,9 @@
     height: 82rpx;
     line-height: 82rpx;
     font-weight:500;
-    color:rgba(40,167,169,1);
+    /* color:rgba(40,167,169,1); */
+    color: rgba(57,60,61,.5);
+
 }
 .com-sImg{
     /* position: absolute;
@@ -211,11 +230,13 @@
     /* overflow: hidden; */
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-left: 40rpx ;
-    padding-right: 10rpx ;
+    /* padding-left: 40rpx ; */
+    /* padding-right: 10rpx ; */
     font-size: 24rpx;
     display: inline-block;
     vertical-align: middle;
+    width: 100%;
+    text-align: center;
 }
 .com-sList{
     background: white;
@@ -248,6 +269,10 @@
 .search-view {
   height: 100%;
   line-height: 82rpx;
+  width: 100%;
+  text-align: center;
+
+
   /* padding-right: 40rpx; */
 }
 
@@ -255,10 +280,11 @@
   width: 28rpx;
   height: 28rpx;
   vertical-align: middle;
-  position: absolute;
+  /* position: absolute;
   right: 40rpx;
   top: 50%;
-  margin-top: -14rpx;
+  margin-top: -14rpx; */
+
 
 }
 
@@ -312,4 +338,37 @@
   margin-top: 32rpx;
   text-align: center;
   margin-bottom: 100rpx;
+  /* margin-bottom: 190rpx; */
+  padding-bottom: 200rpx;
+}
+
+/* 热门项目 */
+.cells {
+  padding-left: 84rpx;
+  background: #F0F0F0;
+}
+
+.major {
+  font-size: 12px;
+  color: #666665;
+}
+
+/* 项目图片 */
+.program-img {
+  width: 68rpx;
+  height: 68rpx;
+  margin-right: 52rpx;
+}
+
+.my-picker {
+  display: inline-block;
+}
+
+.active {
+  color: #28A7A9;
+}
+
+.more-tab {
+  padding-top: 344rpx;
+
 }
