@@ -138,9 +138,12 @@
         </view>
         
         <view class="student-bak">申请背景</view>
-        <view class="student-bak-text" wx:for="{{item.user.student.academic.schools}}" wx:for-item="school">毕业院校：{{school.instituteChinses != '' ? school.instituteChinses : school.institute}}；
-        毕业专业：{{school.major}}；
+        <view class="student-bak-text" wx:for="{{item.user.student.academic.schools}}" wx:for-item="school">
+          <view>毕业院校：{{school.instituteChinses != '' ? school.instituteChinses : school.institute}}</view>
+          <view>毕业专业：{{school.major}}</view>
         </view>
+        <view class="student-bak-text">录取项目：{{item.program.basicInfo.programName.englishName}}</view>
+
         <image class="offer-logo" src="../../image/project/demoLogo.png"></image>
       </view>
       
