@@ -90,6 +90,10 @@
       </view>
       <image mode="aspectFit" class="logo-right" src="../../image/personalCenter/right.png"></image>
     </view>
+
+    <view wx:if="{{ programs.length == 0 }}" class="no-school-programs">
+      暂无更多数据
+    </view>
   </view>
 
   <!-- 录取案例 -->

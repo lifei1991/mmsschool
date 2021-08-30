@@ -270,6 +270,13 @@
   top: 116rpx;
 }
 
+/* 暂无更多数据 */
+.no-school-programs {
+  background-color: #FFFFFF;
+  text-align: center;
+  padding-top: 20px;
+}
+
 /* 录取案例 */
 .li-div {
   background-color: #FFFFFF;

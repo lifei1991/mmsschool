@@ -29,7 +29,7 @@ Page({
     programsCount: "",
     major: "选择专业",
     multiIndex: [0],
-    multiArray: [['Business', 'Law', 'Engineering', 'Science', 'Social Science & Humanities', 'Medicine', 'Arts & Design'], ['Accounting']],
+    multiArray: [['Business', 'Law', 'Engineering', 'Science', 'Social Science & Humanities', 'Medicine', 'Arts & Design', '查看所有专业'], ['Accounting']],
     majorsArray: [],
     majorId: ''
   },
@@ -169,6 +169,7 @@ Page({
     // wx.showLoading({
     //   title: '加载中...'
     // })
+    wx.showNavigationBarLoading(); 
     var that = this;
     wx.request({
       url: 'https://cms.palmdrive.cn/json/programinfos',
@@ -298,11 +299,12 @@ Page({
       majorId: this.data.majorsArray[e.detail.value[1]].id,
       programs: []
     })
-    
+
     this.getSchoolPrograms();
   },
   bindMultiPickerColumnChange: function (e) {
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var that = this;
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -310,7 +312,17 @@ Page({
     data.multiIndex[e.detail.column] = e.detail.value;
     switch (e.detail.column) {
       case 0:
-        this.getMajors(data.multiArray[0][e.detail.value])
+        if (data.multiArray[0][e.detail.value] != '查看所有专业') {
+          this.getMajors(data.multiArray[0][e.detail.value])
+        } else {
+          that.data.multiArray[1] = ['查看所有专业'];
+          that.setData({
+            multiArray: that.data.multiArray,
+            majorId: '',
+            major: '选择专业',
+            majorsArray: [{ id : ''}]
+          })
+        }
     }
     console.log(data.multiIndex);
     this.setData(data);
