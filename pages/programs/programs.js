@@ -94,6 +94,54 @@ Page({
         "id": "United Kingdom",
         "text": "英国"
       },
+      {
+        "id": 'Australia',
+        "text": '澳洲'
+      },
+      {
+        "id": 'Canada',
+        "text": '加拿大'
+      },
+      {
+        "id": 'Hong Kong',
+        "text": '中国香港'
+      },
+      {
+        "id": 'Macao',
+        "text": '中国澳门'
+      },
+      {
+        "id": 'Singapore',
+        "text": '新加坡'
+      },
+      {
+        "id": 'France',
+        "text": '法国'
+      },
+      {
+        "id": 'Netherlands',
+        "text": '荷兰'
+      },
+      {
+        "id": 'Germany',
+        "text": '德国'
+      },
+      {
+        "id": 'Italy',
+        "text": '意大利'
+      },
+      {
+        "id": 'Switzerland',
+        "text": '瑞士'
+      },
+      {
+        "id": 'Japan',
+        "text": '日本'
+      },
+      {
+        "id": 'Korea',
+        "text": '韩国'
+      }
       // {
       //   "id": "Singapore",
       //   "text": "新加坡"
@@ -460,10 +508,18 @@ Page({
         major: "选择专业",
         showMajorDiv: false
       })
-    } else {
+    } if(nowText == "英国") {
       this.setData({
         status: 4,
         currentTab2: 0,
+        showMajorDiv: false,
+        major: "选择专业",
+        showMajorDiv: false
+      })
+    } else {
+      this.setData({
+        status: 0,
+        currentTab2: 1,
         showMajorDiv: false,
         major: "选择专业",
         showMajorDiv: false
@@ -617,9 +673,15 @@ Page({
           currentTab2: cur,
           showMajorDiv: true
         })
-      } else {
+      } else if (this.data.nowText == "英国") {
         this.setData({
           status: 4,
+          currentTab2: cur,
+          showMajorDiv: true
+        })
+      } else {
+        this.setData({
+          status: 0,
           currentTab2: cur,
           showMajorDiv: true
         })
@@ -660,7 +722,7 @@ Page({
         })
 
         // this.obtainNews();
-        
+
         var that = this;
 
         wx.request({

@@ -97,6 +97,7 @@
   flex-grow: 2;
   color: #b0b0b0;
   line-height: 1.5em;
+  max-width: 460rpx;
 }
 
 .expertInfo .name {

@@ -94,6 +94,21 @@
         </view>
       </view>
 
+      <!-- 其他国家排名 -->
+      <view class="filter " wx:if="{{nowText != '美国' && nowText != '英国'}}">
+        <view class='com-selectBox'>
+          <view class="com-sContent {{currentTab2==1?'active':''}}" bindtap='selectQS' data-current="1">
+            <view class='com-sTxt'>QS 排名</view>
+          </view>
+        </view>
+
+        <view class='com-selectBox'>
+          <view class="section com-sTxt com-sContent {{currentTab2==2?'active':''}}" bindtap='selectMajorBtn' data-current="2" >
+            <view class='com-sTxt'>选择专业</view>
+          </view>
+        </view>
+      </view>
+
       <view class="filter " wx:if="{{showMajorDiv}}">
         <view class='com-selectBox'>
           <view class="section com-sTxt com-sContent">
