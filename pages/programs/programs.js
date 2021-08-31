@@ -110,6 +110,7 @@ Page({
     status: 2,
     currentTab2: 0,
     currentTab3: 0,
+    searchText: ""
   },
 
   /**
@@ -133,6 +134,10 @@ Page({
 
     that.obtainNews();
     that.getMajors(that.data.multiArray[0][0]);
+
+    this.setData({
+      search: this.search.bind(this)
+    })
   },
   footerTap: app.footerTap,
 
@@ -283,7 +288,7 @@ Page({
       method: 'GET',
       data: {
         status: that.data.status,
-        s: '',
+        s: that.data.searchText,
         f: 'name',
         ps: 20,
         pn: that.data.p,
@@ -640,5 +645,101 @@ Page({
     }
 
     this.obtainNews();
-  }
+  },
+
+  search(value) {
+    setTimeout(() => {
+      this.setData({
+        searchText: value
+      })
+      return new Promise((resolve, reject) => {
+        this.setData({
+          newsList: [],
+          isloading: false,
+          totalpage: 10
+        })
+
+        // this.obtainNews();
+        
+        var that = this;
+
+        wx.request({
+          url: 'https://cms.palmdrive.cn/json/institutes/wechat',
+          method: 'GET',
+          data: {
+            status: that.data.status,
+            s: that.data.searchText,
+            f: 'name',
+            ps: 20,
+            pn: that.data.p,
+            country: that.data.country,
+            major: that.data.major,
+          },
+          header: {//定死的格式，不用改，照敲就好
+            'Content-Type': 'application/json'
+          },
+          success: function (res) {
+            if (res.data.status == 500) {    //没有更多数据
+              wx.showToast({
+                title: '没有数据了',
+                icon: 'none'
+              })
+              that.setData({
+                isloading: false
+              })
+            } else {
+              var newsArr = that.data.newsList;
+              for (var j = 0; j < res.data.data.instituteAndProgramInfos.length; j++) {
+    
+                for (var i = 0; i < res.data.data.instituteAndProgramInfos[j].programs.objs.length; i++) {
+                  let tempProgram = res.data.data.instituteAndProgramInfos[j].programs.objs[i];
+                  if (tempProgram.icons.length == 0) {
+                    //商科
+                    if (tempProgram.category == 'Business') {
+                      tempProgram.iconShow = "../../image/mock/sk/1.jpg"
+                    }
+      
+                    //理工科
+                    if (tempProgram.category == 'Engineering' || tempProgram.category == 'Science' || tempProgram.category == 'Medicine') {
+                      tempProgram.iconShow = "../../image/mock/lgk/1.jpg"
+                    }
+      
+                    //文科
+                    if (tempProgram.category == 'Social Science & Humanities' || tempProgram.category == 'Law') {
+                      tempProgram.iconShow = "../../image/mock/wk/1.jpg"
+                    }
+      
+                    if (tempProgram.category == '') {
+                      tempProgram.iconShow = "../../image/mock/sk/2.jpg"
+                    }
+      
+                  } else {
+                    tempProgram.iconShow = "http://cms.palmdrive.cn" + tempProgram.icons[0].url
+                  }
+                }
+    
+                newsArr.push(res.data.data.instituteAndProgramInfos[j]);
+              }
+              that.setData({
+                newsList: newsArr,
+                isloading: false,
+                totalpage: res.data.totalpage
+              })
+    
+              setTimeout(function () {
+                wx.hideNavigationBarLoading();
+                wx.stopPullDownRefresh();
+                wx.hideLoading();
+              }, 500)
+            }
+          },
+          fail: function (res) {
+            console.log('.........fail..........');
+            wx.hideLoading();
+          }
+        })
+      })
+    }, 1000)
+  },
+  
 })

@@ -104,6 +104,11 @@
               <image src='../../image/project/downSelect.png' class='com-sImg' animation="{{animationData}}"></image>
             </picker>
           </view>
+
+          <view class="">
+            <!-- <mp-searchbar ext-class="my-search-style"  placeholder="搜索学校"  focus="{{true}}" bindselectresult="selectResult" cancel="{{false}}" search="{{searchSchool}}"></mp-searchbar> -->
+            <mp-searchbar ext-class="my-search-style" placeholder="搜索学校"  focus="{{true}}" cancel="{{false}}" search="{{search}}"></mp-searchbar>
+          </view>
         </view>
       </view>
 

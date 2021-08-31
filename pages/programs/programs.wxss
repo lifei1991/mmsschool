@@ -369,6 +369,21 @@
 }
 
 .more-tab {
-  padding-top: 344rpx;
+  /* padding-top: 344rpx; */
+  padding-top: 408rpx;
+}
 
+/* 选择专业中的学校搜索框 */
+.my-search-style {
+  padding: 1px 0 0 !important;
+  /* text-align: center; */
+}
+
+.my-search-style .weui-search-bar__form {
+  border-radius: 0;
+}
+
+.my-search-style .weui-search-bar__form .weui-search-bar__input {
+  font-size: 24rpx;
+  color: rgba(57,60,61,.5);
 }

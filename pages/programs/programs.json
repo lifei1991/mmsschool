@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "mp-tabbar": "../../components/tabbar/tabbar"
+    "mp-tabbar": "../../components/tabbar/tabbar",
+    "mp-searchbar": "../../components/searchbar/searchbar"
   }
 }
