@@ -291,7 +291,7 @@ button[plain] {
 }
 
 .offer-job {
-  height:34rpx;
+  /* height:34rpx; */
   font-size:24rpx;
   font-family:PingFang-SC-Medium,PingFang-SC;
   font-weight:500;
@@ -410,4 +410,8 @@ button[plain] {
 
 .school-chinese {
   display: inline-block;
+}
+
+.margin-bootom0 {
+  margin-bottom: 0;
 }

@@ -342,6 +342,7 @@ Page({
         pn: that.data.p,
         country: that.data.country,
         major: that.data.major,
+        year: new Date().getFullYear() + 1
       },
       header: {//定死的格式，不用改，照敲就好
         'Content-Type': 'application/json'
@@ -736,6 +737,7 @@ Page({
             pn: that.data.p,
             country: that.data.country,
             major: that.data.major,
+            year: new Date().getFullYear() + 1
           },
           header: {//定死的格式，不用改，照敲就好
             'Content-Type': 'application/json'

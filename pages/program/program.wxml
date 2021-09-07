@@ -91,63 +91,63 @@
       </view>
     </view>
 
-    <view class = "info-div" >
+    <view class = "info-div" wx:if="{{program.languageRequire != '' || program.greOrGmatRequire != '' || program.gpa != '' || program.interview != '' || program.essaies.length != 0 || program.wsApplySystemRequire != '' || program.wsOpen != '' || program.resume != '' || program.referenceLetterRequire != ''}}">
       <view class="school-info">
         <text class="school-title">申请要求</text>
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.languageEmptyReason != '' || program.languageRequire != ''}}">
+        <view class="rank-div" wx:if="{{program.languageRequire != ''}}">
           <view class="rank-title">语言分数要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.languageEmptyReason != ''}}">{{program.fieldEmptyReason.languageEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.languageEmptyReason != ''}}">{{program.fieldEmptyReason.languageEmptyReason}}</view> -->
             <view wx:if="{{program.languageRequire != ''}}">
               <text>{{program.languageRequire}}</text>
             </view>
           </view>
         </view>
 
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.greOrGmatRequireEmptyReason != '' || program.greOrGmatRequire != ''}}">
+        <view class="rank-div" wx:if="{{program.greOrGmatRequire != ''}}">
           <view class="rank-title">GRE/GMAT分数要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.greOrGmatRequireEmptyReason != ''}}">{{program.fieldEmptyReason.greOrGmatRequireEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.greOrGmatRequireEmptyReason != ''}}">{{program.fieldEmptyReason.greOrGmatRequireEmptyReason}}</view> -->
             <view wx:if="{{program.greOrGmatRequire != ''}}">
               <text>{{program.greOrGmatRequire}}</text>
             </view>
           </view>
         </view>
 
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.gpaEmptyReason != '' || program.gpa != ''}}">
+        <view class="rank-div" wx:if="{{program.gpa != ''}}">
           <view class="rank-title">学术背景要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.gpaEmptyReason != ''}}">{{program.fieldEmptyReason.gpaEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.gpaEmptyReason != ''}}">{{program.fieldEmptyReason.gpaEmptyReason}}</view> -->
             <view wx:if="{{program.gpa != ''}}">
               <text>{{program.gpa}}</text>
             </view>
           </view>
         </view>
 
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.interviewEmptyReason != '' || program.interview != ''}}">
+        <view class="rank-div" wx:if="{{program.interview != ''}}">
           <view class="rank-title">面试要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.interviewEmptyReason != ''}}">{{program.fieldEmptyReason.interviewEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.interviewEmptyReason != ''}}">{{program.fieldEmptyReason.interviewEmptyReason}}</view> -->
             <view wx:if="{{program.interview != ''}}">
               <text>{{program.interview}}</text>
             </view>
           </view>
         </view>
 
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.essayEmptyReason != '' || program.essaies.length != 0}}">
+        <view class="rank-div" wx:if="{{program.essaies.length != 0}}">
           <view class="rank-title">文书官网要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.essayEmptyReason != ''}}">{{program.fieldEmptyReason.essayEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.essayEmptyReason != ''}}">{{program.fieldEmptyReason.essayEmptyReason}}</view> -->
             <view wx:for="{{program.essaies}}" wx:if="{{item.name != ''}}">
               <text>{{item.name}}</text>
             </view>
           </view>
         </view>
 
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason != '' || program.wsApplySystemRequire != ''}}">
+        <view class="rank-div" wx:if="{{program.wsApplySystemRequire != ''}}">
           <view class="rank-title">文书申请系统要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason != ''}}">{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason != ''}}">{{program.fieldEmptyReason.wsApplySystemRequireEmptyReason}}</view> -->
             <view wx:if="{{program.wsApplySystemRequire != ''}}">
               <text>{{program.wsApplySystemRequire}}</text>
             </view>
@@ -163,10 +163,10 @@
           </view>
         </view>
 
-        <view class="rank-div" wx:if="{{program.fieldEmptyReason.resumeEmptyReason != '' || program.resume != ''}}">
+        <view class="rank-div" wx:if="{{program.resume != ''}}">
           <view class="rank-title">简历要求</view>
           <view class="rank-number">
-            <view wx:if="{{program.fieldEmptyReason.resumeEmptyReason != ''}}">{{program.fieldEmptyReason.resumeEmptyReason}}</view>
+            <!-- <view wx:if="{{program.fieldEmptyReason.resumeEmptyReason != ''}}">{{program.fieldEmptyReason.resumeEmptyReason}}</view> -->
             <view wx:if="{{program.resume != ''}}">
               <text>{{program.resume}}</text>
             </view>
@@ -232,7 +232,8 @@
         <text class="school-title">录取案例</text>
         <view class="one-div" wx:for="{{offers}}" wx:key="*this">
           <!-- <view class="student-name">{{item.user.personal.name}}</view> -->
-          <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this">录取专业: {{item}}</view>
+          <view class="offer-job margin-bootom0" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this">录取专业: {{item}}</view>
+          <view class="offer-job">录取项目：{{item.program.basicInfo.programName.englishName}}</view>
           <view class="student-achievement-div">
             <span class="student-achievement">GPA:</span>
             <span class="student-achievement">{{filter.showGPA(item.user.student.academic.schools)}}</span>
@@ -273,7 +274,6 @@
             <view>毕业院校：{{school.instituteChinses != '' ? school.instituteChinses : school.institute}}</view>
             <view>毕业专业：{{school.major}}</view>
           </view>
-          <view class="student-bak-text">录取项目：{{item.program.basicInfo.programName.englishName}}</view>
           
           <image class="offer-logo" src="../../image/project/demoLogo.png"></image>
         </view>

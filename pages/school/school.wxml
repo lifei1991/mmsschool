@@ -87,6 +87,7 @@
       <view class="school-pro-name-div">
         <!-- <view class="school-pro-chineseName">{{item.cnname}}</view> -->
         <view class="school-pro-englishName">{{item.name}}</view>
+        <text class="school-pro-englishName">{{item.year}}年 {{filter.changeSeason(item.season)}}</text>
       </view>
       <image mode="aspectFit" class="logo-right" src="../../image/personalCenter/right.png"></image>
     </view>
@@ -101,7 +102,8 @@
     <view class="li-div">
       <view class="one-div" wx:for="{{offers}}" wx:key="*this">
         <!-- <view class="student-name">{{item.user.personal.name}}</view> -->
-        <view class="offer-job" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this" wx:for-item="major">录取专业: {{major}}</view>
+        <view class="offer-job margin-bootom0" wx:for="{{item.program.basicInfo.majorTexts}}"  wx:key="*this" wx:for-item="major">录取专业: {{major}}</view>
+        <view class="offer-job">录取项目：{{item.program.basicInfo.programName.englishName}}</view>
         <view class="student-achievement-div">
           <span class="student-achievement">GPA:</span>
           <span class="student-achievement">{{filter.showGPA(item.user.student.academic.schools)}}</span>
@@ -142,7 +144,6 @@
           <view>毕业院校：{{school.instituteChinses != '' ? school.instituteChinses : school.institute}}</view>
           <view>毕业专业：{{school.major}}</view>
         </view>
-        <view class="student-bak-text">录取项目：{{item.program.basicInfo.programName.englishName}}</view>
 
         <image class="offer-logo" src="../../image/project/demoLogo.png"></image>
       </view>
