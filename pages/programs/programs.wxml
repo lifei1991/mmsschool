@@ -1,4 +1,5 @@
 <!--pages/programs/programs.wxml-->
+<wxs src='../../filter/filter.wxs' module='filter' />
 <view class="programs">
   <view class="no-content" wx:if="{{newsList.length == 0 && showNoList}}">
     <image class="no-list-icon" src="../../image/project/noSearchResult.png" mode="aspectFit"></image>
@@ -167,7 +168,10 @@
             <view class="cells weui-cells weui-cells_after-title" wx:for="{{item.programs.objs}}" wx:for-item="program">
               <navigator url="{{'../../pages/program/program?id=' + program.id + '&school=' + item.institute.id + '&schoolChinese=' + item.institute.chineseName}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                   <image mode="scaleToFill" class="program-img" src="{{program.iconShow}}"></image>
-                  <view class="weui-cell__bd major">{{program.name}}</view>
+                  <view class="weui-cell__bd major">{{program.name}}
+                    <view class="school-pro-englishName">{{program.year}}年 {{filter.changeSeason(program.season)}}</view>
+                  </view>
+                  <!-- <view class="school-pro-englishName">{{program.year}}年 {{filter.changeSeason(program.season)}}</view> -->
                   <view class="weui-cell__ft weui-cell__ft_in-access"></view>
               </navigator>
             </view>

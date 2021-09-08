@@ -177,7 +177,7 @@
 }
 
 .place-text {
-  width: 186rpx;
+  width: 208rpx;
   display: inline-block;
   margin-right: 10rpx;
 }
