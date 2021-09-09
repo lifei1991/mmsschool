@@ -53,3 +53,11 @@
   background-color: transparent;
   margin-top: 48rpx;
 }
+
+.pd-intro {
+  color:rgba(40,167,169,1);
+  font-size: 32rpx;
+  width: 100%;
+  margin-top: 80rpx;
+  text-align: center;
+}

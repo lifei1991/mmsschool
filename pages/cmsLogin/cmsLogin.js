@@ -119,6 +119,9 @@ Page({
   },
 
   submitAll() {
+    wx.showLoading({
+      title: '加载中...'
+    })
     var that = this;
     wx.request({
       //后台接口地址
@@ -149,6 +152,7 @@ Page({
           app.globalData.user = res.data.data;
           wx.setStorageSync('logined', true);
           wx.setStorageSync('user', res.data.data);
+          wx.hideLoading();
           wx.redirectTo({
             url: "../../pages/testHome/testHome",
           })

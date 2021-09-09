@@ -3,7 +3,12 @@
   <view class="userinfo">
     <image class="userinfo-avatar" src="../../image/logo.png" mode="aspectFit"></image>
     <text class="pd-title">棕榈大道</text>
+    <view class="pd-intro">棕榈选校助手，留学好帮手
+      <view>为你的留学之路提供专业的学校和项目信息</view>
+      <view>(棕榈大道学员专业选校工具)</view>
+    </view>
   </view>
+  
   <view class="usermotto">
     <button class='tempButton' open-type="getUserInfo"
         disabled="{{disabled}}" bindgetuserinfo="bindWeChat"> 微信授权登录 </button>
